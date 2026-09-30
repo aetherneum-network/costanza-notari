@@ -1,0 +1,70 @@
+{
+  "handoff": "costanza-notari v2.1 - frozen for the blind run (synthetic project, fictitious entities)",
+  "branch": "upgrade/2026-10-v2.1-astensioni",
+  "tag": "v2.1-freeze",
+  "anchors": {
+    "1_parent_sha": {
+      "code_commit": "0dd1e46bdb053afc260e92164cefbaca8ab2ff5d",
+      "base_v2_0": "6044cd21336f2e92fa3c6246687b73034a4f84e9",
+      "note": "the tag v2.1-freeze points to the commit that adds this file; its parent is code_commit. The two differ only by this file and one entry of eval/history.json"
+    },
+    "2_tests": {
+      "command": "python -m unittest discover -s tests -t .",
+      "line": "Ran 202 tests in 67.193s",
+      "result": "OK"
+    },
+    "3_scenarios": {
+      "command": "python scenarios/run_all.py",
+      "line": "Scenarios: 10/10 PASS"
+    },
+    "4_suites": {
+      "dev": {
+        "seed": 20260930,
+        "deadline_wrong_committed": 0,
+        "deadline_abstained": "0/254",
+        "recuperare_predicted": 0.3596,
+        "recuperare_expected": 0.3322
+      },
+      "holdout": {
+        "seed": 20261001,
+        "deadline_wrong_committed": 0,
+        "deadline_abstained": "0/253",
+        "recuperare_predicted": 0.3425,
+        "recuperare_expected": 0.3082
+      },
+      "stress-diag-a": {
+        "seed": 20261002,
+        "deadline_wrong_committed": 0,
+        "deadline_abstained": "0/253",
+        "recuperare_predicted": 0.3459,
+        "recuperare_expected": 0.3288
+      },
+      "stress-diag-b": {
+        "seed": 20261003,
+        "deadline_wrong_committed": 0,
+        "deadline_abstained": "0/255",
+        "recuperare_predicted": 0.3425,
+        "recuperare_expected": 0.3219
+      },
+      "stress-blind": {
+        "seed": 20261004,
+        "deadline_wrong_committed": 0,
+        "deadline_abstained": "0/254",
+        "recuperare_predicted": 0.3322,
+        "recuperare_expected": 0.2979
+      }
+    },
+    "5_blind_run": {
+      "protocol": "eval/BLIND_PROTOCOL_v2.1.md",
+      "done": false,
+      "burned_seeds": [
+        20260930,
+        20261001,
+        20261002,
+        20261003,
+        20261004
+      ]
+    }
+  },
+  "not_blind": "none of the five suites is blind for v2.1; holdout was read as aggregates only"
+}
