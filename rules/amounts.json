@@ -1,7 +1,7 @@
 {
-  "version": "2026.09.30-1",
+  "version": "2026.10.01-2",
   "kind": "amounts",
-  "note": "Ordered label rules for amount_due; the first label found (in rule order) wins. Historical totals ('totale versato', 'già corrisposto') are deliberately not labels. expects_amount: doc types whose missing amount is RECUPERARE (not silently null).",
+  "note": "Ordered label rules for amount_due; the first label found (in rule order) wins. Historical totals ('totale versato', 'già corrisposto') are deliberately not labels. expects_amount: doc types whose missing amount is RECUPERARE (not silently null). v2.1: A-003 reads the label by its structure (amount noun + up to three qualifiers + ':' or 'di') and commits only when the document states ONE monetary amount ('unique_amount'): with two or more, which one is due is a guess -> no match. when.after_not: the rule does not apply when the rest of the sentence after the figure matches.",
   "rules": [
     {
       "id": "A-001",
@@ -31,12 +31,13 @@
     {
       "id": "A-002",
       "when": {
-        "label": "importo (?:complessivo )?dovuto|totale (?:dovuto|da pagare)|somma (?:complessiva )?di|per complessivi|importo di|importo da pagare"
+        "label": "importo (?:complessivo )?dovuto|totale (?:dovuto|da pagare)|somma (?:complessiva )?di|per complessivi|importo di|importo da pagare",
+        "after_not": "\\b(?:versat|corrispost|pagat|saldat|rimborsat|accreditat|stornat|annullat|incassat|restituit)[oaie]\\b|\\bda\\s+(?:rimborsare|restituire|accreditare|stornare)\\b|\\bnon\\s+(?:(?:è|sono|più)\\s+)?dovut[oaie]\\b|\\ba\\s+(?:vostro|suo|tuo|vs\\.?)\\s+(?:favore|credito)\\b"
       },
       "then": {
         "field": "amount_due"
       },
-      "rationale": "labels that introduce the amount claimed",
+      "rationale": "labels that introduce the amount claimed v2.1 safety: same 'after_not' as A-003 - 'somma di € 1.234,56 a Vostro favore', 'importo di € 500,00 già versato' state a figure that is not due (v2.0 read them as due)",
       "tests": [
         {
           "id": "A-002-a",
@@ -47,6 +48,207 @@
           "expect": {
             "amount_due": "12380.00"
           }
+        },
+        {
+          "id": "A-002-neg-credit-after",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Somma di € 1.234,56 a Vostro favore."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-002-neg-paid-after",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "importo di € 500,00 già versato in data 01/09/2026."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-002-b",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "importo dovuto: € 500,00, da versare entro cinque giorni."
+          },
+          "expect": {
+            "amount_due": "500.00"
+          },
+          "comment": "'da versare' is an order to pay, not a payment made"
+        }
+      ]
+    },
+    {
+      "id": "A-003",
+      "when": {
+        "label": "\\b(?:importo|somma|totale)(?:\\s+(?:complessiv[oa]|totale|dovut[oa]|capitale|richiest[oa]|intimat[oa]|ingiunt[oa]|a\\s+debito|a\\s+saldo|da\\s+(?:pagare|versare|corrispondere|saldare))){0,3}(?:\\s*:|\\s+di\\b)",
+        "unique_amount": true,
+        "after_not": "\\b(?:versat|corrispost|pagat|saldat|rimborsat|accreditat|stornat|annullat|incassat|restituit)[oaie]\\b|\\bda\\s+(?:rimborsare|restituire|accreditare|stornare)\\b|\\bnon\\s+(?:(?:è|sono|più)\\s+)?dovut[oaie]\\b|\\ba\\s+(?:vostro|suo|tuo|vs\\.?)\\s+(?:favore|credito)\\b"
+      },
+      "then": {
+        "field": "amount_due"
+      },
+      "rationale": "generalised label: a singular amount noun (importo, somma, totale), up to three qualifiers that all mean 'what is owed' (complessivo, dovuto, a debito, da pagare, capitale, richiesto, intimato...), then ':' or 'di' and the figure; accepted only if no other monetary amount appears in the document. Any other qualifier (minimo, versato, residuo, rateizzato...) is not read: no match v2.1 safety: 'after_not' looks at the rest of the sentence after the figure - wording that says the sum was paid, is to be refunded or is a credit ('già corrisposto', 'da rimborsare a Voi', 'a Vostro favore', 'non dovuto') means the figure is not an amount due: not read. The uniqueness check also counts amounts written without decimals next to a currency word ('euro 200')",
+      "tests": [
+        {
+          "id": "A-003-a",
+          "input": {
+            "doc_type": "cartella_pagamento",
+            "text": "per tributi iscritti a ruolo dall'ente creditore. Totale a debito: Euro 6.877,15."
+          },
+          "expect": {
+            "amount_due": "6877.15"
+          }
+        },
+        {
+          "id": "A-003-b",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "di pagare entro dieci giorni l'importo complessivo di Euro 40.700,38 oltre interessi"
+          },
+          "expect": {
+            "amount_due": "40700.38"
+          }
+        },
+        {
+          "id": "A-003-c",
+          "input": {
+            "doc_type": "diffida_messa_in_mora",
+            "text": "a corrispondere la somma capitale di € 1.250,00 entro quindici giorni"
+          },
+          "expect": {
+            "amount_due": "1250.00"
+          }
+        },
+        {
+          "id": "A-003-neg-two-amounts",
+          "input": {
+            "doc_type": "cartella_pagamento",
+            "text": "Totale a debito: Euro 6.877,15, di cui interessi per € 120,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "two monetary amounts: which one is due is not certain -> no match (RECUPERARE for this type)"
+        },
+        {
+          "id": "A-003-neg-plural",
+          "input": {
+            "doc_type": "pignoramento_presso_terzi",
+            "text": "sono state accantonate somme pari a € 1.754,21."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "sums set aside by a garnishee are not an amount due"
+        },
+        {
+          "id": "A-003-neg-credit",
+          "input": {
+            "doc_type": "pignoramento_mobiliare",
+            "text": "si procede a pignoramento mobiliare per il credito di € 9.000,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-003-d",
+          "input": {
+            "doc_type": "intimazione_pagamento",
+            "text": "Importo totale da versare: € 310,00 entro cinque giorni."
+          },
+          "expect": {
+            "amount_due": "310.00"
+          }
+        },
+        {
+          "id": "A-003-neg-historical",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Risulta un totale già versato di € 500,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-003-neg-qualifier",
+          "input": {
+            "doc_type": "provvedimento_rateizzazione",
+            "text": "La dilazione è ammessa con importo minimo di € 50,00 per rata."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "an unknown qualifier (minimo) may change what the figure is: not read"
+        },
+        {
+          "id": "A-003-neg-residual",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "L'importo residuo di € 800,00 sarà oggetto di separata comunicazione."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-003-neg-paid-after",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "Totale a debito: Euro 1.234,56, già corrisposto."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-003-neg-refund-after",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "Importo complessivo di Euro 1.234,56 da rimborsare a Voi."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-003-neg-integer-amount",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "Totale a debito: Euro 1.234,56 oltre euro 200 di spese."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "a second amount, written without decimals: which one is due is a guess"
+        },
+        {
+          "id": "A-003-e",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "Totale a debito: Euro 1.234,56. Il pagamento va versato sul conto indicato."
+          },
+          "expect": {
+            "amount_due": "1234.56"
+          },
+          "comment": "the next sentence is not the rest of this one"
         }
       ]
     }

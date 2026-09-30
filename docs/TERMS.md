@@ -46,7 +46,11 @@ Holidays: 1 Jan, 6 Jan, Easter Monday (computed, Meeus/Jones/Butcher), 25 Apr, 1
 | T-010 | piano di rateizzazione | dates stated | no | no | no | art. 19 DPR 602/1973 | [TO CONFIRM] lapse clause = conditional |
 
 A relative term stated in the text ("entro quaranta giorni dalla notifica") wins; the statutory default
-of the table is used only when the text is silent or unreadable. Hearing dates and stated due dates are
+of the table is used only when the text states no term (or there is no text at all). A term clause that is
+there but cannot be read with certainty - months or weeks, *giorni lavorativi / liberi / utili*, a term
+running from the notification of another act, a number the two readers of `pipeline/termclauses.py` do not
+agree on - is never replaced by the default: the deadline is `RECUPERARE` (`rules/term_clauses.json`; how
+such terms are counted is **[TO CONFIRM with counsel]** and not modelled). Hearing dates and stated due dates are
 `actionable`; their date is taken from the text as is.
 
 ## Hand-worked examples (asserted by `tests/test_terms.py`)

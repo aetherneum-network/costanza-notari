@@ -1,6 +1,6 @@
 **SYNTHETIC - Costanza Notari is a synthetic alumna (an AI agent) of Aetherneum University. Every company, person, address, amount, reference and certificate in this repository is fictitious (`.example` domains, TEST CA only). Nothing here is legal advice.**
 
-# Costanza Notari - Procedural Vigilance, v2 proof pack
+# Costanza Notari - Procedural Vigilance, v2 proof pack (v2.1)
 
 > *A deadline is a fact, not an opinion.* Null is honest; a guess is a defect.
 
@@ -31,6 +31,7 @@ python -m pipeline.run --as-of 2026-10-21T09:40:00+02:00   # -> build/work/build
 python scenarios/run_all.py                        # S01..S10, one PASS/FAIL line each
 python -m unittest discover -s tests -t .          # offline test-suite
 python eval/score.py                               # precision / recall vs gold -> eval/results.json
+python eval/score.py --seed N --perturb            # any other seed, aggregate numbers only (eval/BLIND_PROTOCOL_v2.1.md)
 ```
 
 Exit codes of the runner: `0` OK, `2` BLOCKED (handoff sentinel), `3` FAILED. "RUN OK" is printed only on success.
@@ -44,7 +45,7 @@ Exit codes of the runner: `0` OK, `2` BLOCKED (handoff sentinel), `3` FAILED. "R
 | 2 | envelope | `pipeline/s2_envelope.py` | `02_envelopes.json` | daticert, postacert, transport-signed bytes |
 | 3 | signature | `pipeline/s3_signature.py` | `03_signatures.json` | `signature_integrity` vs `signer_chain_verified` (L8) |
 | 4 | text | `pipeline/s4_text.py`, `ocr.py` | `04_text.json` | per-page confidence, RECUPERARE below threshold |
-| 5 | classify (fan-out) | `pipeline/s5_classify.py`, `classify.py` | chunks + handoffs | ordered rules (L7), author ≠ transmitter ≠ party (L5), deadline nature (L6) |
+| 5 | classify (fan-out) | `pipeline/s5_classify.py`, `classify.py`, `termclauses.py`, `typeagree.py` | chunks + handoffs | ordered rules (L7), author ≠ transmitter ≠ party (L5), deadline nature (L6); v2.1: term clauses read by two readers that must agree, document type by agreement of two readings |
 | 6 | consolidate | `pipeline/s6_consolidate.py` | receipts + sentinel | receipts, anchors, release blocked on mismatch (L1) |
 | 7 | ledger | `pipeline/s7_ledger.py` | `ledger.jsonl`, `superseded_values.json` | append-only, edition-bound values (L2, L10) |
 | 8 | build | `pipeline/s8_build.py`, `publish.py` | XLSX + DOCX, store | *Data as of*, banners, `if_version` (L3, L4) |
@@ -55,30 +56,33 @@ Operations: `pipeline/run.py` (one chained process, upstream guards), `pipeline/
 disabled by default (`pipeline/llm_classifier.py`: Claude Haiku 4.5 workers, Claude Opus 5.5 disputes);
 no test calls any API.
 
-## Results (measured in this environment - Windows 10, Python 3.12.10)
+## Results (v2.1, measured in this environment - Windows, Python 3.12.10)
 
-**Test-suite:** 114 `unittest` tests, all passing (`python -m unittest discover -s tests -t .`, ~6 min).
+**Test-suite:** 202 `unittest` tests, all passing (`python -m unittest discover -s tests -t .`; v2.0 had 114).
 **Scenarios:** 10/10 PASS (`python scenarios/run_all.py`) - one line each, see `scenarios/Sxx/run.md`.
-**Determinism:** two independent full runs -> identical SHA-256: `master_index.xlsx` `eb6286905a9577948a17035915508627eefb342a57fa48fdb77008492a49bae2`, `report.docx` `7d66196d8b33083c5d7e8fe14f66a7f13b945ad37686da947773c03468f511c3`; the corpus (325 files, TEST PKI included) regenerates bit-for-bit against `corpus/MANIFEST.sha256`.
+**Determinism:** two independent full runs -> identical SHA-256: `master_index.xlsx` `50d6c32da81fafd2aa49db8d22f1f021eb6de2d74c5c0e6e9ed5c6caab5abfd1`, `report.docx` `47933f322647cfa127626e0091addfd09d2ad86ae6e533b6c7feb1ac7578532e` (both changed from v2.0: the dev index now commits one more deadline); the corpus (325 files, TEST PKI included) regenerates bit-for-bit against `corpus/MANIFEST.sha256`.
 
 **Evaluation** (`eval/score.py`, 292 unique envelopes per suite; RECUPERARE = abstention: it lowers accuracy and recall, never precision). *Precision* = over committed (non-RECUPERARE) answers.
 
 | suite | doc type acc / precision / abstained | sender class acc / precision / abstained | driving deadline exact / wrong committed / abstained | amount wrong | editions linked | RECUPERARE rate pred / expected |
 |---|---|---|---|---|---|---|
-| dev (seed 20260930, rules developed on it) | 1.000 / 1.000 / 0 | 0.956 / 1.000 / 13 | 0.996 / 0 / 1 of 254 | 0 | 6/6 | 0.360 / 0.332 |
-| holdout (seed 20261001, never inspected) | 1.000 / 1.000 / 2 | 0.945 / 1.000 / 16 | 1.000 / 0 / 0 of 253 | 0 | 6/6 | 0.343 / 0.308 |
-| stress-diag-a (20261002, perturbed; used for diagnosis) | 0.945 / 1.000 / 19 | 0.966 / 1.000 / 10 | 0.621 / 0 / 96 of 253 | 0 | 6/6 | 0.647 / 0.329 |
-| stress-diag-b (20261003, perturbed; used for diagnosis) | 0.945 / 1.000 / 16 | 0.952 / 1.000 / 14 | 0.639 / 0 / 92 of 255 | 0 | 6/6 | 0.657 / 0.322 |
-| stress-blind (20261004, perturbed) - post-fix, no longer blind | 0.925 / 1.000 / 27 | 0.945 / 1.000 / 16 | 0.547 / 0 / 115 of 254 | 0 | 6/6 | 0.692 / 0.298 |
+| dev (seed 20260930, rules developed on it) | 1.000 / 1.000 / 0 | 0.956 / 1.000 / 13 | 1.000 / 0 / 0 of 254 | 0 | 6/6 | 0.360 / 0.332 |
+| holdout (seed 20261001, records never inspected; aggregates read) | 1.000 / 1.000 / 2 | 0.945 / 1.000 / 16 | 1.000 / 0 / 0 of 253 | 0 | 6/6 | 0.343 / 0.308 |
+| stress-diag-a (20261002, perturbed; v2.1 developed on it) | 1.000 / 1.000 / 3 | 0.966 / 1.000 / 10 | 1.000 / 0 / 0 of 253 | 0 | 6/6 | 0.346 / 0.329 |
+| stress-diag-b (20261003, perturbed; v2.1 developed on it) | 1.000 / 1.000 / 0 | 0.952 / 1.000 / 14 | 1.000 / 0 / 0 of 255 | 0 | 6/6 | 0.343 / 0.322 |
+| stress-blind (20261004, perturbed; **not blind**: v2.1 developed on it) | 1.000 / 1.000 / 5 | 0.945 / 1.000 / 16 | 1.000 / 0 / 0 of 254 | 0 | 6/6 | 0.332 / 0.298 |
+
+**None of these five corpora is blind for v2.1.** The same table for v2.0 (deadline abstained 1 / 0 / 96 / 92 / 115, RECUPERARE rate on the perturbed corpora 0.647 / 0.657 / 0.692) is kept per suite, before and after, in `eval/history.json` under `v2_1_before_blind`. The blind run of v2.1 is made on a new seed after the freeze, with `eval/BLIND_PROTOCOL_v2.1.md`; its result is appended to `eval/history.json` and is not in this table.
 
 Measurements taken **before** later fixes, kept verbatim in `eval/history.json`:
 
 * first perturbed run (seed 20261002, no safety nets): deadline exact 0.810, **10 wrong committed deadlines**, editions linked 1/6.
-* **the single blind run** (seed 20261004, code frozen, tests green): doc type acc 0.925 (precision 1.000), sender class acc 0.945 (precision 1.000), deadline exact 0.626, **1 wrong committed deadline**, 0 wrong amounts, editions linked 5/6, RECUPERARE rate 0.692 vs 0.298 expected. This is the honest robustness figure.
+* **the single blind run of v2.0** (seed 20261004, code frozen, tests green): doc type acc 0.925 (precision 1.000), sender class acc 0.945 (precision 1.000), deadline exact 0.626, **1 wrong committed deadline**, 0 wrong amounts, editions linked 5/6, RECUPERARE rate 0.692 vs 0.298 expected. Until v2.1 is run blind, this is still the only blind figure in the repository.
+* v2.0 after its two fixes, same corpora as the table above (no longer blind): deadline abstained 96 / 92 / 115 on the three perturbed corpora, 0 wrong; doc type abstained 19 / 16 / 27.
 
 Per class (dev and holdout): every document type has precision = recall = 1.000; every sender class has precision 1.000; recall is 1.000 except LAWYER (0.787 dev, 0.754 holdout): a lawyer writing from a generic domain under a display name without "Avv." is left RECUPERARE by design (margin below threshold) rather than guessed. Transmitter, author, party and channel: 0 wrong committed answers in every suite; signatures agree with gold on every attachment in every suite (integrity, chain, status); 8/8 duplicates ignored in every suite.
 
-**How to read these numbers.** Every suite is synthetic and shares the generator's templates, and I wrote both the generator and the rules: dev/holdout numbers measure internal consistency, not real-world accuracy. The stress suites rewrite phrasings the rules never saw; what they show is the property I care about - under unseen phrasing, recall falls and RECUPERARE rises, while wrong committed values stay near zero. The dev deadline figure (0.996) is one planted broken transport signature whose tampered timestamp contradicts the document's own date: the pipeline abstains.
+**How to read these numbers.** Every suite is synthetic and shares the generator's templates, and I wrote both the generator and the rules: dev/holdout numbers measure internal consistency, not real-world accuracy. For v2.0 the stress suites rewrote phrasings the rules had never seen, and showed the property I care about - under unseen phrasing, recall falls and RECUPERARE rises, while wrong committed values stay near zero. **For v2.1 they are no longer unseen**: v2.1 was written to read them, and it does (abstentions on dated deadlines 96 / 92 / 115 -> 0, still 0 wrong). The perturbed corpora contain only the generator's eleven rewrites, so they cannot distinguish the structural readers of v2.1 from a table of those phrasings, and a new seed of the same generator cannot either; on wording outside the pool the only evidence is the unit tests (`tests/test_termclauses.py`, `tests/test_v21_mechanisms.py`), which show that what is not read is abstained on. The record-level RECUPERARE rate stays 2-3.5 points above expected: sender-class abstentions, by design. The dev deadline that v2.0 left RECUPERARE (a planted broken transport signature whose tampered timestamp precedes the document's own date) is now committed: the date line of the letter is recognised as such (N-009). Any other written future date of unknown nature still blocks the deadline, as in v2.0. Before the freeze v2.1 was compared with v2.0 on about ninety hand-written texts outside the pool (postponements, cancellations, recitals, modified terms, paid amounts): a development build that scored 0 wrong on all five corpora committed several of them wrongly; the nets added for them (CHANGELOG, *Safety pass*) change no number in the table above - which is the measure of how little that table can see.
 
 ## What is stubbed or out of scope
 
@@ -119,9 +123,9 @@ Each item is a parameter in `rules/terms.json` / `rules/holidays.json` or a poli
 corpus/      generator, world (fictitious), TEST PKI, reference day-walker, gold labels, MANIFEST.sha256
 pipeline/    the nine stages + runner, status, heartbeat, publish, rules engine, lib/ (DER, RSA, X.509, CMS, PDF)
 rules/       ordered, versioned rule files (doc_type, area, sender_class, attribution, deadline_nature,
-             terms, holidays, amounts, urgency, misc)
+             term_clauses, terms, holidays, amounts, urgency, misc)
 scenarios/   S01..S10 (input/, expected/, run.md, check.py), run_all.py
-tests/       offline unittest suite     eval/   score.py, results.json, history.json
+tests/       offline unittest suite     eval/   score.py, results.json, history.json, BLIND_PROTOCOL_v2.1.md
 docs/        TERMS.md, SIGNATURES.md    packaging/SKILL.md    SKILLS.md    CHANGELOG.md
 ```
 

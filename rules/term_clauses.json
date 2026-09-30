@@ -1,0 +1,195 @@
+{
+  "version": "2026.10.01-3",
+  "kind": "term_clauses",
+  "note": "v2.1. A relative term is read slot by slot: LEAD-IN (is it a deadline?) + QUANTITY (number and unit, read by two independent readers that must agree) + QUALIFIER (does it change how days are counted?) + ANCHOR (an event the pipeline can date) + COMPLEMENT (is the anchor the notification of THIS act?) + MOOD (conditional / recital). The code extracts the slots (pipeline/termclauses.py); the rules below decide what each slot value means. Any slot that no rule recognises makes the whole clause UNREAD -> the deadline is RECUPERARE. Rules are evaluated in order inside each slot; first match wins. Nothing here is a legal rule: these are reading rules; the legal parameters stay in rules/terms.json [TO CONFIRM with counsel].",
+  "rules": [
+    {
+      "id": "TC-L01",
+      "slot": "lead_in",
+      "when": {"regex": "entro(?:\\s+e\\s+non\\s+oltre)?(?:\\s+il\\s+termine(?:\\s+(?:perentorio|massimo|ultimo|essenziale|improrogabile))?\\s+di)?"},
+      "then": {"polarity": "deadline"},
+      "rationale": "'entro' (with or without 'e non oltre', with or without 'il termine [perentorio] di') introduces the last useful day",
+      "tests": [
+        {"id": "TC-L01-a", "input": {"text": "di pagare entro il termine di dieci giorni dalla notifica del presente atto la somma"}, "expect": {"terms": [[10, "notification", false]], "unread": []}},
+        {"id": "TC-L01-b", "input": {"text": "Si intima il pagamento entro e non oltre 5 giorni dalla notifica della presente intimazione."}, "expect": {"terms": [[5, "notification", false]], "unread": []}},
+        {"id": "TC-L01-c", "input": {"text": "da versare entro il termine perentorio di giorni 30 (trenta) dal ricevimento della presente."}, "expect": {"terms": [[30, "receipt", false]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-L02",
+      "slot": "lead_in",
+      "when": {"regex": "non\\s+oltre(?:\\s+il\\s+termine\\s+di)?"},
+      "then": {"polarity": "deadline"},
+      "rationale": "'non oltre N giorni' = a last useful day",
+      "tests": [
+        {"id": "TC-L02-a", "input": {"text": "Il pagamento dovrà pervenire non oltre venti giorni dalla notificazione."}, "expect": {"terms": [[20, "notification", false]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-L03",
+      "slot": "lead_in",
+      "when": {"regex": "nel\\s+termine(?:\\s+(?:perentorio|massimo|ultimo|essenziale|improrogabile))?\\s+di"},
+      "then": {"polarity": "deadline"},
+      "rationale": "'nel termine di' introduces the last useful day",
+      "tests": [
+        {"id": "TC-L03-a", "input": {"text": "di pagare nel termine di giorni dieci dalla notifica del presente atto la somma"}, "expect": {"terms": [[10, "notification", false]], "unread": []}},
+        {"id": "TC-L03-b", "input": {"text": "opposizione nel termine perentorio di quaranta giorni dalla notificazione del presente decreto"}, "expect": {"terms": [[40, "notification", false]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-L04",
+      "slot": "lead_in",
+      "when": {"regex": "nei|entro\\s+i"},
+      "then": {"polarity": "deadline"},
+      "rationale": "'nei quindici giorni successivi al ricevimento' = within",
+      "tests": [
+        {"id": "TC-L04-a", "input": {"text": "Vi invitiamo a provvedere nei quindici giorni successivi al ricevimento della presente."}, "expect": {"terms": [[15, "receipt", false]], "unread": []}},
+        {"id": "TC-L04-neg", "input": {"text": "L'esecuzione non potrà iniziare prima di dieci giorni dalla notifica del presente atto."}, "expect": {"terms": [], "unread": ["lead_in"]}, "comment": "a dilatory term ('non prima di') is not a deadline: unread, never computed"},
+        {"id": "TC-L04-neg2", "input": {"text": "Decorsi inutilmente dieci giorni dalla notifica si procederà ad esecuzione forzata."}, "expect": {"terms": [], "unread": ["lead_in"]}, "comment": "no deadline lead-in: unread"}
+      ]
+    },
+    {
+      "id": "TC-U01",
+      "slot": "unit",
+      "when": {"words": ["giorni", "giorno", "gg"]},
+      "then": {"unit": "day", "modelled": true},
+      "rationale": "terms counted in days are the only ones pipeline/terms.py computes",
+      "tests": [
+        {"id": "TC-U01-a", "input": {"text": "entro gg. 10 dalla notifica"}, "expect": {"terms": [[10, "notification", false]], "unread": []}},
+        {"id": "TC-U01-b", "input": {"text": "entro 60 gg dalla notificazione della presente cartella"}, "expect": {"terms": [[60, "notification", false]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-U02",
+      "slot": "unit",
+      "when": {"words": ["mesi", "mese", "settimane", "settimana", "anni", "anno"]},
+      "then": {"unit": "other", "modelled": false},
+      "rationale": "terms in weeks / months / years follow a different computation (ex nominatione dierum) that is not modelled [TO CONFIRM with counsel]: the clause is unread, the statutory default must not silently replace it",
+      "tests": [
+        {"id": "TC-U02-a", "input": {"text": "Avverso la sentenza può essere proposto appello entro sei mesi dalla notifica."}, "expect": {"terms": [], "unread": ["unit"]}},
+        {"id": "TC-U02-b", "input": {"text": "entro due settimane dal ricevimento della presente"}, "expect": {"terms": [], "unread": ["unit"]}}
+      ]
+    },
+    {
+      "id": "TC-Q01",
+      "slot": "qualifier",
+      "when": {"phrases": ["naturali", "consecutivi", "solari", "di calendario", "decorrenti", "a decorrere", "a far data", "e"]},
+      "then": {"effect": "none"},
+      "rationale": "calendar days, stated redundantly: no effect on the count",
+      "tests": [
+        {"id": "TC-Q01-a", "input": {"text": "entro 30 giorni naturali e consecutivi decorrenti dalla notifica"}, "expect": {"terms": [[30, "notification", false]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-Q02",
+      "slot": "qualifier",
+      "when": {"phrases": ["lavorativi", "lavorativo", "feriali", "liberi", "utili"]},
+      "then": {"effect": "changes_count"},
+      "rationale": "working / clear days are counted differently; not modelled [TO CONFIRM with counsel]: unread",
+      "tests": [
+        {"id": "TC-Q02-a", "input": {"text": "entro dieci giorni lavorativi dal ricevimento della presente"}, "expect": {"terms": [], "unread": ["qualifier"]}},
+        {"id": "TC-Q02-b", "input": {"text": "entro venti giorni liberi dalla notifica"}, "expect": {"terms": [], "unread": ["qualifier"]}}
+      ]
+    },
+    {
+      "id": "TC-A01",
+      "slot": "anchor",
+      "when": {"regex": "notifica(?:zione)?"},
+      "then": {"event": "notification"},
+      "rationale": "the term runs from the notification; the PEC delivery timestamp dates it (rules/terms.json, notification_date_note)",
+      "tests": [
+        {"id": "TC-A01-a", "input": {"text": "reclamo entro trenta giorni dalla notificazione."}, "expect": {"terms": [[30, "notification", false]], "unread": []}},
+        {"id": "TC-A01-b", "input": {"text": "entro 40 giorni dalla data di notifica del presente avviso"}, "expect": {"terms": [[40, "notification", false]], "unread": []}},
+        {"id": "TC-A01-neg", "input": {"text": "entro trenta giorni dalla data della presente"}, "expect": {"terms": [], "unread": ["anchor"]}, "comment": "the document date is not an event the envelope dates: unread"},
+        {"id": "TC-A01-neg2", "input": {"text": "entro dieci giorni dal deposito del provvedimento"}, "expect": {"terms": [], "unread": ["anchor"]}}
+      ]
+    },
+    {
+      "id": "TC-A02",
+      "slot": "anchor",
+      "when": {"regex": "ricevimento|ricezione"},
+      "then": {"event": "receipt"},
+      "rationale": "private terms run from receipt = PEC delivery (rules/terms.json T-009)",
+      "tests": [
+        {"id": "TC-A02-a", "input": {"text": "a corrispondere entro quindici giorni dal ricevimento della presente la somma"}, "expect": {"terms": [[15, "receipt", false]], "unread": []}},
+        {"id": "TC-A02-b", "input": {"text": "entro 7 giorni dalla ricezione"}, "expect": {"terms": [[7, "receipt", false]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-C01",
+      "slot": "complement",
+      "when": {"regex": "(?:del|dello|della|dell['’])\\s*presente\\b"},
+      "then": {"refers_to": "this_act"},
+      "rationale": "'dalla notifica del presente atto / della presente cartella / della presente': the anchor is the notification carried by this envelope",
+      "tests": [
+        {"id": "TC-C01-a", "input": {"text": "entro venti giorni dalla notifica del presente avviso."}, "expect": {"terms": [[20, "notification", false]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-C02",
+      "slot": "complement",
+      "when": {"regex": "(?:del|dello|della|dell['’]|dei|degli|delle|di)\\b"},
+      "then": {"refers_to": "unknown_act"},
+      "rationale": "'dalla notifica del decreto / del titolo esecutivo': the term may run from the notification of ANOTHER act, which this envelope does not date: unread",
+      "tests": [
+        {"id": "TC-C02-a", "input": {"text": "non avendo il debitore pagato entro dieci giorni dalla notifica del precetto"}, "expect": {"terms": [], "unread": ["complement"]}},
+        {"id": "TC-C02-b", "input": {"text": "opposizione entro quaranta giorni dalla notifica del decreto"}, "expect": {"terms": [], "unread": ["complement"]}}
+      ]
+    },
+    {
+      "id": "TC-M01",
+      "slot": "mood",
+      "when": {"regex": "\\b(qualora|in caso di|nel caso in cui|laddove)\\b[^.;]*$"},
+      "then": {"mood": "conditional"},
+      "rationale": "a condition governs the clause: the term is recorded as conditional and never drives (same cue list as v2.0)",
+      "tests": [
+        {"id": "TC-M01-a", "input": {"text": "Qualora entro 15 giorni dalla notifica non si provveda, il piano si intenderà revocato."}, "expect": {"terms": [[15, "notification", true]], "unread": []}}
+      ]
+    },
+    {
+      "id": "TC-M02",
+      "slot": "mood",
+      "when": {"regex": "\\b(doveva(no)?|avrebbe(ro)? dovuto|era(no)? tenut[oaie]|originariamente|in precedenza|precedentemente)\\b[^.;]*$"},
+      "then": {"mood": "recital"},
+      "rationale": "past modal: the clause recites an old term; it is neither computed nor silently dropped: unread",
+      "tests": [
+        {"id": "TC-M02-a", "input": {"text": "il pagamento doveva avvenire entro dieci giorni dalla notifica"}, "expect": {"terms": [], "unread": ["mood"]}}
+      ]
+    },
+    {
+      "id": "TC-M03",
+      "slot": "mood",
+      "when": {"side": "after", "regex": "\\bnon\\s+(?:è|e['’]|sono|risulta|risultano|ha|hanno|avendo|essendo)(?![\\w’'])|\\b(?:è|sono|risulta|risultano|essendo)\\s+(?:\\w+\\s+){0,2}?(?:decors|scadut|spirat|trascors)[oaie]\\b|\\binutilmente\\b|\\bsenza\\s+esito\\b"},
+      "then": {"mood": "recital"},
+      "rationale": "'side: after' = the text that follows the anchor, up to the end of the sentence. A clause that goes on with a negated perfect ('non è stato effettuato alcun pagamento', 'non ha provveduto') or with 'è decorso / scaduto / spirato', 'inutilmente', 'senza esito' recites a term that has already run - typically the term of an earlier act, which this envelope does not date. It is neither computed from this notification nor silently dropped: unread",
+      "tests": [
+        {"id": "TC-M03-a", "input": {"text": "premesso che entro dieci giorni dalla notifica non è stato effettuato alcun pagamento;"}, "expect": {"terms": [], "unread": ["mood"]}},
+        {"id": "TC-M03-b", "input": {"text": "Il termine per adempiere, da osservarsi entro e non oltre 10 giorni dalla notifica, è inutilmente decorso."}, "expect": {"terms": [], "unread": ["mood"]}},
+        {"id": "TC-M03-c", "input": {"text": "Nel termine di giorni 40 dalla notificazione la società non ha proposto opposizione."}, "expect": {"terms": [], "unread": ["mood"]}}
+      ]
+    },
+    {
+      "id": "TC-M04",
+      "slot": "mood",
+      "when": {"side": "after", "regex": "\\b(?:avrebbe(?:ro)?\\s+(?:potuto|dovuto)|doveva(?:no)?|poteva(?:no)?|era(?:no)?\\s+tenut[oaie])\\b"},
+      "then": {"mood": "recital"},
+      "rationale": "the past modal of TC-M02, met after the anchor ('entro dieci giorni dalla notifica il debitore avrebbe potuto proporre opposizione'): the clause recites a term that has run; unread",
+      "tests": [
+        {"id": "TC-M04-a", "input": {"text": "Si rammenta che entro e non oltre dieci giorni dalla notifica il debitore avrebbe potuto proporre opposizione."}, "expect": {"terms": [], "unread": ["mood"]}},
+        {"id": "TC-M04-b", "input": {"text": "entro 40 giorni dalla notificazione la società doveva costituirsi."}, "expect": {"terms": [], "unread": ["mood"]}}
+      ]
+    },
+    {
+      "id": "TC-M05",
+      "slot": "mood",
+      "when": {"side": "after", "regex": "\\b(?:prorogat|ridott|aumentat|elevat|raddoppiat|dimezzat|abbreviat|sospes|interrott)[oaie]\\b"},
+      "then": {"mood": "modified"},
+      "rationale": "the sentence goes on changing the term it has just stated ('entro venti giorni dalla notifica, ridotti a dieci ...', '..., prorogati di ulteriori venti', 'termine sospeso fino al ...'): the number read is not the number that applies. The arithmetic of a modified term is not modelled [TO CONFIRM with counsel]: unread",
+      "tests": [
+        {"id": "TC-M05-a", "input": {"text": "di pagare entro venti giorni dalla notifica, ridotti a dieci in caso di urgenza, la somma di € 1.000,00."}, "expect": {"terms": [], "unread": ["mood"]}},
+        {"id": "TC-M05-b", "input": {"text": "di pagare entro dieci giorni dalla notifica, prorogati di ulteriori venti, la somma di € 1.000,00."}, "expect": {"terms": [], "unread": ["mood"]}},
+        {"id": "TC-M05-c", "input": {"text": "entro e non oltre dieci giorni dalla notifica, termine sospeso fino a nuova comunicazione, la somma dovuta."}, "expect": {"terms": [], "unread": ["mood"]}}
+      ]
+    }
+  ]
+}

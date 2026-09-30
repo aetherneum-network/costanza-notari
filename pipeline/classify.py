@@ -12,7 +12,7 @@ import re
 from dataclasses import dataclass
 from functools import lru_cache
 
-from . import amounts, attribution as attr, deadlines as dl, entities as ent, terms, urgency
+from . import amounts, attribution as attr, deadlines as dl, entities as ent, terms, typeagree, urgency
 from .lib import jsonio, tzrome
 from .rules_engine import RULES_DIR, RuleFile
 
@@ -32,6 +32,7 @@ class Context:
     terms_cfg: dict
     calendar: terms.Calendar
     expects_amount: set
+    title_families: tuple = ()
 
 
 def build_context(config: dict, as_of: _dt.datetime, rules_dir=None) -> Context:
@@ -42,6 +43,7 @@ def build_context(config: dict, as_of: _dt.datetime, rules_dir=None) -> Context:
         doc_rules=RuleFile.load("doc_type.json", rd), area_rules=RuleFile.load("area.json", rd),
         terms_cfg=jsonio.read(rd / "terms.json"), calendar=terms.Calendar(jsonio.read(rd / "holidays.json")),
         expects_amount=set(amounts_cfg.get("expects_amount", [])),
+        title_families=typeagree.compile_families(jsonio.read(rd / "doc_type.json")),
     )
 
 
@@ -52,6 +54,23 @@ def _term_for(ctx: Context, doc_type: str) -> dict:
     return {"id": "T-NONE", "days": None, "feriale_suspension": False, "saturday_rollover": False,
             "pec_after_21_rule": False, "legal_basis": "no statutory term modelled",
             "to_confirm": "[TO CONFIRM with counsel]"}
+
+
+def competing_written_dates(found: list[dict], reference_iso: str | None) -> list[dict]:
+    """v2.1 net for the structural nature rules (flag ``sole_candidate`` in rules/deadline_nature.json).
+
+    Such a rule reads wordings the strict cue rules of v2.0 did not, so its reading is accepted only when
+    it has no competitor: if the text writes another future date that is a term or may be one (actionable
+    by any rule, or of unknown nature), the pipeline cannot tell an enumeration (the earliest drives) from
+    a postponement (the latest replaces the earliest). Returns the competing dates; empty = no ambiguity."""
+    sole = dl.sole_candidate_rules()
+    cands = {}
+    for d in found:
+        if d["nature"] in ("actionable", RECUPERARE) and (reference_iso is None or d["date"] > reference_iso):
+            cands.setdefault(d["date"], []).append(d)
+    if len(cands) < 2 or not any(d["rule"] in sole for ds in cands.values() for d in ds):
+        return []
+    return [ds[0] for _, ds in sorted(cands.items())]
 
 
 def _date_from_text(s: str) -> str | None:
@@ -77,6 +96,10 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
     pdoc = next((d for d in sig.get("documents", []) if d["name"] == txt.get("principal")), {})
     trace, rec_fields, reasons = {}, [], {}
 
+    # relative terms stated by the text (v2.1: read before the type, which may need them as a second reading)
+    text_terms = dl.relative_terms(text)
+    unread_terms = dl.unread_term_clauses(text)
+
     # sender class ---------------------------------------------------------------------------
     sc = attr.classify_sender(sender_addr, display, "\n".join([subject, body, text]), ctx.debtor)
     sender_class = sc["class"]
@@ -91,9 +114,15 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
     then, rule = ctx.doc_rules.apply(feats)
     doc_type = then["doc_type"] if then else RECUPERARE
     trace["doc_type"] = rule or "no rule matched"
+    doc_reason = "no title/subject rule matched" + (" (no readable text)" if not text else "")
+    if text and (then is None or then.get("basis") == "subject"):
+        # no strict title rule: the type needs two independent readings that agree (pipeline/typeagree.py)
+        agreed, basis = typeagree.read(text, subject, text_terms, ctx.title_families, ctx.terms_cfg)
+        if agreed is not None:
+            doc_type, trace["doc_type"], doc_reason = agreed, basis, basis
     if doc_type == RECUPERARE:
         rec_fields.append("doc_type")
-        reasons["doc_type"] = "no title/subject rule matched" + (" (no readable text)" if not text else "")
+        reasons["doc_type"] = doc_reason
     feats["doc_type"] = doc_type
     then, rule = ctx.area_rules.apply(feats)
     area = then["area"] if then else RECUPERARE
@@ -149,13 +178,14 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
         tzrome.to_rome(pec_time).date().isoformat() if pec_time else None)
     found = []
     for d in dl.find_dates(text):
-        nature, nrule = dl.classify_nature(d.get("before", ""), d.get("after", ""), d["date"], ref_iso)
+        nature, nrule = dl.classify_nature(d.get("before", ""), d.get("after", ""), d["date"], ref_iso,
+                                           d.get("before_local"))
         found.append({"date": d["date"], "raw": d["raw"], "nature": nature, "rule": nrule,
                       "context": d.get("sentence", "")[:160]})
     deadlines = [{"date": d["date"], "nature": "actionable", "rule": d["rule"]} for d in found
                  if d["nature"] == "actionable"]
-    rels = [r for r in dl.relative_terms(text) if not r["conditional"]]
-    conditional_rels = [r for r in dl.relative_terms(text) if r["conditional"]]
+    rels = [r for r in text_terms if not r["conditional"]]
+    conditional_rels = [r for r in text_terms if r["conditional"]]
     if not rels and term.get("days") and ctx.terms_cfg.get("statutory_defaults_used_when_text_is_silent"):
         rels = [{"days": term["days"], "raw": "statutory default", "statutory": True}]
     computed_unknown = False
@@ -173,20 +203,27 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
             computed_unknown = True
     driving = dl.driving_deadline(deadlines, ctx.as_of.date()) if deadlines else None
     expects = doc_type in ctx.terms_cfg["expects_deadline"] or doc_type == RECUPERARE
-    unparsed_terms = dl.unparsed_term_mentions(text)
+    unparsed_terms = len(unread_terms)
     unparsed_dates = dl.unparsed_date_like(text)
+    # any written date of unknown nature forces RECUPERARE, as in v2.0: it may be a term, or replace one
     unknown_future = [d for d in found if d["nature"] == "RECUPERARE"]
+    competing = competing_written_dates(found, ref_iso)
     deadline_rec = ((driving is None and (expects or computed_unknown)) or bool(unparsed_terms) or bool(unparsed_dates)
-                    or bool(unknown_future))
+                    or bool(unknown_future) or bool(competing))
     if deadline_rec:
         rec_fields.append("deadline")
         if unparsed_terms:
-            reasons["deadline"] = f"{unparsed_terms} term phrase(s) ('... giorni dalla notifica') could not be parsed"
+            reasons["deadline"] = (f"{unparsed_terms} term phrase(s) could not be parsed with certainty: " + "; ".join(
+                f"'{u['raw'][:60]}' ({u['why']})" for u in unread_terms[:3]))
         elif unparsed_dates:
             reasons["deadline"] = "date-like text in an unsupported format: " + ", ".join(unparsed_dates[:3])
         elif unknown_future:
-            reasons["deadline"] = ("future date(s) without a recognisable cue: " +
-                                   ", ".join(d["raw"] for d in unknown_future[:3]))
+            reasons["deadline"] = ("future date(s) without a recognisable cue: " + ", ".join(
+                d["raw"] + ("" if d["rule"] == "N-FALLBACK" else f" ({d['rule']}: the sentence says more than the cue)")
+                for d in unknown_future[:3]))
+        elif competing:
+            reasons["deadline"] = ("more than one future date, one of them read structurally - enumeration or "
+                                   "postponement cannot be told apart: " + ", ".join(d["raw"] for d in competing[:3]))
         else:
             reasons["deadline"] = notif_reason if computed_unknown else "no actionable or computed term found"
     level, urule, days_left = urgency.compute(doc_type, driving, deadline_rec, ctx.as_of.date())

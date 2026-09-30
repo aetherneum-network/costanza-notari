@@ -4,7 +4,7 @@ import json
 import unittest
 
 from tests._util import ROOT
-from pipeline import amounts, attribution, deadlines, entities, urgency
+from pipeline import amounts, attribution, deadlines, entities, termclauses, typeagree, urgency
 from pipeline.rules_engine import RuleFile
 from pipeline.s6_consolidate import classify_dissent
 
@@ -19,8 +19,10 @@ def load(name):
 class RuleFileStructure(unittest.TestCase):
     def test_every_rule_has_id_rationale_tests_and_ids_are_unique(self):
         seen = set()
-        for name in ("doc_type.json", "area.json", "deadline_nature.json", "urgency.json", "amounts.json"):
-            for r in load(name)["rules"]:
+        for name, key in (("doc_type.json", "rules"), ("area.json", "rules"), ("deadline_nature.json", "rules"),
+                          ("urgency.json", "rules"), ("amounts.json", "rules"), ("term_clauses.json", "rules"),
+                          ("doc_type.json", "title_families"), ("deadline_nature.json", "vetoes")):
+            for r in load(name)[key]:
                 for k in ("id", "rationale", "tests"):
                     self.assertIn(k, r, f"{name}:{r.get('id')}")
                 self.assertTrue(r["tests"], f"{name}:{r['id']} has no tests")
@@ -48,12 +50,22 @@ class InlineRuleTests(unittest.TestCase):
             self.assertEqual(got["class"], t["expect"]["class"], (t["id"], got))
 
     def test_deadline_nature_rules(self):
-        for r in load("deadline_nature.json")["rules"]:
+        data = load("deadline_nature.json")
+        for r in data["rules"] + data["vetoes"]:   # a veto's own tests expect the veto id unless they say otherwise
             for t in r["tests"]:
                 i = t["input"]
                 nature, rid = deadlines.classify_nature(i.get("before", ""), i.get("after", ""),
-                                                        i.get("date", "2026-12-01"), i.get("reference"))
-                self.assertEqual((nature, rid), (t["expect"]["nature"], r["id"]), t["id"])
+                                                        i.get("date", "2026-12-01"), i.get("reference"),
+                                                        i.get("before_local"))
+                self.assertEqual((nature, rid), (t["expect"]["nature"], t.get("expect_rule", r["id"])), t["id"])
+
+    def test_term_clause_rules(self):
+        self.assertEqual(termclauses.run_inline_tests(), [])
+        slots = {r["slot"] for r in load("term_clauses.json")["rules"]}
+        self.assertEqual(slots, {"lead_in", "unit", "qualifier", "anchor", "complement", "mood"})
+
+    def test_title_family_rules(self):
+        self.assertEqual(typeagree.run_inline_tests(load("doc_type.json"), load("terms.json")), [])
 
     def test_urgency_rules(self):
         as_of = dt.date(2026, 10, 21)
@@ -71,7 +83,8 @@ class InlineRuleTests(unittest.TestCase):
         for r in load("amounts.json")["rules"]:
             for t in r["tests"]:
                 v, rid = amounts.extract_amount(t["input"]["text"], t["input"]["doc_type"])
-                self.assertEqual((v, rid), (t["expect"]["amount_due"], r["id"]), t["id"])
+                want_rule = t["expect_rule"] if "expect_rule" in t else r["id"]
+                self.assertEqual((v, rid), (t["expect"]["amount_due"], want_rule), t["id"])
 
     def test_dissent_natures(self):
         self.assertEqual(classify_dissent("none")[0], "none")

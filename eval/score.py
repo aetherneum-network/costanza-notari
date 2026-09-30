@@ -1,8 +1,12 @@
 """Evaluation against gold: precision / recall per document type and sender class, RECUPERARE rate,
 deadline accuracy, attribution, signatures, dedup and editions.
 
-    python eval/score.py                 # all three suites -> eval/results.json
+    python eval/score.py                 # all named suites -> eval/results.json
     python eval/score.py --suite dev     # only the development corpus
+    python eval/score.py --seed N --perturb --history-key KEY
+                                         # any other seed, no code change: fresh corpus under
+                                         # build/eval/seed-N-perturbed, pipeline, AGGREGATE numbers only on
+                                         # stdout, one new entry in eval/history.json (eval/BLIND_PROTOCOL_v2.1.md)
 
 Suites (honesty first):
   dev                corpus/out, seed 20260930 - the corpus the rules were developed and adjusted against.
@@ -11,16 +15,22 @@ Suites (honesty first):
                      10 wrong committed deadlines and was used to design generic safety nets (first-pass
                      figures are kept in CHANGELOG.md): no longer blind.
   stress-diag-b      seed 20261003 + same perturbations: exposed a bug in one safety net: no longer blind.
-  stress-blind       seed 20261004 + same perturbations, run once, after the code was frozen and all tests
-                     passed: the headline robustness number. Not blind to the perturbation *list* itself.
+  stress-blind       seed 20261004 + same perturbations, run once, after the v2.0 code was frozen and all
+                     tests passed. Burned since: v2.1 was developed looking at it. The name is kept so that
+                     the history stays readable; it is NOT a blind number any more.
+
+A seed that is not in the list above goes through --seed and is never added to SUITES: the code does not
+change between the freeze and the blind run. Blind only with respect to the seed - the perturbation *list*
+of corpus/perturb.py is known to whoever wrote the rules.
 
 A RECUPERARE prediction is an abstention: it lowers recall, never precision. Precision is computed
-over committed (non-RECUPERARE) predictions. All three suites are synthetic and share templates, so
+over committed (non-RECUPERARE) predictions. All suites are synthetic and share templates, so
 high numbers here are evidence of internal consistency, not of real-world accuracy.
 """
 from __future__ import annotations
 
 import argparse
+import collections
 import io
 import json
 import shutil
@@ -34,9 +44,13 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 AS_OF = "2026-10-21T09:40:00+02:00"
+NOTE = ("A RECUPERARE prediction is an abstention: it lowers recall, never precision. All suites are synthetic "
+        "and share templates: high numbers are evidence of internal consistency, not of real-world accuracy.")
 SUITES = {"dev": (20260930, False), "holdout": (20261001, False), "stress-diag-a": (20261002, True),
           "stress-diag-b": (20261003, True), "stress-blind": (20261004, True)}
 R = "RECUPERARE"
+FRESH: set[str] = set()      # ad-hoc suites (--seed) that must start from a directory that does not exist yet
+HISTORY = ROOT / "eval" / "history.json"
 
 
 def build_corpus(suite: str) -> tuple[Path, Path]:
@@ -48,6 +62,9 @@ def build_corpus(suite: str) -> tuple[Path, Path]:
         return out, gold
     base = ROOT / "build" / "eval" / suite
     out, gold = base / "corpus", base / "gold.jsonl"
+    if suite in FRESH and base.exists():
+        raise SystemExit(f"{base} already exists: a blind run wants a fresh directory. Pass --reuse-corpus to "
+                         f"score the corpus that is there (the generator is deterministic), or use another seed.")
     if not (out / "manifest.json").exists():
         cmd = [sys.executable, str(ROOT / "corpus" / "generate.py"), "--seed", str(seed), "--out", str(out),
                "--gold", str(gold)] + (["--perturb"] if perturb else [])
@@ -208,15 +225,109 @@ def table(res: dict) -> str:
     return "\n".join(lines)
 
 
+def aggregates(r: dict) -> dict:
+    """The numbers of one suite that say nothing about any single record (safe to read on a blind corpus)."""
+    d, dt, sc, am, led = r["deadline"], r["doc_type"], r["sender_class"], r["amount_due"], r["ledger"]
+    pf, at = r["recuperare"]["per_field"], r["attribution"]
+    return {
+        "seed": r["seed"], "perturbed": r["perturbed"], "scored_unique": r["scored_unique"],
+        "run_status": r["run_status"],
+        "deadline_exact": d["driving_deadline_exact"], "deadline_n": d["driving_deadline_n"],
+        "deadline_wrong_committed": d["wrong_date_committed"], "deadline_abstained": d["abstained_RECUPERARE"],
+        "deadline_expected_recuperare_hit": f"{d['expected_RECUPERARE_hit']}/{d['expected_RECUPERARE_n']}",
+        "no_deadline_correct": f"{d['no_deadline_correct']}/{d['no_deadline_expected_n']}",
+        "written_dates_nature_recall": d["written_dates_nature_recall"],
+        "written_dates_nature_precision": d["written_dates_nature_precision"],
+        "recuperare_rate_predicted": r["recuperare"]["rate_records_predicted"],
+        "recuperare_rate_expected": r["recuperare"]["rate_records_expected"],
+        "recuperare_flagged_vs_expected": {f: f"{v['flagged']}/{v['expected']}" for f, v in sorted(pf.items())},
+        "doc_type_accuracy": dt["accuracy"], "doc_type_precision_committed": dt["precision_committed"],
+        "doc_type_wrong_committed": dt["wrong_committed"], "doc_type_abstained": dt["abstained_RECUPERARE"],
+        "sender_class_accuracy": sc["accuracy"], "sender_class_precision_committed": sc["precision_committed"],
+        "sender_class_wrong_committed": sc["wrong_committed"], "sender_class_abstained": sc["abstained_RECUPERARE"],
+        "area_wrong_committed": r["area"]["wrong_committed"],
+        "amount_wrong_committed": am["wrong_committed"], "amount_abstained": am["abstained"],
+        "party_wrong_committed": at["party_entity"]["wrong_committed"],
+        "author_wrong_committed": at["author_entity"]["wrong_committed"],
+        "transmitter_wrong_committed": at["transmitter_entity"]["wrong_committed"],
+        "channel_wrong_committed": at["counterparty_channel"]["wrong_committed"],
+        "editions_linked": f"{led['supersede_events']}/{led['revisions_expected']}",
+        "duplicates_ignored": f"{led['duplicate_ignored']}/{led['duplicates_expected']}",
+        "signatures_agreement": r["signatures"]["agreement"],
+    }
+
+
+def code_version() -> str:
+    """`git describe` of the code that produced a number; 'unknown' outside a checkout."""
+    try:
+        out = subprocess.run(["git", "describe", "--tags", "--always", "--dirty"], cwd=ROOT, capture_output=True,
+                             text=True, check=True)
+        return out.stdout.strip() or "unknown"
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
+
+
+def append_history(key: str, entry: dict, path: Path = HISTORY) -> None:
+    """Add ONE new key at the end of history.json. Existing entries are re-written byte for byte; an existing
+    key is never overwritten."""
+    raw = path.read_text(encoding="utf-8")
+    data = json.loads(raw, object_pairs_hook=collections.OrderedDict)
+    if key in data:
+        raise SystemExit(f"{path.name}: key '{key}' already exists - history entries are never overwritten")
+    if json.dumps(data, indent=2, ensure_ascii=False) + "\n" != raw:
+        raise SystemExit(f"{path.name} is not in its canonical form: refusing to rewrite it")
+    data[key] = entry
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+
+
+def run_seed(seed: int, perturb: bool, reuse: bool, history_key: str | None, when: str | None, out: str | None) -> int:
+    if history_key is not None:                     # fail before the run, not after it
+        if history_key in json.loads(HISTORY.read_text(encoding="utf-8")):
+            raise SystemExit(f"{HISTORY.name}: key '{history_key}' already exists - choose a new key")
+    suite = f"seed-{seed}" + ("-perturbed" if perturb else "")
+    SUITES[suite] = (seed, perturb)
+    if not reuse:
+        FRESH.add(suite)
+    res = score(suite)
+    base = ROOT / "build" / "eval" / suite
+    full = Path(out) if out else base / "result.json"
+    full.parent.mkdir(parents=True, exist_ok=True)
+    full.write_text(json.dumps({"as_of": AS_OF, "results": {suite: res}}, indent=2, ensure_ascii=False,
+                               sort_keys=True) + "\n", encoding="utf-8", newline="\n")
+    agg = aggregates(res)
+    agg["code"] = code_version()
+    agg["as_of"] = AS_OF
+    if when:
+        agg["when"] = when
+    print(json.dumps({suite: agg}, indent=2, ensure_ascii=False))
+    if history_key is not None:
+        append_history(history_key, agg)
+        print(f"appended to eval/history.json under '{history_key}'")
+    return 0
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--suite", choices=["all", *SUITES], default="all")
-    ap.add_argument("--out", default=str(ROOT / "eval" / "results.json"))
+    ap.add_argument("--out", default=None, help="named suites: eval/results.json; --seed: build/eval/<dir>/result.json")
+    ap.add_argument("--seed", type=int, default=None, help="score an ad-hoc corpus generated with this seed")
+    ap.add_argument("--perturb", action="store_true", help="with --seed: apply corpus/perturb.py")
+    ap.add_argument("--reuse-corpus", action="store_true",
+                    help="with --seed: accept an existing build/eval/seed-N[-perturbed] directory")
+    ap.add_argument("--history-key", default=None, help="with --seed: append the aggregates to eval/history.json")
+    ap.add_argument("--when", default=None, help="with --history-key: free text stored with the entry")
     a = ap.parse_args(argv)
+    if a.seed is not None:
+        if a.suite != "all":
+            ap.error("--seed and --suite are alternatives")
+        return run_seed(a.seed, a.perturb, a.reuse_corpus, a.history_key, a.when, a.out)
+    if a.perturb or a.reuse_corpus or a.history_key or a.when:
+        ap.error("--perturb, --reuse-corpus, --history-key and --when need --seed")
+    a.out = a.out or str(ROOT / "eval" / "results.json")
     suites = list(SUITES) if a.suite == "all" else [a.suite]
     res = {s: score(s) for s in suites}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
-    Path(a.out).write_text(json.dumps({"as_of": AS_OF, "note": __doc__.strip().splitlines()[-2].strip(), "results": res},
+    Path(a.out).write_text(json.dumps({"as_of": AS_OF, "note": NOTE, "results": res},
                                       indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8",
                            newline="\n")
     print(table(res))

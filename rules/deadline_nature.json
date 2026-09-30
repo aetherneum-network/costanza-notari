@@ -1,7 +1,7 @@
 {
-  "version": "2026.09.30-1",
+  "version": "2026.10.01-3",
   "kind": "deadline_nature",
-  "note": "Ordered, first match wins. 'before' = text of the same sentence preceding the date (anchored patterns end with $: the cue must sit immediately before the date); 'after' = text following the date in the same sentence. N-000 runs first when the notification date is known. Unmatched future date -> RECUPERARE (surfaced, never driving).",
+  "note": "Ordered, first match wins. 'before' = text of the same sentence preceding the date (anchored patterns end with $: the cue must sit immediately before the date); 'after' = text following the date in the same sentence. N-000 runs first when the notification date is known. Unmatched future date -> RECUPERARE (surfaced, never driving). v2.1: N-008 reads a term by its STRUCTURE (term noun + future/deontic verb + linker + date) instead of a fixed phrase; N-009 recognises the 'Place, date' line. A test may carry 'expect_rule' when it proves that ANOTHER rule (or none: N-FALLBACK) must win. v2.1 safety: 'after_not' = the rule does not apply when the text after the date matches; 'max_days_after_reference' = the rule applies only to dates at most N days after the reference; then.sole_candidate = the reading is accepted only if the text writes no other future date that is or may be a term (pipeline/classify.py, competing_written_dates); 'vetoes' = applied to every reading of the given nature, whatever rule made it. 'before_local' = the part of 'before' that follows the previous date of the same sentence (tests that omit it use 'before'); when.across_a_date = nature answered when the 'before' pattern matches only by reading across that previous date; a veto may look at the text after the date (when.after) or at the local lead-in (when.before).",
   "rules": [
     {
       "id": "N-000",
@@ -64,12 +64,13 @@
     {
       "id": "N-002",
       "when": {
-        "before": "\\b(doveva(no)?|avrebbe(ro)? dovuto|era(no)? tenut[oaie]|originariamente|in precedenza|precedentemente|annulla e sostituisce)\\b[^.;]*$"
+        "before": "\\b(doveva(no)?|avrebbe(ro)? dovuto|era(no)? tenut[oaie]|originariamente|in precedenza|precedentemente|annulla e sostituisce)\\b[^.;]*$",
+        "across_a_date": "RECUPERARE"
       },
       "then": {
         "nature": "historical"
       },
-      "rationale": "past modal or superseded term: the date is a recital, even if 'entro il' follows",
+      "rationale": "past modal or superseded term: the date is a recital, even if 'entro il' follows v2.1 (across_a_date): when the cue is found only by reading across an earlier date of the same sentence ('originariamente prevista per il 12/11/2026, si terrà il 15/12/2026') it may belong to that date alone: the nature is unknown, not historical",
       "tests": [
         {
           "id": "N-002-a",
@@ -90,6 +91,31 @@
           "expect": {
             "nature": "historical"
           }
+        },
+        {
+          "id": "N-002-across",
+          "input": {
+            "before": "L'udienza, originariamente prevista per il 12/11/2026, si terrà il",
+            "before_local": ", si terrà il",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-002-across-neg",
+          "input": {
+            "before": "La rata del 30/09/2026 doveva essere versata entro il",
+            "before_local": " doveva essere versata entro il",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "historical"
+          },
+          "comment": "the cue sits between the two dates: it governs this one"
         }
       ]
     },
@@ -170,6 +196,264 @@
       ]
     },
     {
+      "id": "N-008",
+      "when": {
+        "before": "(?:\\b(?:udienz[ae]|comparizione|rat[ae]|scadenz[ae]|termin[ei])\\b(?:(?!\\b(?:non|se|salvo|dopo|prima|oltre|qualora|ove)\\b)[^.;:]){0,80}?\\b(?:(?!potr)\\w+(?:rà|ranno)|(?:(?:dovrà|dovranno|deve|devono)\\s+(?:essere\\s+\\w+[aeio]|\\w+(?:are|ere|ire))\\b|(?:va|vanno)\\s+(?:essere\\s+)?\\w+[aeio]\\b)|(?:è|sono|viene|vengono)\\s+(?:stat[oaie]\\s+)?(?:fissat|rinviat|differit|stabilit|calendarizzat|aggiornat)[oaie])|\\b(?:pagament[oi]|versament[oi]|adempiment[oi]|saldo)\\b(?:(?!\\b(?:non|se|salvo|dopo|prima|oltre|qualora|ove)\\b)[^.;:]){0,80}?\\b(?:(?:dovrà|dovranno|deve|devono)\\s+(?:essere\\s+\\w+[aeio]|\\w+(?:are|ere|ire))\\b|(?:va|vanno)\\s+(?:essere\\s+)?\\w+[aeio]\\b))(?:\\s+(?!(?:non|se|salvo|dopo|prima|oltre|qualora|ove)\\b)[\\w'’]+){0,4}?\\s+(?:il|al|per\\s+il|entro\\s+il|in\\s+data|il\\s+giorno|per\\s+il\\s+giorno|al\\s+giorno|alla\\s+data\\s+del)\\s*$",
+        "date_vs_reference": "after",
+        "across_a_date": "RECUPERARE"
+      },
+      "then": {
+        "nature": "actionable",
+        "sole_candidate": true
+      },
+      "rationale": "structural reading of a stated term: a term noun governed by a verb whose complement is the date: udienza / comparizione / rata / scadenza / termine with a future, deontic or 'è fissata' verb; pagamento / versamento / adempimento / saldo only with a DEONTIC verb (dovrà essere effettuato, deve avvenire, va eseguito) - 'il pagamento avverrà il' does not say who pays and is not read; in short a term noun governed by a future or deontic verb (si terrà, dovrà essere corrisposta, è fissata, va versato) whose complement is the date. Only for dates after the notification; a negation, 'se', 'salvo', 'dopo', 'prima' between the noun and the date breaks the structure; conditional (N-001) and past-modal (N-002) clauses are decided before this rule; 'potrà' states a possibility, not a term. This rule reads wordings the cue rules of v2.0 did not, so its reading is accepted only when the text writes no other future date that is or may be a term (sole_candidate): with two dates an enumeration (the earliest drives) cannot be told from a postponement (the latest replaces the earliest). across_a_date: the noun and the verb must not be separated from each other by another date ('la rata del 30/10/2026 sarà addebitata il 15/11/2026' names two dates for one rata): unknown nature",
+      "tests": [
+        {
+          "id": "N-008-a",
+          "input": {
+            "before": "a comparire all'udienza che si terrà il",
+            "after": " ore 9:30",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-008-b",
+          "input": {
+            "before": "La prima rata dovrà essere corrisposta il",
+            "after": "",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-008-c",
+          "input": {
+            "before": "Il versamento del saldo va effettuato entro il",
+            "after": "",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005",
+          "comment": "'entro il' is already an explicit cue: N-005 wins, same nature"
+        },
+        {
+          "id": "N-008-d",
+          "input": {
+            "before": "L'udienza di comparizione delle parti è stata differita al giorno",
+            "after": "",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-008-e",
+          "input": {
+            "before": "Il pagamento della seconda rata avverrà in data",
+            "after": "",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-008-neg-negation",
+          "input": {
+            "before": "L'udienza non si terrà il",
+            "after": "",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "a negated clause states no term: unknown, surfaced, never driving"
+        },
+        {
+          "id": "N-008-neg-after",
+          "input": {
+            "before": "Il pagamento sarà accettato solo dopo il",
+            "after": "",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK"
+        },
+        {
+          "id": "N-008-neg-no-noun",
+          "input": {
+            "before": "Il legale rappresentante sarà presente il",
+            "after": "",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "a future verb without a term noun is not a term"
+        },
+        {
+          "id": "N-008-neg-conditional",
+          "input": {
+            "before": "Qualora la rata dovrà essere corrisposta il",
+            "after": "",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "conditional"
+          },
+          "expect_rule": "N-001"
+        },
+        {
+          "id": "N-008-neg-past",
+          "input": {
+            "before": "all'udienza che si terrà il",
+            "after": "",
+            "date": "2026-09-10",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "historical"
+          },
+          "expect_rule": "N-000",
+          "comment": "a date on or before the notification is never a future term"
+        },
+        {
+          "id": "N-008-neg-no-reference",
+          "input": {
+            "before": "all'udienza che si terrà il",
+            "after": "",
+            "date": "2026-11-12"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "without a reference date the rule does not apply"
+        },
+        {
+          "id": "N-008-neg-possibility",
+          "input": {
+            "before": "L'udienza potrà essere rinviata al",
+            "after": "",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK"
+        },
+        {
+          "id": "N-008-f",
+          "input": {
+            "before": "Le rate successive scadranno il",
+            "after": "",
+            "date": "2027-01-31",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-008-g",
+          "input": {
+            "before": "Il pagamento dovrà essere effettuato il",
+            "after": "",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-008-h",
+          "input": {
+            "before": "Il versamento deve avvenire in data",
+            "after": "",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-008-neg-who-pays",
+          "input": {
+            "before": "Il pagamento avverrà il",
+            "after": "",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "a plain future with 'pagamento' may be the sender announcing its own payment"
+        },
+        {
+          "id": "N-008-neg-saldo",
+          "input": {
+            "before": "Il saldo sarà accreditato il",
+            "after": "",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK"
+        },
+        {
+          "id": "N-008-across",
+          "input": {
+            "before": "La rata del 30/10/2026 sarà addebitata il",
+            "before_local": " sarà addebitata il",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-008-across-neg",
+          "input": {
+            "before": "Con provvedimento del 01/10/2026 il Giudice ha disposto che l'udienza si terrà il",
+            "before_local": " il Giudice ha disposto che l'udienza si terrà il",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        }
+      ]
+    },
+    {
       "id": "N-006",
       "when": {
         "before": "(\\bdel|\\bin\\s+data|emess[oa]\\s+il|depositat[oa]\\s+(il|in\\s+data)|notificat[oa]\\s+(il|in\\s+data)|pervenut[oa]\\s+il|datat[oa]|redatt[oa]\\s+il|eseguit[oa]\\s+(il|in\\s+data)|stipulat[oa]\\s+il|res[oa]\\s+esecutiv[oa]\\s+il|dichiarat[oa]\\s+esecutiv[oa]\\s+il|presentat[oa]\\s+il|sottoscritt[oa]\\s+il|avvenut[oa]\\s+il)\\s*$"
@@ -194,12 +478,13 @@
     {
       "id": "N-007",
       "when": {
-        "before": "\\b(già|risalente|pregress[oa])\\b[^.;]*$"
+        "before": "\\b(già|risalente|pregress[oa])\\b[^.;]*$",
+        "across_a_date": "RECUPERARE"
       },
       "then": {
         "nature": "historical"
       },
-      "rationale": "clause-level past cue",
+      "rationale": "clause-level past cue v2.1 (across_a_date): a cue found only across an earlier date of the sentence -> unknown nature",
       "tests": [
         {
           "id": "N-007-a",
@@ -210,6 +495,441 @@
           "expect": {
             "nature": "historical"
           }
+        },
+        {
+          "id": "N-007-across",
+          "input": {
+            "before": "Quanto già comunicato il 30/09/2026 vale anche per il",
+            "before_local": " vale anche per il",
+            "date": "2026-12-15",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-009",
+      "when": {
+        "before": "^\\s*(?!(?:scadenz[ae]|termin[ei]|udienz[ae]|rat[ae]|pagament[oi]|versament[oi]|saldo|entro|data|rinvio|comparizione|prossim[ao]|nuov[ao])\\b)(?-i:[A-ZÀ-Ý][A-Za-zÀ-ÿ'’.]*(?:\\s+(?:(?:di|del|della|dei|degli|de|in|nel|nell['’]|sul|sull['’]|al|a|d['’]|la|lo|le)\\s*)*[A-ZÀ-Ý][A-Za-zÀ-ÿ'’.]*){0,4}),\\s*(?:(?:l[iì]|addì)\\s+)?$",
+        "after_not": "^\\s*,?\\s*(?:ore|alle|h\\.?)\\s*\\d",
+        "max_days_after_reference": 7
+      },
+      "then": {
+        "nature": "historical"
+      },
+      "rationale": "the 'Place, date' line that closes or opens a letter ('Esempio, 05/10/2026') is the date of the document, never a term - also when the transport timestamp is earlier (tampered, or a letter dated the day after). The line must be made of the place alone: one to five capitalised words, lower-case particles allowed between them; a term noun is not a place. A document is dated around the day it is sent: a 'Place, date' more than 7 days after the transport date, or followed by a time of day, is not treated as a dateline (it may be a hearing written as 'Tribunale di X, date ore ...'): unknown, surfaced",
+      "tests": [
+        {
+          "id": "N-009-a",
+          "input": {
+            "before": "Esempio, ",
+            "after": " CREDITO COOPERATIVO VALFIORITA",
+            "date": "2026-10-05",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        },
+        {
+          "id": "N-009-b",
+          "input": {
+            "before": "Reggio nell'Emilia, lì ",
+            "after": "",
+            "date": "2026-10-05",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        },
+        {
+          "id": "N-009-neg-term-noun",
+          "input": {
+            "before": "Scadenza, ",
+            "after": "",
+            "date": "2026-11-05",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK"
+        },
+        {
+          "id": "N-009-neg-sentence",
+          "input": {
+            "before": "Il Giudice ha disposto la comparizione in Esempio, ",
+            "after": "",
+            "date": "2026-11-05",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "only a line made of the place alone is a dateline"
+        },
+        {
+          "id": "N-009-c",
+          "input": {
+            "before": "San Giovanni in Persiceto, ",
+            "after": "",
+            "date": "2026-10-05",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        },
+        {
+          "id": "N-009-neg-lowercase",
+          "input": {
+            "before": "Si provveda. esempio, ",
+            "after": "",
+            "date": "2026-11-05",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK"
+        },
+        {
+          "id": "N-009-neg-rinvio",
+          "input": {
+            "before": "Rinvio, ",
+            "after": "",
+            "date": "2026-11-05",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK"
+        },
+        {
+          "id": "N-009-neg-far",
+          "input": {
+            "before": "Tribunale di Esempio, ",
+            "after": "",
+            "date": "2026-12-15",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "ten weeks after the sending date: not the date of the document"
+        },
+        {
+          "id": "N-009-neg-time",
+          "input": {
+            "before": "Tribunale di Esempio, ",
+            "after": " ore 9:30",
+            "date": "2026-10-06",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "a time of day follows: an appointment, not a dateline"
+        },
+        {
+          "id": "N-009-neg-no-reference",
+          "input": {
+            "before": "Esempio, ",
+            "after": "",
+            "date": "2026-10-05"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK",
+          "comment": "without a transport date the proximity cannot be checked"
+        },
+        {
+          "id": "N-009-d",
+          "input": {
+            "before": "Esempio, ",
+            "after": " Avv. Ilaria Moscardini",
+            "date": "2026-10-11",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "historical"
+          },
+          "comment": "exactly 7 days: still a dateline"
+        },
+        {
+          "id": "N-009-neg-8-days",
+          "input": {
+            "before": "Esempio, ",
+            "after": "",
+            "date": "2026-10-12",
+            "reference": "2026-10-04"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "expect_rule": "N-FALLBACK"
+        }
+      ]
+    }
+  ],
+  "vetoes": [
+    {
+      "id": "N-V01",
+      "applies_to_nature": "actionable",
+      "when": {
+        "after": "\\b(?:non|né|mai)\\b|(?<![\\w’'])(?:è|e['’]|sono|era|erano|sarà|saranno|viene|vengono|verrà|verranno|resta|restano|rimane|rimangono|risulta|risultano|intende|intendono|intendersi)(?![\\w’'])(?!\\s+(?:stat[oaie]\\s+)?(?:fissat|confermat|stabilit|previst|calendarizzat)[oaie]\\b)"
+      },
+      "then": {
+        "nature": "RECUPERARE"
+      },
+      "rationale": "a cue before the date says 'this is a term'; if the same sentence goes on, after the date, with a negation or with a predicate (è / viene / resta / risulta / si intende + ...), the sentence says something about that term that the cue rule did not read - it may cancel it (è annullata, è revocata), move it (è rinviata al ..., viene anticipata) or deny it (non si terrà). The date is then of unknown nature: surfaced, never driving, and the deadline is RECUPERARE. A predicate that only confirms the term (è fissata, resta confermata, è stata stabilita) does not veto. Applies to every actionable reading, v2.0 cue rules included. N-004 (explicit 'è scaduto', 'è stato revocato' -> historical) is decided before any actionable rule and is not affected",
+      "tests": [
+        {
+          "id": "N-V01-a",
+          "input": {
+            "before": "Si comunica che l'udienza del",
+            "after": " è rinviata al 15/12/2026.",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-V01-b",
+          "input": {
+            "before": "L'udienza che si terrà il",
+            "after": " è annullata.",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-V01-c",
+          "input": {
+            "before": "L'udienza del",
+            "after": " non si terrà.",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-V01-d",
+          "input": {
+            "before": "L'udienza del",
+            "after": " innanzi al Tribunale di Esempio viene differita a data da destinarsi.",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-V01-e",
+          "input": {
+            "before": "La rata con scadenza il",
+            "after": " si intende sostituita dal nuovo piano",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-V01-neg-confirm",
+          "input": {
+            "before": "L'udienza del",
+            "after": " resta confermata.",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005"
+        },
+        {
+          "id": "N-V01-neg-confirm2",
+          "input": {
+            "before": "L'udienza del",
+            "after": " è stata fissata innanzi al Giudice.",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005"
+        },
+        {
+          "id": "N-V01-neg-plain",
+          "input": {
+            "before": "a comparire all'udienza del",
+            "after": " ore 9:30 innanzi al Giudice dell'esecuzione del Tribunale di Esempio, con invito al terzo a rendere la dichiarazione",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005"
+        },
+        {
+          "id": "N-V01-neg-modal",
+          "input": {
+            "before": "La prima rata scade il",
+            "after": " e deve essere versata mediante bonifico",
+            "date": "2026-11-30",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005",
+          "comment": "an instruction on how to pay does not touch the term"
+        },
+        {
+          "id": "N-V01-neg-historical",
+          "input": {
+            "before": "Il termine fissato al",
+            "after": " è scaduto.",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "historical"
+          },
+          "expect_rule": "N-004",
+          "comment": "N-004 is decided before the actionable rules: the veto only applies to actionable readings"
+        },
+        {
+          "id": "N-V01-neg-word-inside",
+          "input": {
+            "before": "L'udienza del",
+            "after": " innanzi al Tribunale di Sonora",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005",
+          "comment": "'sono' inside a word is not a predicate"
+        }
+      ]
+    },
+    {
+      "id": "N-V02",
+      "applies_to_nature": "actionable",
+      "when": {
+        "before": "\\b(?:non(?!\\s+(?:oltre|più\\s+tardi|dopo|prorogabil[ei]|differibil[ei]|derogabil[ei]|rinviabil[ei]|procrastinabil[ei])\\b)|né|mai)\\b[^.;:,]*$"
+      },
+      "then": {
+        "nature": "RECUPERARE"
+      },
+      "rationale": "a negation in the clause that leads to the date ('l'udienza non è più fissata al', 'non risulta che l'udienza si terrà il') denies what the cue affirms; the cue rules anchor on the last words before the date and do not see it. The clause is the text after the last comma, colon or earlier date. 'non oltre', 'non più tardi', 'non prorogabile / differibile' stress a term and do not veto. Unknown nature: surfaced, never driving",
+      "tests": [
+        {
+          "id": "N-V02-a",
+          "input": {
+            "before": "L'udienza non è più fissata al",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-V02-b",
+          "input": {
+            "before": "Non risulta che l'udienza si terrà il",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          },
+          "comment": "the structural rule N-008 reads it, the veto stops it"
+        },
+        {
+          "id": "N-V02-c",
+          "input": {
+            "before": "né la rata deve essere versata entro il",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "RECUPERARE"
+          }
+        },
+        {
+          "id": "N-V02-neg-oltre",
+          "input": {
+            "before": "da versare entro e non oltre il",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005"
+        },
+        {
+          "id": "N-V02-neg-emphasis",
+          "input": {
+            "before": "termine non prorogabile con scadenza il",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005"
+        },
+        {
+          "id": "N-V02-neg-other-clause",
+          "input": {
+            "before": "Non essendo pervenute opposizioni, l'udienza è fissata al",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005"
+        },
+        {
+          "id": "N-V02-neg-local",
+          "input": {
+            "before": "La rata non pagata il 30/09/2026 va versata entro il",
+            "before_local": " va versata entro il",
+            "date": "2026-11-12",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "actionable"
+          },
+          "expect_rule": "N-005",
+          "comment": "the negation belongs to the earlier date of the sentence"
         }
       ]
     }
