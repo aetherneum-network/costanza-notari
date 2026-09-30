@@ -1,0 +1,150 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Mon, 12 Oct 2026 11:00:00 +0200
+From: "Per conto di: dp.esempio@pec.agenzia-entrate-esempio.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: dp.esempio@pec.agenzia-entrate-esempio.example
+To: amministrazione@pec.tessituremonteverde.example
+Subject: POSTA CERTIFICATA: Notifica avviso di accertamento
+Message-ID: <opec-syn.20261012090000.90708@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0708.20261012090000@pec.agenzia-entrate-esempio.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_24cb1e874cbd679d312a0cf0"
+
+This is an S/MIME signed message
+
+------=_SIG_24cb1e874cbd679d312a0cf0
+Content-Type: multipart/mixed; boundary="----=_MIX_24cb1e874cbd679d312a0cf0"
+
+------=_MIX_24cb1e874cbd679d312a0cf0
+Content-Type: multipart/alternative; boundary="----=_ALT_24cb1e874cbd679d312a0cf0"
+
+------=_ALT_24cb1e874cbd679d312a0cf0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 12/10/2026 alle ore 11:00:00 (+0200) il messaggio
+"Notifica avviso di accertamento" =C3=A8 stato inviato da "dp.esempio@pec.a=
+genzia-entrate-esempio.example"
+indirizzato a:
+amministrazione@pec.tessituremonteverde.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261012090000.90708@pec.gestore-uno.exa=
+mple
+
+------=_ALT_24cb1e874cbd679d312a0cf0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 12/10/2026=
+ alle ore 11:00:00 (+0200) il messaggio<br/>"Notifica avviso di accertament=
+o" =C3=A8 stato inviato da "dp.esempio@pec.agenzia-entrate-esempio.example"=
+<br/>indirizzato a:<br/>amministrazione@pec.tessituremonteverde.example<br/=
+>Il messaggio originale =C3=A8 incluso in allegato.<br/>Identificativo mess=
+aggio: opec-syn.20261012090000.90708@pec.gestore-uno.example<br/></p></body=
+></html>
+
+------=_ALT_24cb1e874cbd679d312a0cf0--
+
+------=_MIX_24cb1e874cbd679d312a0cf0
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmRwLmVzZW1waW9AcGVjLmFnZW56aWEtZW50cmF0ZS1lc2VtcGlvLmV4YW1w
+bGU8L21pdHRlbnRlPg0KICAgIDxkZXN0aW5hdGFyaSB0aXBvPSJjZXJ0aWZpY2F0byI+YW1taW5p
+c3RyYXppb25lQHBlYy50ZXNzaXR1cmVtb250ZXZlcmRlLmV4YW1wbGU8L2Rlc3RpbmF0YXJpPg0K
+ICAgIDxyaXNwb3N0ZT5kcC5lc2VtcGlvQHBlYy5hZ2VuemlhLWVudHJhdGUtZXNlbXBpby5leGFt
+cGxlPC9yaXNwb3N0ZT4NCiAgICA8b2dnZXR0bz5Ob3RpZmljYSBhdnZpc28gZGkgYWNjZXJ0YW1l
+bnRvPC9vZ2dldHRvPg0KICA8L2ludGVzdGF6aW9uZT4NCiAgPGRhdGk+DQogICAgPGdlc3RvcmUt
+ZW1pdHRlbnRlPkdFU1RPUkUgUEVDIEVTRU1QSU8gUy5QLkEuPC9nZXN0b3JlLWVtaXR0ZW50ZT4N
+CiAgICA8ZGF0YSB6b25hPSIrMDIwMCI+DQogICAgICA8Z2lvcm5vPjEyLzEwLzIwMjY8L2dpb3Ju
+bz4NCiAgICAgIDxvcmE+MTE6MDA6MDA8L29yYT4NCiAgICA8L2RhdGE+DQogICAgPGlkZW50aWZp
+Y2F0aXZvPm9wZWMtc3luLjIwMjYxMDEyMDkwMDAwLjkwNzA4QHBlYy5nZXN0b3JlLXVuby5leGFt
+cGxlPC9pZGVudGlmaWNhdGl2bz4NCiAgICA8bXNnaWQ+Jmx0O1NDTi0wNzA4LjIwMjYxMDEyMDkw
+MDAwQHBlYy5hZ2VuemlhLWVudHJhdGUtZXNlbXBpby5leGFtcGxlJmd0OzwvbXNnaWQ+DQogIDwv
+ZGF0aT4NCjwvcG9zdGFjZXJ0Pg0K
+
+------=_MIX_24cb1e874cbd679d312a0cf0
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Mon, 12 Oct 2026 11:00:00 +0200
+From: "Agenzia Esempio Entrate" <dp.esempio@pec.agenzia-entrate-esempio.example>
+To: amministrazione@pec.tessituremonteverde.example
+Subject: Notifica avviso di accertamento
+Message-ID: <SCN-0708.20261012090000@pec.agenzia-entrate-esempio.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_f3d47c0e74e2f731f9a491b9"
+
+------=_INNER_f3d47c0e74e2f731f9a491b9
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Si notifica il documento allegato.
+------=_INNER_f3d47c0e74e2f731f9a491b9
+Content-Type: application/pdf; name="accertamento.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="accertamento.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggMjc0IC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42m1QTU/DMAy991e8
+40C0pJ02pt3CFlAl1lVdmATaJVpTFNTVVZL1wK8nQ6ggwc32+7D97mV0+5AiZZBNlE4hn6IZw4KF
+vo4m/FEUrzmH2IlNmW8hCllxKa4g3yN5HU3WxuoPQ51GaWkw3dGoVqM2EE6fekMjcSz4fp/vtljn
+4KuVqCTfBM8tigS7lyIOaJyxbB7fMcYWo6gyTYLeKm+Oaomyirm4MBZ/7fNTT9YTahrOnpY4ZOGT
+dJZMGbthLPk5Yxi0dQTTBl/tdOc1lA/C/nyYzjNo57TVAaOeXBhbc6QLPxAtwQVYdV7hzZDtDGrV
+tgodedOEC78C+bXq/wwRI2+xUj3huQmy77CE/ATA0nQ8CmVuZHN0cmVhbQplbmRvYmoKNSAwIG9i
+ago8PCAvVHlwZSAvUGFnZSAvUGFyZW50IDIgMCBSIC9NZWRpYUJveCBbMCAwIDU5NSA4NDJdIC9S
+ZXNvdXJjZXMgPDwgL0ZvbnQgPDwgL0YxIDMgMCBSID4+ID4+IC9Db250ZW50cyA0IDAgUiA+Pgpl
+bmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAw
+MDAwMDAwNjQgMDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAowMDAwMDAwMjE4IDAwMDAwIG4g
+CjAwMDAwMDA1NjQgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA2IC9Sb290IDEgMCBSID4+CnN0
+YXJ0eHJlZgo2OTAKJSVFT0YK
+
+------=_INNER_f3d47c0e74e2f731f9a491b9--
+
+------=_MIX_24cb1e874cbd679d312a0cf0--
+
+------=_SIG_24cb1e874cbd679d312a0cf0
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MTIwOTAwMDBaMC8GCSqGSIb3DQEJBDEiBCCuHIGAg687DnGFil1iMPDyug8tRzOUyOWOVJ6oNlw8
+PTA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQAQfYzxpCCG0AcunbzJUv+pVYINXIcJCGlIBjMnQDzyonL9UWQW
+KiyAzDA9U3atAUOsqiqX2TszMmP9//vl4r7CR21SRe4eoflwV7seo1ma4bCrdQgf3QV3sRe1UX/Q
+kybqeJ8gktn0vJxEQBqZbS91XZJAHxRkkdkvwhTmz6Kdu0hFlwbmUlKndWxopXuxQ/mwSvKvGIYL
+PLM7FbjXtTxXgi/isERtAfNaqeqfNXEKQRwko4FKeYt77I3yU4FtLKh4ECWmWmmMJ/uwtCP1mN+C
+FKLXEe3rP94jzRARc8oug/LgFUu92zTxHgtWY1D+w1ypEMS86bu9nC4s16HRZ5Ix
+
+------=_SIG_24cb1e874cbd679d312a0cf0--

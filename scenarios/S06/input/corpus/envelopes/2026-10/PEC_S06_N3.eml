@@ -1,0 +1,154 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Fri, 09 Oct 2026 11:00:00 +0200
+From: "Per conto di: ilaria.moscardini@pec.ordineavvocati-esempio.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: ilaria.moscardini@pec.ordineavvocati-esempio.example
+To: contabilita@pec.cantinebelvedere.example
+Subject: POSTA CERTIFICATA: Notifica atto di citazione
+Message-ID: <opec-syn.20261009090000.90603@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0603.20261009090000@pec.ordineavvocati-esempio.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_5552ab30367837b38fce1746"
+
+This is an S/MIME signed message
+
+------=_SIG_5552ab30367837b38fce1746
+Content-Type: multipart/mixed; boundary="----=_MIX_5552ab30367837b38fce1746"
+
+------=_MIX_5552ab30367837b38fce1746
+Content-Type: multipart/alternative; boundary="----=_ALT_5552ab30367837b38fce1746"
+
+------=_ALT_5552ab30367837b38fce1746
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 09/10/2026 alle ore 11:00:00 (+0200) il messaggio
+"Notifica atto di citazione" =C3=A8 stato inviato da "ilaria.moscardini@pec=
+.ordineavvocati-esempio.example"
+indirizzato a:
+contabilita@pec.cantinebelvedere.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261009090000.90603@pec.gestore-uno.exa=
+mple
+
+------=_ALT_5552ab30367837b38fce1746
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 09/10/2026=
+ alle ore 11:00:00 (+0200) il messaggio<br/>"Notifica atto di citazione" =
+=C3=A8 stato inviato da "ilaria.moscardini@pec.ordineavvocati-esempio.examp=
+le"<br/>indirizzato a:<br/>contabilita@pec.cantinebelvedere.example<br/>Il =
+messaggio originale =C3=A8 incluso in allegato.<br/>Identificativo messaggi=
+o: opec-syn.20261009090000.90603@pec.gestore-uno.example<br/></p></body></h=
+tml>
+
+------=_ALT_5552ab30367837b38fce1746--
+
+------=_MIX_5552ab30367837b38fce1746
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmlsYXJpYS5tb3NjYXJkaW5pQHBlYy5vcmRpbmVhdnZvY2F0aS1lc2VtcGlv
+LmV4YW1wbGU8L21pdHRlbnRlPg0KICAgIDxkZXN0aW5hdGFyaSB0aXBvPSJjZXJ0aWZpY2F0byI+
+Y29udGFiaWxpdGFAcGVjLmNhbnRpbmViZWx2ZWRlcmUuZXhhbXBsZTwvZGVzdGluYXRhcmk+DQog
+ICAgPHJpc3Bvc3RlPmlsYXJpYS5tb3NjYXJkaW5pQHBlYy5vcmRpbmVhdnZvY2F0aS1lc2VtcGlv
+LmV4YW1wbGU8L3Jpc3Bvc3RlPg0KICAgIDxvZ2dldHRvPk5vdGlmaWNhIGF0dG8gZGkgY2l0YXpp
+b25lPC9vZ2dldHRvPg0KICA8L2ludGVzdGF6aW9uZT4NCiAgPGRhdGk+DQogICAgPGdlc3RvcmUt
+ZW1pdHRlbnRlPkdFU1RPUkUgUEVDIEVTRU1QSU8gUy5QLkEuPC9nZXN0b3JlLWVtaXR0ZW50ZT4N
+CiAgICA8ZGF0YSB6b25hPSIrMDIwMCI+DQogICAgICA8Z2lvcm5vPjA5LzEwLzIwMjY8L2dpb3Ju
+bz4NCiAgICAgIDxvcmE+MTE6MDA6MDA8L29yYT4NCiAgICA8L2RhdGE+DQogICAgPGlkZW50aWZp
+Y2F0aXZvPm9wZWMtc3luLjIwMjYxMDA5MDkwMDAwLjkwNjAzQHBlYy5nZXN0b3JlLXVuby5leGFt
+cGxlPC9pZGVudGlmaWNhdGl2bz4NCiAgICA8bXNnaWQ+Jmx0O1NDTi0wNjAzLjIwMjYxMDA5MDkw
+MDAwQHBlYy5vcmRpbmVhdnZvY2F0aS1lc2VtcGlvLmV4YW1wbGUmZ3Q7PC9tc2dpZD4NCiAgPC9k
+YXRpPg0KPC9wb3N0YWNlcnQ+DQo=
+
+------=_MIX_5552ab30367837b38fce1746
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Fri, 09 Oct 2026 11:00:00 +0200
+From: "Avv. Ilaria Moscardini" <ilaria.moscardini@pec.ordineavvocati-esempio.example>
+To: contabilita@pec.cantinebelvedere.example
+Subject: Notifica atto di citazione
+Message-ID: <SCN-0603.20261009090000@pec.ordineavvocati-esempio.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_c5cb0ee68f70214b1477cdf1"
+
+------=_INNER_c5cb0ee68f70214b1477cdf1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Si notifica, ai sensi della L. 53/1994, l'atto allegato.
+Avv. Ilaria Moscardini
+------=_INNER_c5cb0ee68f70214b1477cdf1
+Content-Type: application/pdf; name="citazione.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="citazione.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggNDU5IC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42n1SS2+cMBC+8yvm
+1qQiYEC7WbUnsrgVEvsQ6+RQ5eIsQ+oKbGQeh/z6jtmIjdqqEgcbz8z3mgfhhd8iiBiI2osSEIW3
+YrBhdK+8m5N4zPIDFPx7WnDYHU7btMzyfX4L4pcnPns3yyEV4gBZDttcpD/yw54vL6WqA+isHNRZ
+foFjeSd2d2vGkr9nHNHC2ejBAILGpvmk9IAW+x6hUiD46ZSLx9Lx2Av+xMuMwykogyLwXRv0WCEo
+DbzHtlPGByu7jtpRD3KQgAtOpWrsJVSSINJpCiBvpFUSdqY/S1sprfyllga0xMDA+SfOKI4giSGS
+/aC6sZF0Ug1Em5BFYczi1f+IQm2sVpMECdt0L/IPNj3w4olnvHSlxyANYCDYcVDQkSuNhN60rXQ+
+PMcUTnwfJIz59BGhlvyRUBOp0VIJNsBWIUtmNl8XACeAiHbyVbboTK7MhI7KNKFWFoF+2llLwkK2
+vmihIEjzc0I7MdeNg7lOdFlfLxc98KcO30VCGnqjL9wafJUNfgyHUvbJERLSUQ7ExAUzVgr129yy
+YETxu6x7GqqlflNUCsKql1G7meTOe/jB0rNsA9uEEXPN6+vS/jP8+ZmL3wrP6XQKZW5kc3RyZWFt
+CmVuZG9iago1IDAgb2JqCjw8IC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFsw
+IDAgNTk1IDg0Ml0gL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgMyAwIFIgPj4gPj4gL0NvbnRl
+bnRzIDQgMCBSID4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAw
+MTUgMDAwMDAgbiAKMDAwMDAwMDA2NCAwMDAwMCBuIAowMDAwMDAwMTIxIDAwMDAwIG4gCjAwMDAw
+MDAyMTggMDAwMDAgbiAKMDAwMDAwMDc0OSAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDYgL1Jv
+b3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjg3NQolJUVPRgo=
+
+------=_INNER_c5cb0ee68f70214b1477cdf1--
+
+------=_MIX_5552ab30367837b38fce1746--
+
+------=_SIG_5552ab30367837b38fce1746
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MDkwOTAwMDBaMC8GCSqGSIb3DQEJBDEiBCBnOIjq1t83NutwlZ9/9JJ0qFN7j2DxDDI56Z3dMN9W
+ODA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQBTqhTPNxlZcaPjzlBK5D1Ufk0d1so3O+DHrzNcmbPjfECeNWyd
+e/qw9BFM6tAeCqn8/CPyd70VTQN5lJZ4Ae4Nj5sd48kiutZoI0uu3VFNV5dufU0jM25NZ0AtAbba
+FEp+v6RNUUAAqdwbmElg9SZo5ulvUzKgRiERN/wtPoKJR2L+A0b51wW07YGD73S8m12WojLS3DGA
+jcEy7YKANS803WOW5MopGS4exoPDR/HT7uoMBoaf6dSgpVElx9XiQiyz72mpocQCzg6Kbayy52Z3
+dLayb2B0aPvZu24y19cmYXbzeWV+9zPhUQRHLwZuSA4o3n8+XfZ098gUbn9VVsEI
+
+------=_SIG_5552ab30367837b38fce1746--

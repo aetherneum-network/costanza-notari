@@ -1,0 +1,20 @@
+{
+  "synthetic": "Scenario S06 - all entities fictitious",
+  "seed": 20260930,
+  "as_of": "2026-10-21T09:40:00+02:00",
+  "debtor": {
+    "canonical": "CANTINE BELVEDERE S.P.A.",
+    "aliases": [
+      "Cantine Belvedere S.p.A.",
+      "Cantine Belvedere spa"
+    ],
+    "pec": [
+      "contabilita@pec.cantinebelvedere.example"
+    ],
+    "domains": [
+      "cantinebelvedere.example"
+    ]
+  },
+  "trust_anchors": "corpus/out/testca/trust",
+  "chunk_size": 40
+}

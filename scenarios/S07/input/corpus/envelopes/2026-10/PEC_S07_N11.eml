@@ -1,0 +1,148 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Thu, 15 Oct 2026 12:00:00 +0200
+From: "Per conto di: contenzioso@civile.tribunale.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: contenzioso@civile.tribunale.example
+To: amministrazione@pec.tessituremonteverde.example
+Subject: POSTA CERTIFICATA: Comunicazione di cancelleria
+Message-ID: <opec-syn.20261015100000.90711@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0711.20261015100000@civile.tribunale.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_92e4a42b04cc75ea4ac0f211"
+
+This is an S/MIME signed message
+
+------=_SIG_92e4a42b04cc75ea4ac0f211
+Content-Type: multipart/mixed; boundary="----=_MIX_92e4a42b04cc75ea4ac0f211"
+
+------=_MIX_92e4a42b04cc75ea4ac0f211
+Content-Type: multipart/alternative; boundary="----=_ALT_92e4a42b04cc75ea4ac0f211"
+
+------=_ALT_92e4a42b04cc75ea4ac0f211
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 15/10/2026 alle ore 12:00:00 (+0200) il messaggio
+"Comunicazione di cancelleria" =C3=A8 stato inviato da "contenzioso@civile.=
+tribunale.example"
+indirizzato a:
+amministrazione@pec.tessituremonteverde.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261015100000.90711@pec.gestore-uno.exa=
+mple
+
+------=_ALT_92e4a42b04cc75ea4ac0f211
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 15/10/2026=
+ alle ore 12:00:00 (+0200) il messaggio<br/>"Comunicazione di cancelleria" =
+=C3=A8 stato inviato da "contenzioso@civile.tribunale.example"<br/>indirizz=
+ato a:<br/>amministrazione@pec.tessituremonteverde.example<br/>Il messaggio=
+ originale =C3=A8 incluso in allegato.<br/>Identificativo messaggio: opec-s=
+yn.20261015100000.90711@pec.gestore-uno.example<br/></p></body></html>
+
+------=_ALT_92e4a42b04cc75ea4ac0f211--
+
+------=_MIX_92e4a42b04cc75ea4ac0f211
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmNvbnRlbnppb3NvQGNpdmlsZS50cmlidW5hbGUuZXhhbXBsZTwvbWl0dGVu
+dGU+DQogICAgPGRlc3RpbmF0YXJpIHRpcG89ImNlcnRpZmljYXRvIj5hbW1pbmlzdHJhemlvbmVA
+cGVjLnRlc3NpdHVyZW1vbnRldmVyZGUuZXhhbXBsZTwvZGVzdGluYXRhcmk+DQogICAgPHJpc3Bv
+c3RlPmNvbnRlbnppb3NvQGNpdmlsZS50cmlidW5hbGUuZXhhbXBsZTwvcmlzcG9zdGU+DQogICAg
+PG9nZ2V0dG8+Q29tdW5pY2F6aW9uZSBkaSBjYW5jZWxsZXJpYTwvb2dnZXR0bz4NCiAgPC9pbnRl
+c3RhemlvbmU+DQogIDxkYXRpPg0KICAgIDxnZXN0b3JlLWVtaXR0ZW50ZT5HRVNUT1JFIFBFQyBF
+U0VNUElPIFMuUC5BLjwvZ2VzdG9yZS1lbWl0dGVudGU+DQogICAgPGRhdGEgem9uYT0iKzAyMDAi
+Pg0KICAgICAgPGdpb3Jubz4xNS8xMC8yMDI2PC9naW9ybm8+DQogICAgICA8b3JhPjEyOjAwOjAw
+PC9vcmE+DQogICAgPC9kYXRhPg0KICAgIDxpZGVudGlmaWNhdGl2bz5vcGVjLXN5bi4yMDI2MTAx
+NTEwMDAwMC45MDcxMUBwZWMuZ2VzdG9yZS11bm8uZXhhbXBsZTwvaWRlbnRpZmljYXRpdm8+DQog
+ICAgPG1zZ2lkPiZsdDtTQ04tMDcxMS4yMDI2MTAxNTEwMDAwMEBjaXZpbGUudHJpYnVuYWxlLmV4
+YW1wbGUmZ3Q7PC9tc2dpZD4NCiAgPC9kYXRpPg0KPC9wb3N0YWNlcnQ+DQo=
+
+------=_MIX_92e4a42b04cc75ea4ac0f211
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Thu, 15 Oct 2026 12:00:00 +0200
+From: "Tribunale di Esempio - Cancelleria Contenzioso" <contenzioso@civile.tribunale.example>
+To: amministrazione@pec.tessituremonteverde.example
+Subject: Comunicazione di cancelleria
+Message-ID: <SCN-0711.20261015100000@civile.tribunale.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_886716ae2c809647ed47ef1b"
+
+------=_INNER_886716ae2c809647ed47ef1b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Comunicazione telematica della cancelleria.
+------=_INNER_886716ae2c809647ed47ef1b
+Content-Type: application/pdf; name="provvedimento.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="provvedimento.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggMjczIC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42nWQSU/DMBSE7/kV
+c6MgJY3LUtRbmprKUjY5DhLcLMdVjdIYZeHAr+cJQXtA3N7yaWY0WxUsnxhYDHUI2C1UFtzHeIxp
+b4OFkmLbFEnGsRPgNc8rUV5DvQXqJlikuje26+zgNFLfT7b/dH705/8FLPOmEGnyKsriWylNipRn
+GZciOUPSHSK8D3pyRm9QyVDuw/qlCFfx6iFcx4z91a0Gb2zrTraf/AZGz6MmBX/yIw0thUpkxQtF
+NhyyfOaSo45klEUwFHfwULyuhWronpfEEbH7Rc4mtSP6NPcUC+Zo4Trs3dw6Y3HUGFz/4fTk0V3R
+jRrQ0B3Y3TJmS0q+vuiIDj+FOTtYhPi3W66+AKMVcccKZW5kc3RyZWFtCmVuZG9iago1IDAgb2Jq
+Cjw8IC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgNTk1IDg0Ml0gL1Jl
+c291cmNlcyA8PCAvRm9udCA8PCAvRjEgMyAwIFIgPj4gPj4gL0NvbnRlbnRzIDQgMCBSID4+CmVu
+ZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMTUgMDAwMDAgbiAKMDAw
+MDAwMDA2NCAwMDAwMCBuIAowMDAwMDAwMTIxIDAwMDAwIG4gCjAwMDAwMDAyMTggMDAwMDAgbiAK
+MDAwMDAwMDU2MyAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDYgL1Jvb3QgMSAwIFIgPj4Kc3Rh
+cnR4cmVmCjY4OQolJUVPRgo=
+
+------=_INNER_886716ae2c809647ed47ef1b--
+
+------=_MIX_92e4a42b04cc75ea4ac0f211--
+
+------=_SIG_92e4a42b04cc75ea4ac0f211
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MTUxMDAwMDBaMC8GCSqGSIb3DQEJBDEiBCAHNMzuEdeHB5/9B9++2LaUIDO7adX3dbNq1soXEyA+
+ezA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQBsBu88wooPP3hhKCjjnnr+8ZRb41Gbb0ImrP0Mm0anDrE83Y7k
+TeJ3a/AZd1Gk5stmSTV3RHFUc1EOzwY0FSHuNm8j9q8SS6c9IudYqJ1/LxRCPZUaTmc9+Mk86OeR
+0Xhsp+v1LSVFsCtFdQFrp6SK3EHwCloAWGLDnowAWeqcUAsVWwO+6ZvW+1ljU3kKW4AnJIoKSOD5
+bP6BJraUh4kZ39cNIxjPeHywndqP5a9XDhDgedV4cpXoOhg6Cx0qUoS1wskVaKp8f9+ap9DSdTRA
+LBtU93Fkh85eLPwMcyEcfLTVXaA6pScd+EkrFblFWDyLL4+aVa/9mSa5JndL3qye
+
+------=_SIG_92e4a42b04cc75ea4ac0f211--

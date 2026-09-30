@@ -1,0 +1,151 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Thu, 15 Oct 2026 16:05:00 +0200
+From: "Per conto di: ilaria.moscardini@pec.ordineavvocati-esempio.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: ilaria.moscardini@pec.ordineavvocati-esempio.example
+To: officinelagorai@pec.officinelagorai.example
+Subject: POSTA CERTIFICATA: Diffida e messa in mora
+Message-ID: <opec-syn.20261015140500.90502@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0502.20261015140500@pec.ordineavvocati-esempio.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_de5eedec0d26e02ba55caa37"
+
+This is an S/MIME signed message
+
+------=_SIG_de5eedec0d26e02ba55caa37
+Content-Type: multipart/mixed; boundary="----=_MIX_de5eedec0d26e02ba55caa37"
+
+------=_MIX_de5eedec0d26e02ba55caa37
+Content-Type: multipart/alternative; boundary="----=_ALT_de5eedec0d26e02ba55caa37"
+
+------=_ALT_de5eedec0d26e02ba55caa37
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 15/10/2026 alle ore 16:05:00 (+0200) il messaggio
+"Diffida e messa in mora" =C3=A8 stato inviato da "ilaria.moscardini@pec.or=
+dineavvocati-esempio.example"
+indirizzato a:
+officinelagorai@pec.officinelagorai.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261015140500.90502@pec.gestore-uno.exa=
+mple
+
+------=_ALT_de5eedec0d26e02ba55caa37
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 15/10/2026=
+ alle ore 16:05:00 (+0200) il messaggio<br/>"Diffida e messa in mora" =C3=
+=A8 stato inviato da "ilaria.moscardini@pec.ordineavvocati-esempio.example"=
+<br/>indirizzato a:<br/>officinelagorai@pec.officinelagorai.example<br/>Il =
+messaggio originale =C3=A8 incluso in allegato.<br/>Identificativo messaggi=
+o: opec-syn.20261015140500.90502@pec.gestore-uno.example<br/></p></body></h=
+tml>
+
+------=_ALT_de5eedec0d26e02ba55caa37--
+
+------=_MIX_de5eedec0d26e02ba55caa37
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmlsYXJpYS5tb3NjYXJkaW5pQHBlYy5vcmRpbmVhdnZvY2F0aS1lc2VtcGlv
+LmV4YW1wbGU8L21pdHRlbnRlPg0KICAgIDxkZXN0aW5hdGFyaSB0aXBvPSJjZXJ0aWZpY2F0byI+
+b2ZmaWNpbmVsYWdvcmFpQHBlYy5vZmZpY2luZWxhZ29yYWkuZXhhbXBsZTwvZGVzdGluYXRhcmk+
+DQogICAgPHJpc3Bvc3RlPmlsYXJpYS5tb3NjYXJkaW5pQHBlYy5vcmRpbmVhdnZvY2F0aS1lc2Vt
+cGlvLmV4YW1wbGU8L3Jpc3Bvc3RlPg0KICAgIDxvZ2dldHRvPkRpZmZpZGEgZSBtZXNzYSBpbiBt
+b3JhPC9vZ2dldHRvPg0KICA8L2ludGVzdGF6aW9uZT4NCiAgPGRhdGk+DQogICAgPGdlc3RvcmUt
+ZW1pdHRlbnRlPkdFU1RPUkUgUEVDIEVTRU1QSU8gUy5QLkEuPC9nZXN0b3JlLWVtaXR0ZW50ZT4N
+CiAgICA8ZGF0YSB6b25hPSIrMDIwMCI+DQogICAgICA8Z2lvcm5vPjE1LzEwLzIwMjY8L2dpb3Ju
+bz4NCiAgICAgIDxvcmE+MTY6MDU6MDA8L29yYT4NCiAgICA8L2RhdGE+DQogICAgPGlkZW50aWZp
+Y2F0aXZvPm9wZWMtc3luLjIwMjYxMDE1MTQwNTAwLjkwNTAyQHBlYy5nZXN0b3JlLXVuby5leGFt
+cGxlPC9pZGVudGlmaWNhdGl2bz4NCiAgICA8bXNnaWQ+Jmx0O1NDTi0wNTAyLjIwMjYxMDE1MTQw
+NTAwQHBlYy5vcmRpbmVhdnZvY2F0aS1lc2VtcGlvLmV4YW1wbGUmZ3Q7PC9tc2dpZD4NCiAgPC9k
+YXRpPg0KPC9wb3N0YWNlcnQ+DQo=
+
+------=_MIX_de5eedec0d26e02ba55caa37
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Thu, 15 Oct 2026 16:05:00 +0200
+From: "Avv. Ilaria Moscardini" <ilaria.moscardini@pec.ordineavvocati-esempio.example>
+To: officinelagorai@pec.officinelagorai.example
+Subject: Diffida e messa in mora
+Message-ID: <SCN-0502.20261015140500@pec.ordineavvocati-esempio.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_d98126b86814e3524ecd26eb"
+
+------=_INNER_d98126b86814e3524ecd26eb
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Si trasmette la diffida allegata.
+Avv. Ilaria Moscardini
+------=_INNER_d98126b86814e3524ecd26eb
+Content-Type: application/pdf; name="diffida.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="diffida.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggMzA1IC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42m1Qy07DMBC85yvm
+RkFt6gSKEDdD0mIpbarE5cTFih20qLGDE/r9OAjlArddzew89klG622ChEG2UXILWUQbhgcWdh0t
+annKRIki3/Eix76sn3mViYO4hvyI5E20mIdMbLci4wisvK45xCHQKz7jFbUxeq9GatQjjtWK71Yb
+xtK/Skfj0Tg7OhhYcz5fkR2NN8NgoAn8JEtZ8fpYVlJg9yK4KAuOOq7iIl5OhxiMNiCLfDBdT24J
+r/o+CBg7qlHBzE6aWjMoaBVM+OUSQ5yVJ4W9GxrlNVlaztxXCu5tS9pBBRfvaeid1SEYgq53+Pwi
+q6khvJPzliZVeGrMhTozldGhisJvDoMwD67r1NTpLQ3vvovThC0Zi2fLOX+yWSdsnbL0fsb+j/sD
+5/Ibw22JngplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAy
+IDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUgODQyXSAvUmVzb3VyY2VzIDw8IC9Gb250IDw8IC9GMSAz
+IDAgUiA+PiA+PiAvQ29udGVudHMgNCAwIFIgPj4KZW5kb2JqCnhyZWYKMCA2CjAwMDAwMDAwMDAg
+NjU1MzUgZiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAwMDY0IDAwMDAwIG4gCjAwMDAwMDAx
+MjEgMDAwMDAgbiAKMDAwMDAwMDIxOCAwMDAwMCBuIAowMDAwMDAwNTk1IDAwMDAwIG4gCnRyYWls
+ZXIKPDwgL1NpemUgNiAvUm9vdCAxIDAgUiA+PgpzdGFydHhyZWYKNzIxCiUlRU9GCg==
+
+------=_INNER_d98126b86814e3524ecd26eb--
+
+------=_MIX_de5eedec0d26e02ba55caa37--
+
+------=_SIG_de5eedec0d26e02ba55caa37
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MTUxNDA1MDBaMC8GCSqGSIb3DQEJBDEiBCChTtEWIRiLun7cg4VqzoHNqmjfrMYqeOZEQQxwvtta
+TDA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQBufBSTX8Lq7hMdtagWZjIosOvaExb9n2KMNphopmo7zXRTffSe
+mJOhOEkwufgzou0F7aRE/wWldkaHpXb+xkxIHPbMC/yMWa5FxK6LMUcng16b/1Wc61MQhw2y9rBa
+0psxysnmdpxLTuRMGhjb7gzpJJz6j0BQnD3hmjMZyo2aSO1zlhT1djUt8V8R6pOPoFYRudP756jK
+tuUTRIua6bbBppVBGcFJkf4V0klMViyqs8BvWbV+UboC4LSZ65X4xkg12qvaoXTFFWEpoq5dQI8y
+CFddcj1CWOWdYPrI+zL90w9axnjedZ00sU68yE84eKayt+TeEFq2T7fHthXu6fSR
+
+------=_SIG_de5eedec0d26e02ba55caa37--

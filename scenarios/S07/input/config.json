@@ -1,0 +1,19 @@
+{
+  "synthetic": "Scenario S07 - all entities fictitious",
+  "seed": 20260930,
+  "as_of": "2026-10-21T09:40:00+02:00",
+  "debtor": {
+    "canonical": "TESSITURE MONTEVERDE S.R.L.",
+    "aliases": [
+      "Tessiture Monteverde S.r.l."
+    ],
+    "pec": [
+      "amministrazione@pec.tessituremonteverde.example"
+    ],
+    "domains": [
+      "tessituremonteverde.example"
+    ]
+  },
+  "trust_anchors": "corpus/out/testca/trust",
+  "chunk_size": 40
+}

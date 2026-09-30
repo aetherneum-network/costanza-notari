@@ -1,0 +1,34 @@
+{
+  "as_of": "2026-10-21",
+  "total_items": 20,
+  "driving_eligible": 6,
+  "notices": {
+    "envelopes/2026-10/PEC_S06_N1.eml": {
+      "written": [["2026-04-14", "historical"], ["2026-06-14", "historical"], ["2026-10-24", "historical"],
+                  ["2026-10-16", "historical"]],
+      "computed": ["2026-10-31"],
+      "driving": "2026-10-31", "urgency": "MAXIMUM"
+    },
+    "envelopes/2026-10/PEC_S06_N2.eml": {
+      "written": [["2026-10-02", "historical"], ["2026-09-10", "historical"], ["2026-11-30", "actionable"],
+                  ["2026-10-28", "conditional"], ["2026-12-15", "conditional"]],
+      "computed": [],
+      "driving": "2026-11-30", "urgency": "MEDIUM"
+    },
+    "envelopes/2026-10/PEC_S06_N3.eml": {
+      "written": [["2025-01-18", "historical"], ["2025-03-05", "historical"], ["2025-06-30", "historical"],
+                  ["2027-03-12", "actionable"], ["2026-10-08", "historical"]],
+      "computed": [],
+      "driving": "2027-03-12", "urgency": "LOW"
+    },
+    "envelopes/2026-10/PEC_S06_N4.eml": {
+      "written": [["2026-09-30", "historical"], ["2026-05-12", "historical"], ["2026-11-20", "actionable"]],
+      "computed": ["2026-11-30", "2026-11-10"],
+      "driving": "2026-11-10", "urgency": "HIGH"
+    }
+  },
+  "hand_check": {
+    "N1": "diffida received Fri 16/10 -> day 1 = 17/10, day 15 = Sat 31/10; private term: no Saturday roll-over [TO CONFIRM]",
+    "N4": "notified Thu 01/10 -> 40 days = Tue 10/11; 60 days = Mon 30/11; labour matter: no August question here"
+  }
+}

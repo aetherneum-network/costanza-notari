@@ -1,0 +1,8 @@
+{
+  "file": "area.json",
+  "rule_id": "R-014",
+  "then": {
+    "area": "tax"
+  },
+  "rationale": "the office decides cartelle are handled by the tax desk (Appendix A, L7 example)"
+}
