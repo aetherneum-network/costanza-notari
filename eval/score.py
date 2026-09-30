@@ -217,7 +217,8 @@ def main(argv=None):
     res = {s: score(s) for s in suites}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"as_of": AS_OF, "note": __doc__.strip().splitlines()[-2].strip(), "results": res},
-                                      indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+                                      indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8",
+                           newline="\n")
     print(table(res))
     return 0
 
