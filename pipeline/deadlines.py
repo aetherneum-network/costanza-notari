@@ -28,6 +28,14 @@ _DATE_WORD = re.compile(r"(?<!\d)(\d{1,2})(?:°|º)?\s+(" + "|".join(MONTHS) + r
 _DATE_ISO = re.compile(r"(?<![\d-])(\d{4})-(\d{2})-(\d{2})(?![\d-])")
 _REL_TERM = re.compile(r"entro\s+(?:il\s+termine\s+di\s+)?(\d{1,3}|" + "|".join(NUM_WORDS) + r")\s+giorni\s+"
                        r"(?:dalla|dal|dall['’])\s*(notifica|notificazione|ricevimento|ricezione)", re.I)
+# Safety nets: text that LOOKS like a term or a date but was not parsed must not be ignored.
+_TERM_MENTION = re.compile(r"giorni\s+(?:dalla|dal|dall['’])\s*(?:notifica|notificazione|ricevimento|ricezione)", re.I)
+# lookarounds: a sentence-ending "." after the token is fine; a separator followed by a digit is not
+_DATE_LIKE = re.compile(r"(?<!\d)(?<!\d[/.-])\d{1,2}\s?[-/.]\s?\d{1,2}\s?[-/.]\s?\d{2,4}(?!\d|[/.-]\d)|"
+                        r"(?<!\d)\d{1,2}(?:°|º)?\s+(?:" + "|".join(MONTHS) + r")\s+\d{2}(?!\d)", re.I)
+# A clause that talks about a term: an unreadable date inside it may be THE deadline.
+_DEADLINE_CLAUSE = re.compile(r"\b(entro|udienza|scad(?!ut)\w*|termine|fissat\w*|rinvi\w*|versat\w*|corrispost\w*|"
+                              r"pagament\w*|comparire|qualora|in caso di)\b[^.;]*$", re.I)
 _ABBREV = {"n", "nr", "art", "artt", "c", "p", "civ", "proc", "ss", "prot", "rif", "avv", "dott", "sig", "pag",
            "lett", "co", "d", "lgs", "l", "dpr", "r", "g", "s", "a", "spa", "srl", "sas", "snc", "coop", "soc",
            "cod", "tel", "fax", "ord", "giud", "cfr", "u", "e", "ecc", "reg", "t", "f"}
@@ -118,6 +126,31 @@ def relative_terms(text: str) -> list[dict]:
         conditional = re.search(r"\b(qualora|in caso di|nel caso in cui|laddove)\b[^.;]*$", before, re.I)
         out.append({"days": days, "raw": m.group(0), "from_event": m.group(2).lower(),
                     "conditional": bool(conditional), "start": m.start()})
+    return out
+
+
+def unparsed_term_mentions(text: str) -> int:
+    """How many 'N giorni dalla notifica/ricevimento' mentions were NOT parsed as relative terms."""
+    t = normalize_ws(text)
+    return max(0, len(_TERM_MENTION.findall(t)) - len(relative_terms(t)))
+
+
+def unparsed_date_like(text: str, deadline_clauses_only: bool = True) -> list[str]:
+    """Date-looking tokens in a format the extractor does not support (e.g. 16-10-2026, 16/10/26).
+    By default only those sitting in a clause that talks about a term (entro, udienza, scade, ...):
+    an unreadable invoice date cannot hide a deadline; an unreadable date after "entro il" can."""
+    t = normalize_ws(text)
+    spans = [(f["start"], f["end"]) for f in find_dates(t)]
+    sents = sentences(t)
+    out = []
+    for m in _DATE_LIKE.finditer(t):
+        if any(a <= m.start() < b or a < m.end() <= b for a, b in spans):
+            continue
+        if deadline_clauses_only:
+            start = next((a for a, b in sents if a <= m.start() < b), 0)
+            if not _DEADLINE_CLAUSE.search(t[start:m.start()]):
+                continue
+        out.append(m.group(0))
     return out
 
 

@@ -146,6 +146,12 @@ def run(cons_state: dict, ledger_dir: Path, out_path: Path, *, as_of: str, relea
                 seen_dup.add((sha, rec["envelope"]))
             continue
         bid = base_id(rec)
+        sref = rec.get("supersedes_ref")
+        if sref and bid not in view:  # "annulla e sostituisce l'atto n. EX-..." links editions even without a dossier ref
+            linked = [k for k, u in sorted(view.items()) if u["edition"]["ref"] == sref
+                      and u["facts"].get("doc_type") == rec.get("doc_type")]
+            if len(linked) == 1:
+                bid = linked[0]
         ed = edition_of(rec)
         cur = view.get(bid)
         if cur is None:

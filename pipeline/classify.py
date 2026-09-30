@@ -18,7 +18,8 @@ from .rules_engine import RULES_DIR, RuleFile
 
 RECUPERARE = "RECUPERARE"
 _PRATICA = re.compile(r"Rif\.\s*pratica:\s*([A-Z0-9][A-Z0-9-]+)", re.I)
-_EDITION = re.compile(r"Rif\.\s*atto:\s*(EX-\d+)\s+del\s+(\d{1,2}/\d{1,2}/\d{4}|\d{1,2}\s+\w+\s+\d{4})", re.I)
+# the edition reference must not depend on the format of its date (found by the blind stress run)
+_EDITION = re.compile(r"Rif\.\s*atto:\s*(EX-\d+)(?:\s+del\s+([^\s,;]+(?:\s+\w+\s+\d{4})?))?", re.I)
 _SUPERSEDES = re.compile(r"annulla e sostituisce l['’]atto n\.\s*(EX-\d+)", re.I)
 
 
@@ -137,12 +138,15 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
     m = _PRATICA.search(text)
     pratica = m.group(1) if m else None
     m = _EDITION.search(re.sub(r"\s+", " ", text))
-    edition_ref, edition_date = (m.group(1), _date_from_text(m.group(2))) if m else (None, None)
+    edition_ref, edition_date = (m.group(1), _date_from_text(m.group(2) or "")) if m else (None, None)
     m = _SUPERSEDES.search(re.sub(r"\s+", " ", text))
     supersedes_ref = m.group(1) if m else None
 
     # dates and deadlines (L6) ---------------------------------------------------------------
-    ref_iso = notif_date.isoformat() if notif_date else None
+    # Natures need only "when was this document sent": the PEC date serves even when it is not trusted
+    # enough to compute a legal term (computed terms stay RECUPERARE in that case).
+    ref_iso = notif_date.isoformat() if notif_date else (
+        tzrome.to_rome(pec_time).date().isoformat() if pec_time else None)
     found = []
     for d in dl.find_dates(text):
         nature, nrule = dl.classify_nature(d.get("before", ""), d.get("after", ""), d["date"], ref_iso)
@@ -155,8 +159,13 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
     if not rels and term.get("days") and ctx.terms_cfg.get("statutory_defaults_used_when_text_is_silent"):
         rels = [{"days": term["days"], "raw": "statutory default", "statutory": True}]
     computed_unknown = False
+    policy_unknown = doc_type == RECUPERARE and bool(rels)
     for r in rels:
-        if known_notif:
+        if policy_unknown:
+            # act type unknown -> its term policy (suspension, roll-over, 21:00 rule) is unknown: never compute
+            computed_unknown = True
+            notif_reason = "act type unknown: the term's legal policy cannot be chosen"
+        elif known_notif:
             c = terms.compute(ctx.calendar, term, pec_time, r["days"])
             c["source"] = r.get("raw")
             deadlines.append(c)
@@ -164,10 +173,22 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
             computed_unknown = True
     driving = dl.driving_deadline(deadlines, ctx.as_of.date()) if deadlines else None
     expects = doc_type in ctx.terms_cfg["expects_deadline"] or doc_type == RECUPERARE
-    deadline_rec = driving is None and (expects or computed_unknown)
+    unparsed_terms = dl.unparsed_term_mentions(text)
+    unparsed_dates = dl.unparsed_date_like(text)
+    unknown_future = [d for d in found if d["nature"] == "RECUPERARE"]
+    deadline_rec = ((driving is None and (expects or computed_unknown)) or bool(unparsed_terms) or bool(unparsed_dates)
+                    or bool(unknown_future))
     if deadline_rec:
         rec_fields.append("deadline")
-        reasons["deadline"] = notif_reason if computed_unknown else "no actionable or computed term found"
+        if unparsed_terms:
+            reasons["deadline"] = f"{unparsed_terms} term phrase(s) ('... giorni dalla notifica') could not be parsed"
+        elif unparsed_dates:
+            reasons["deadline"] = "date-like text in an unsupported format: " + ", ".join(unparsed_dates[:3])
+        elif unknown_future:
+            reasons["deadline"] = ("future date(s) without a recognisable cue: " +
+                                   ", ".join(d["raw"] for d in unknown_future[:3]))
+        else:
+            reasons["deadline"] = notif_reason if computed_unknown else "no actionable or computed term found"
     level, urule, days_left = urgency.compute(doc_type, driving, deadline_rec, ctx.as_of.date())
     trace["urgency"] = urule
     trace["deadline"] = (driving or {}).get("rule_id") or (driving or {}).get("rule") or ("RECUPERARE" if deadline_rec else None)
