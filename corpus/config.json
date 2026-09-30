@@ -1,0 +1,14 @@
+{
+  "synthetic": "Every entity in this corpus is fictitious. Addresses use the reserved .example TLD (RFC 2606).",
+  "seed": 20260930,
+  "as_of": "2026-10-21T09:40:00+02:00",
+  "period": ["2026-06-15", "2026-10-20"],
+  "debtor": {
+    "canonical": "FORNACE AURELIA S.R.L.",
+    "aliases": ["Fornace Aurelia S.r.l.", "FORNACE AURELIA SRL", "Fornace Aurelia s.r.l.", "Fornace Aurelia"],
+    "pec": ["fornaceaurelia@pec.fornaceaurelia.example", "protocollo@pec.fornaceaurelia.example"],
+    "domains": ["fornaceaurelia.example"]
+  },
+  "trust_anchors": "corpus/out/testca/trust",
+  "chunk_size": 40
+}
