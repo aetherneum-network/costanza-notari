@@ -2,6 +2,82 @@
 
 All notable changes to the Costanza Notari v2 proof pack. Synthetic project: every entity is fictitious.
 
+## [2.2.1] - 2026-09-30
+
+A fix of one never-event, not a new reader. **Inherited from v2.0** (the scorer came with stage 5,
+`0015de7`; present in v2.1 arm A, in arm B and in v2.2). **Found by the evaluator on blind seeds 20261006
+and 20261007, 3 records** (2 + 1; aggregates in `eval/history.json`, `stress_blind_v2_1_seed_20261006` and
+`out_of_pool_B_seed_20261007`, `channel_wrong_committed` 2 and 1). **Never caught by the pack's own
+suites or tests.** All three records are the same case: a `pignoramento_presso_terzi` sent by the garnishee
+bank (`BANK_THIRD_PARTY`: a third party that holds the debtor's funds, author and transmitter, not the
+counterparty), and the bank's own PEC committed as `counterparty_channel` of the attaching creditor.
+Expected: RECUPERARE. A wrong committed channel is a never-event.
+
+**Root cause** (v2.2 line numbers). `pipeline/attribution.py`, `collect_candidates` (l. 226-230) always puts
+the envelope's own addresses (daticert sender, From, Reply-To) among the channel candidates; `contact_channel`
+(l. 178-223) scores them like any other address and, for a sender class outside `party_sends_itself_for`
+(l. 187), only subtracts 30 (`same_domain_as_sender`, l. 209-210). The domain keyword is a substring test of
+the party's name tokens of four letters or more (l. 201). When a token of the creditor's name sits inside the
+bank's domain - in the generator's world *RITA*, from *Ceramiche Pontalba S.a.s. di Rita Morlacchi & C.*,
+inside *creditovalfiorita* - the bank's PEC scores 60 + 15 + 30 - 30 = 75, exactly the accept threshold, and
+a garnishee letter states no other address. Structurally: a penalty where an exclusion was needed.
+
+**Why the suites were blind to it.** The generator writes 8 garnishee letters per corpus (9 with a
+duplicate), each from one of 2 banks for one of 10 creditors: the triggering pair has probability 1/20 per
+letter, about 0.4 records per corpus. The four corpora I may open hold 33 garnishee letters and 0 triggering
+pairs (`eval/history.json`, `v2_2_1_before_blind`, `case`); on the holdout `channel_wrong_committed` was 0 in
+every version. No unit test had a third-party sender whose domain contains a token of the party's name.
+
+### Fixed - ordered table `channel_sender_side` in `rules/attribution.json` (first match wins, exception on top)
+Read by `attribution.sender_side_rule` before any scoring; `contact_channel` applies it.
+- **CS-001** `CORPORATE_PEC`, `BANK_CORPORATE` -> *admit*: the sender is the counterparty itself; its own
+  addresses stay candidates, scored exactly as in v2.2. Same list as `party_is_sender_for` and
+  `party_sends_itself_for` (a test keeps the three equal).
+- **CS-002** `BANK_THIRD_PARTY`, `LAWYER`, `TRANSMIT`, `COURT`, `TARGET` -> *exclude*: the sender is a third
+  party. Its addresses (daticert sender, From, Reply-To) and every address on its organisational domain
+  (leading `pec.` label dropped when two labels remain; sub-domains included) are never candidates. A
+  channel is committed only from an address stated in the text that carries the party's own name (domain or
+  local part) and wins by the margin; otherwise RECUPERARE.
+- **CS-003** any other class - an unclassified sender (RECUPERARE) or a class added later -> *exclude*, as
+  CS-002: when in doubt, abstain.
+- **Fail closed**: a missing, empty or malformed table, a malformed row, an unknown condition or verdict, a
+  missing or non-compiling domain normaliser, or no matching row -> RECUPERARE for every class, the admitted
+  ones included (tested).
+- The -30 `same_domain_as_sender` weight and `party_sends_itself_for` are kept in the file for the record
+  (R10) but no longer decide anything: the weight could only fire on addresses the table now removes.
+- `rules/attribution.json` version `2026.09.30-1` -> `2026.10.03-1`; `pipeline.__version__` 2.2.1.
+
+### Tests (273, v2.2 had 249)
+- `tests/test_v221_channel.py`, 23 tests on wording written for them: third-party sender with no
+  counterparty address -> RECUPERARE for every class; the counterparty's address stated in the text -> that
+  address; two such addresses within the margin -> RECUPERARE; an address without the party's name is refused
+  even with inflated weights; From / Reply-To / sibling mailbox / sub-domain of the sender are the sender;
+  ordinary senders unchanged, scores included; twelve broken tables -> RECUPERARE; a never-event test that
+  tries five sender addresses x five texts x seven classes to get a third party's address committed; end to
+  end through `classify_record` (garnishee without and with the creditor's PEC, a bank writing for itself).
+  Ten inline `tests` in the rows. With the v2.2 `contact_channel` swapped in, 13 of the 23 fail, among them
+  the never-event and the end-to-end garnishee test.
+- `tests/test_s5_classify.py`: the gateway test asserted that the gateway's own address was scored 30 - 30 = 0
+  - the mechanism being replaced; it now asserts that CS-002 excludes it. `tests/test_rules.py`: the table
+  joins the structure check and the inline-test runner. `tests/_records.py`: `record()` takes `display`,
+  `body`, `reply_to` (defaults unchanged).
+
+### Numbers
+Every aggregate of the five named suites is identical to v2.2 (`eval/results.json` regenerates byte for
+byte). On the four allowed suites, record by record, no committed value of any field changed; only the
+channel trace now names the row that removed the sender's addresses (138 / 137 / 138 / 139 records; CS-002
+124 / 127 / 124 / 123, CS-003 14 / 10 / 14 / 16). Determinism hashes unchanged (README). Scenarios 10/10.
+
+### Not changed (open)
+- The domain keyword stays a substring test: after 2.2.1 it can no longer pick the sender's own address,
+  but a short token can still match inside another stated address. Changing it moves other channel
+  commits and was not asked for here.
+- `rules/attribution.json` is not among the rule versions written into the artefacts (only doc_type, area,
+  sender_class, terms, urgency are); the channel's row is in the ledger trace.
+- A counterparty that writes for itself but whose sender class the pipeline cannot decide (RECUPERARE) now
+  loses its own PEC as a candidate (CS-003): a possible abstention, never a wrong value; no committed value
+  changed on the four allowed suites.
+
 ## [2.2.0] - 2026-09-30
 
 A merge, not a new reader. Two independent v2.1 builds existed: **arm A** (this line, `v2.1-freeze` +

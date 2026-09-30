@@ -50,7 +50,10 @@ class AuthorTransmitterParty(unittest.TestCase):
         self.assertEqual(ch["value"], "crediti@pec.officinelagorai.example")
         scores = {x["addr"]: x["score"] for x in ch["scored"]}
         self.assertEqual(scores["crediti@pec.officinelagorai.example"], 60 + 15 + 30)   # domain + corporate + PEC
-        self.assertEqual(scores["notifiche@pec.notifichedigitali.example"], 30 - 30)    # PEC, same domain as sender
+        # v2.2.1: the gateway is a third party (CS-002); until v2.2 its own address was scored 30 - 30 = 0.
+        self.assertNotIn("notifiche@pec.notifichedigitali.example", scores)
+        self.assertEqual(ch["excluded"], ["notifiche@pec.notifichedigitali.example"])
+        self.assertEqual(ch["sender_rule"], "CS-002")
 
 
 class DebtorExclusion(unittest.TestCase):

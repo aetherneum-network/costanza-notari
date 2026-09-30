@@ -22,7 +22,8 @@ class RuleFileStructure(unittest.TestCase):
         for name, key in (("doc_type.json", "rules"), ("area.json", "rules"), ("deadline_nature.json", "rules"),
                           ("urgency.json", "rules"), ("amounts.json", "rules"), ("term_clauses.json", "rules"),
                           ("doc_type.json", "title_families"), ("deadline_nature.json", "vetoes"),
-                          ("doc_type.json", "title_merge"), ("amounts.json", "agreement")):
+                          ("doc_type.json", "title_merge"), ("amounts.json", "agreement"),
+                          ("attribution.json", "channel_sender_side")):
             for r in load(name)[key]:
                 for k in ("id", "rationale", "tests"):
                     self.assertIn(k, r, f"{name}:{r.get('id')}")
@@ -49,6 +50,9 @@ class InlineRuleTests(unittest.TestCase):
         for t in cases:
             got = attribution.classify_sender(t["input"]["addr"], t["input"]["display"], t["input"]["content"], debtor)
             self.assertEqual(got["class"], t["expect"]["class"], (t["id"], got))
+
+    def test_channel_sender_side_rules(self):
+        self.assertEqual(attribution.run_sender_side_tests(entities.Debtor(CONFIG["debtor"])), [])
 
     def test_deadline_nature_rules(self):
         data = load("deadline_nature.json")

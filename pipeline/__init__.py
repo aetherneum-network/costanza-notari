@@ -7,4 +7,4 @@ Nine stages, each reading and writing well-defined JSON state:
 
 Run with ``python -m pipeline.run --help``.
 """
-__version__ = "2.2.0"
+__version__ = "2.2.1"

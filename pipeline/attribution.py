@@ -10,6 +10,8 @@ short-circuits and a weighted multi-class score with accept/margin thresholds
 (``rules/sender_class.json``). Contact channel = the party's own PEC, chosen by
 the weighted scorer of the thesis (+60/+30/+15/+30/-30/-50,
 ``rules/attribution.json``). Below threshold -> ``RECUPERARE``, never a guess.
+v2.2.1: before scoring, the ordered table ``channel_sender_side`` decides whether the
+sender's own addresses may be candidates at all; a third party's never are (fail closed).
 
 The debtor is excluded *structurally*: any candidate that resolves to the
 debtor is discarded before scoring, and ``assert_debtor_excluded`` fails the
@@ -175,17 +177,96 @@ def party_entity(text: str, sender_class: str, author: str, transmitter: str, de
 
 
 # ----------------------------------------------------------------- contact channel
+# The tags collect_candidates gives to the addresses of the envelope itself (the sender side).
+SENDER_SIDE_SOURCES = ("daticert.mittente", "from", "reply-to")
+_SENDER_SIDE_VERDICTS = ("admit", "exclude")
+_NAME_EVIDENCE = ("domain_keyword", "localpart_keyword")
+
+
+def _sender_side_table_ok(table) -> bool:
+    """The whole table is checked before any row is used: one malformed row breaks the table."""
+    if not isinstance(table, list) or not table:
+        return False
+    ids = set()
+    for row in table:
+        if not isinstance(row, dict) or not isinstance(row.get("id"), str) or row["id"] in ids:
+            return False
+        ids.add(row["id"])
+        when, then = row.get("when"), row.get("then")
+        if not isinstance(when, dict) or not isinstance(then, dict):
+            return False
+        if when == {"any": True}:
+            pass
+        elif set(when) == {"sender_class_in"}:
+            cls = when["sender_class_in"]
+            if not isinstance(cls, list) or not cls or not all(isinstance(c, str) for c in cls):
+                return False
+        else:
+            return False
+        if then.get("sender_side") not in _SENDER_SIDE_VERDICTS:
+            return False
+        if not isinstance(then.get("body_address_needs_party_name", False), bool):
+            return False
+    return True
+
+
+def sender_side_rule(sender_class: str, rules: dict | None = None) -> dict | None:
+    """First row of ``channel_sender_side`` whose ``when`` holds (first match wins, the exception on top).
+
+    ``None`` - and the caller abstains - when the table is missing, empty or malformed, when its domain
+    normaliser is missing or does not compile, or when no row matches (fail closed)."""
+    rules = attribution_rules() if rules is None else rules
+    table = rules.get("channel_sender_side") if isinstance(rules, dict) else None
+    strip = (rules.get("channel") or {}).get("sender_side_domain_strip_regex") if isinstance(rules, dict) else None
+    if not _sender_side_table_ok(table) or not isinstance(strip, str) or not strip:
+        return None
+    try:
+        re.compile(strip)
+    except re.error:
+        return None
+    for row in table:
+        if row["when"] == {"any": True} or sender_class in row["when"]["sender_class_in"]:
+            return row
+    return None
+
+
+def _org_domain(dom: str, strip_regex: str) -> str:
+    """Organisational domain: the leading PEC label is dropped when at least two labels remain
+    (``pec.bancavalmarina.example`` -> ``bancavalmarina.example``; ``pec.it`` stays ``pec.it``)."""
+    d = (dom or "").lower().strip(".")
+    s = re.sub(strip_regex, "", d, count=1)
+    return s if "." in s else d
+
+
+def _same_org(a: str, b: str) -> bool:
+    return bool(a) and bool(b) and (a == b or a.endswith("." + b) or b.endswith("." + a))
+
+
 def contact_channel(party: str, candidates: list[dict], transmitter_addr: str, sender_class: str,
-                    debtor: ent.Debtor) -> dict:
-    """candidates: [{"addr":..., "context": text before the address, "source": ...}]"""
-    cfg = attribution_rules()["channel"]
+                    debtor: ent.Debtor, rules: dict | None = None) -> dict:
+    """candidates: [{"addr":..., "context": text before the address, "source": ...}]
+
+    Before any scoring, ``channel_sender_side`` (ordered, first match wins) decides whether the sender's
+    own addresses may be candidates. For a third-party sender they are not, nor is any address on the
+    sender's organisational domain; a committed channel then needs the party's own name in the address.
+    ``rules`` defaults to ``rules/attribution.json`` (tests pass a modified copy)."""
+    rules = attribution_rules() if rules is None else rules
+    cfg = rules["channel"]
     w, th = cfg["weights"], cfg["thresholds"]
     if party in (None, RECUPERARE, ent.DEBTOR_SENTINEL):
         return {"value": RECUPERARE, "basis": "party unknown", "scored": []}
+    row = sender_side_rule(sender_class, rules)
+    if row is None:
+        return {"value": RECUPERARE, "basis": "sender-side table missing, broken or silent: fail closed",
+                "scored": [], "sender_rule": None}
+    admit = row["then"]["sender_side"] == "admit"
+    needs_name = row["then"].get("body_address_needs_party_name", False)
+    strip = cfg["sender_side_domain_strip_regex"]
+    sender_addrs = {a for a in [(transmitter_addr or "").lower()]
+                    + [c["addr"].lower() for c in candidates if c.get("source") in SENDER_SIDE_SOURCES] if "@" in a}
+    sender_orgs = {_org_domain(_split(a)[1], strip) for a in sender_addrs}
     toks = ent.name_tokens(party)
-    t_lp, t_dom = _split(transmitter_addr)
-    party_is_transmitter = sender_class in cfg["party_sends_itself_for"]
-    seen, scored = set(), []
+    seen, scored, excluded = set(), [], []
     for c in candidates:
         a = c["addr"].lower()
         if a in seen:
@@ -196,6 +277,9 @@ def contact_channel(party: str, candidates: list[dict], transmitter_addr: str, s
         if any(re.search(x, a) for x in cfg["excluded_address_regex"]):
             continue
         lp, dom = _split(a)
+        if not admit and (a in sender_addrs or any(_same_org(_org_domain(dom, strip), o) for o in sender_orgs)):
+            excluded.append(a)  # structural exclusion: a third party's address is never the party's channel
+            continue
         s, why = 0, []
         compact_dom = dom.replace("-", "").replace(".", "")
         if toks and any(tk in compact_dom for tk in toks):
@@ -206,21 +290,38 @@ def contact_channel(party: str, candidates: list[dict], transmitter_addr: str, s
             s += w["corporate_localpart"]; why.append("corporate_localpart")
         if re.search(cfg["pec_domain_regex"], dom):
             s += w["corporate_pec"]; why.append("corporate_pec")
-        if not party_is_transmitter and dom == t_dom:
-            s += w["same_domain_as_sender"]; why.append("same_domain_as_sender")
-        if _any_in(a, cfg["legal_keywords"]) or (sender_class == "LAWYER" and a == transmitter_addr.lower()):
+        if _any_in(a, cfg["legal_keywords"]) or (sender_class == "LAWYER" and a == (transmitter_addr or "").lower()):
             s += w["legal_class"]; why.append("legal_class")
         if re.search(cfg["declared_contact_regex"], c.get("context", ""), re.I):
             s += w["declared_contact"]; why.append("declared_contact")
         scored.append({"addr": a, "score": s, "why": why, "source": c.get("source")})
     scored.sort(key=lambda x: (-x["score"], x["addr"]))
-    accepted = [x for x in scored if x["score"] >= th["accept"]]
+    note = f"; {row['id']} excluded {len(excluded)} sender-side address(es)" if excluded else ""
+    accepted = [x for x in scored if x["score"] >= th["accept"]
+                and (not needs_name or any(k in x["why"] for k in _NAME_EVIDENCE))]
     if not accepted:
         best = scored[0]["score"] if scored else None
-        return {"value": RECUPERARE, "basis": f"no candidate >= {th['accept']} (best {best})", "scored": scored}
+        return {"value": RECUPERARE, "basis": f"no candidate >= {th['accept']} (best {best}){note}", "scored": scored,
+                "sender_rule": row["id"], "excluded": excluded}
     if len(accepted) > 1 and accepted[0]["score"] - accepted[1]["score"] < th["margin"]:
-        return {"value": RECUPERARE, "basis": "ambiguous: two accepted candidates within margin", "scored": scored}
-    return {"value": accepted[0]["addr"], "basis": "score", "scored": scored}
+        return {"value": RECUPERARE, "basis": f"ambiguous: two accepted candidates within margin{note}",
+                "scored": scored, "sender_rule": row["id"], "excluded": excluded}
+    return {"value": accepted[0]["addr"], "basis": f"score{note}", "scored": scored, "sender_rule": row["id"],
+            "excluded": excluded}
+
+
+def run_sender_side_tests(debtor: ent.Debtor, rules: dict | None = None) -> list[str]:
+    """Inline ``tests`` of ``channel_sender_side``: each must be decided by its own row. Returns failures."""
+    rules = attribution_rules() if rules is None else rules
+    bad = []
+    for row in rules.get("channel_sender_side") or []:
+        for t in row.get("tests") or []:
+            i = t["input"]
+            cands = collect_candidates(i["sender"], i.get("from", i["sender"]), i.get("reply_to"), "", i["text"])
+            got = contact_channel(i["party"], cands, i["sender"], i["sender_class"], debtor, rules)
+            if (got["value"], got.get("sender_rule")) != (t["expect"]["channel"], row["id"]):
+                bad.append(f"{t['id']}: got {got['value']} by {got.get('sender_rule')} ({got['basis']})")
+    return bad
 
 
 def collect_candidates(daticert_from: str, inner_from: str, reply_to: str | None, body: str, text: str) -> list[dict]:

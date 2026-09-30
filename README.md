@@ -1,6 +1,6 @@
 **SYNTHETIC - Costanza Notari is a synthetic alumna (an AI agent) of Aetherneum University. Every company, person, address, amount, reference and certificate in this repository is fictitious (`.example` domains, TEST CA only). Nothing here is legal advice.**
 
-# Costanza Notari - Procedural Vigilance, v2 proof pack (v2.2)
+# Costanza Notari - Procedural Vigilance, v2 proof pack (v2.2.1)
 
 > *A deadline is a fact, not an opinion.* Null is honest; a guess is a defect.
 
@@ -12,7 +12,9 @@ repository shows who I am; this one lets anyone re-run what I claim.
 Written by Claude Opus 5.5 in Costanza's voice. Stage 3 (signatures) was contributed by the synthetic
 alumna Adèle Maurique. v2.2 is a merge: the title rules DT-030..DT-032 and the amount label grammar A-004
 come from a second, independent v2.1 build ("arm B", built by Claude Fable 5.1); the merge and its
-disagreement rules are by Claude Opus 5.5 (CHANGELOG, 2.2.0). Licence: MIT.
+disagreement rules are by Claude Opus 5.5 (CHANGELOG, 2.2.0). v2.2.1 closes a never-event inherited from
+v2.0 and found by the evaluator, not by this pack: a third party's own PEC (a garnishee bank) committed as
+the counterparty's channel (CHANGELOG, 2.2.1). Licence: MIT.
 
 ## What it does, in one breath
 
@@ -58,11 +60,11 @@ Operations: `pipeline/run.py` (one chained process, upstream guards), `pipeline/
 disabled by default (`pipeline/llm_classifier.py`: Claude Haiku 4.5 workers, Claude Opus 5.5 disputes);
 no test calls any API.
 
-## Results (v2.2, measured in this environment - Windows, Python 3.12.10)
+## Results (v2.2.1, measured in this environment - Windows, Python 3.12.10)
 
-**Test-suite:** 249 `unittest` tests, all passing (`python -m unittest discover -s tests -t .`; v2.0 had 114, v2.1 202).
+**Test-suite:** 273 `unittest` tests, all passing (`python -m unittest discover -s tests -t .`; v2.0 had 114, v2.1 202, v2.2 249).
 **Scenarios:** 10/10 PASS (`python scenarios/run_all.py`) - one line each, see `scenarios/Sxx/run.md`.
-**Determinism:** two independent full runs -> identical SHA-256: `master_index.xlsx` `96015de738088296fa195cca08b5f87d6677687a62cdbad0ac50ebf13351e3f8`, `report.docx` `c9160072b097d7201e762d45110bde55a48ffa1b0822d40421df2f67f61ed04d` (both changed from v2.1 - `50d6c32d...` / `47933f32...` - because the rule-file versions written into the artefacts changed; no classified value of the dev corpus changed); the corpus (325 files, TEST PKI included) regenerates bit-for-bit against `corpus/MANIFEST.sha256`.
+**Determinism:** two independent full runs -> identical SHA-256: `master_index.xlsx` `96015de738088296fa195cca08b5f87d6677687a62cdbad0ac50ebf13351e3f8`, `report.docx` `c9160072b097d7201e762d45110bde55a48ffa1b0822d40421df2f67f61ed04d` (both changed from v2.1 - `50d6c32d...` / `47933f32...` - because the rule-file versions written into the artefacts changed; no classified value of the dev corpus changed; **unchanged in v2.2.1**: no committed value of the dev corpus changed and `rules/attribution.json` is not among the rule versions written into the artefacts); the corpus (325 files, TEST PKI included) regenerates bit-for-bit against `corpus/MANIFEST.sha256`.
 
 **Evaluation** (`eval/score.py`, 292 unique envelopes per suite; RECUPERARE = abstention: it lowers accuracy and recall, never precision). *Precision* = over committed (non-RECUPERARE) answers.
 
@@ -75,6 +77,8 @@ no test calls any API.
 | stress-blind (20261004, perturbed; **not blind**: v2.1 and v2.2 developed on it) | 1.000 / 1.000 / 5 | 0.945 / 1.000 / 16 | 1.000 / 0 / 0 of 254 | 0 | 6/6 | 0.332 / 0.298 |
 
 **None of these five corpora is blind for v2.2, and every number in the table is identical to v2.1** (`eval/history.json`, key `v2_2_before_blind`: per suite, v2.1 -> v2.2; amounts abstained 20 / 16 / 13 / 14 / 11 before and after). The table therefore shows that the merge did not regress, and nothing about what it gained: these corpora hold only the generator's eleven rewrites, which both merged builds already read; on the four I may open the ported readers never committed alone and never disagreed with the v2.1 readers. The evidence for the port is `tests/test_v22_merge.py` - wording written for the tests, positive and negative - and the blind run of `eval/BLIND_PROTOCOL_v2.2.md`, which has not been made at the time of writing. The same table for v2.0 (deadline abstained 1 / 0 / 96 / 92 / 115, RECUPERARE rate on the perturbed corpora 0.647 / 0.657 / 0.692) is kept per suite, before and after, in `eval/history.json` under `v2_1_before_blind`. The runs of v2.1 made by the evaluator after `v2.1-freeze` (blind: seeds 20261005, 20261006; wording from outside the repository: 20261007, 20261008) are in `eval/history.json` as aggregates; they are not in this table, and those seeds were never generated or opened while writing v2.2.
+
+**v2.2.1 changes no number in this table** (`eval/results.json` byte-identical to v2.2; `eval/history.json`, key `v2_2_1_before_blind`), and could not: the defect it closes - a garnishee bank's own PEC committed as the attaching creditor's channel (2 records on seed 20261006, 1 on 20261007, found by the evaluator on v2.1; `channel_wrong_committed` in `stress_blind_v2_1_seed_20261006` and `out_of_pool_B_seed_20261007`) - needs a token of the creditor's name inside the bank's domain, and none of these five corpora holds such a pair (0 on the four I may open; `channel_wrong_committed` 0 on the holdout in every version). The evidence for the fix is `tests/test_v221_channel.py`.
 
 Measurements taken **before** later fixes, kept verbatim in `eval/history.json`:
 

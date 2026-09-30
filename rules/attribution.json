@@ -1,7 +1,7 @@
 {
-  "version": "2026.09.30-1",
+  "version": "2026.10.03-1",
   "kind": "attribution",
-  "note": "Author / party extraction and the counterparty contact-channel scorer. Weights are the thesis weights: domain keyword +60, local-part keyword +30, corporate local-part +15, CORPORATE_PEC domain +30, same domain as sender -30, legal class -50; plus an explicit declared-contact cue +20 (v2). Accept >= 75; 45..74 = ambiguous; < 45 rejected. Two accepted within 15 points -> RECUPERARE.",
+  "note": "Author / party extraction and the counterparty contact-channel scorer. Weights are the thesis weights: domain keyword +60, local-part keyword +30, corporate local-part +15, CORPORATE_PEC domain +30, same domain as sender -30, legal class -50; plus an explicit declared-contact cue +20 (v2). Accept >= 75; 45..74 = ambiguous; < 45 rejected. Two accepted within 15 points -> RECUPERARE. v2.2.1: before any scoring, the ordered table channel_sender_side decides whether the sender's own addresses may be candidates at all (first match wins, the exception on top). A third-party sender's addresses, and every address on its organisational domain, are never scored; the table is fail closed (missing, empty or malformed table, or no matching row -> RECUPERARE). The -30 same-domain weight is kept for the record but can no longer fire: for an admitted sender it never applied, for an excluded one those addresses are removed before scoring. party_sends_itself_for is no longer read by the code: CS-001 carries the same list, and a test keeps the two (and party_is_sender_for) equal.",
   "channel": {
     "weights": {"domain_keyword": 60, "localpart_keyword": 30, "corporate_localpart": 15, "corporate_pec": 30,
                 "same_domain_as_sender": -30, "legal_class": -50, "declared_contact": 20},
@@ -11,8 +11,36 @@
     "legal_keywords": ["avv.", "avvocat", "ordineavvocati", "studiolegale"],
     "excluded_address_regex": ["^posta-certificata@", "^noreply@", "^no-reply@"],
     "declared_contact_regex": "(per (le )?comunicazioni|rispondere (esclusivamente )?a|indirizzo pec (per le comunicazioni|dedicato))[^@]*$",
-    "party_sends_itself_for": ["CORPORATE_PEC", "BANK_CORPORATE"]
+    "party_sends_itself_for": ["CORPORATE_PEC", "BANK_CORPORATE"],
+    "sender_side_domain_strip_regex": "^pec\\."
   },
+  "channel_sender_side": [
+    {"id": "CS-001", "when": {"sender_class_in": ["CORPORATE_PEC", "BANK_CORPORATE"]},
+     "then": {"sender_side": "admit"},
+     "rationale": "Exception, on top: the sender IS the counterparty (a company or public body writing for itself, a bank claiming its own credit). Its own PEC and its other mailboxes stay candidates and are scored exactly as in v2.2. Same list as party_is_sender_for (party copied from the sender) and party_sends_itself_for: a test keeps the three equal.",
+     "tests": [
+       {"id": "CS-001-own-pec", "input": {"sender_class": "BANK_CORPORATE", "sender": "direzione.crediti@pec.bancaboreale.example", "party": "BANCA BOREALE S.P.A.", "text": "Vi intimiamo il rientro dell'esposizione."}, "expect": {"channel": "direzione.crediti@pec.bancaboreale.example"}},
+       {"id": "CS-001-own-other-mailbox", "input": {"sender_class": "CORPORATE_PEC", "sender": "notifiche@pec.mulinibrenta.example", "party": "MULINI BRENTA S.R.L.", "text": "Per le comunicazioni: ufficio.legale@pec.mulinibrenta.example"}, "expect": {"channel": "ufficio.legale@pec.mulinibrenta.example"}}
+     ]},
+    {"id": "CS-002", "when": {"sender_class_in": ["BANK_THIRD_PARTY", "LAWYER", "TRANSMIT", "COURT", "TARGET"]},
+     "then": {"sender_side": "exclude", "body_address_needs_party_name": true},
+     "rationale": "The sender is a third party, not the counterparty: a garnishee bank declaring under art. 547 c.p.c. in a procedure started by the creditor, the creditor's lawyer, a notification gateway, a court registry, the debtor's own internal forward. Its addresses (daticert sender, From, Reply-To) and every address on the same organisational domain are the third party's, never the counterparty channel. The channel is read only from an address stated in the text that carries the party's own name (in the domain or the local part) and wins by the margin; otherwise RECUPERARE. v2.0-v2.2 only gave the sender's address -30, so a garnishee bank's PEC reached exactly 75 when a token of the creditor's name was a substring of the bank's domain (found by the evaluator on blind seeds).",
+     "tests": [
+       {"id": "CS-002-garnishee-no-creditor-address", "input": {"sender_class": "BANK_THIRD_PARTY", "sender": "segreteria@pec.bancavalmarina.example", "party": "ALFA MARINA S.R.L.", "text": "La scrivente Banca Valmarina, in qualità di terzo pignorato nella procedura promossa da ALFA MARINA S.R.L., comunica quanto segue."}, "expect": {"channel": "RECUPERARE"}},
+       {"id": "CS-002-garnishee-other-mailbox", "input": {"sender_class": "BANK_THIRD_PARTY", "sender": "invii@pec.bancavalmarina.example", "party": "ALFA MARINA S.R.L.", "text": "Per le comunicazioni: segreteria@pec.bancavalmarina.example"}, "expect": {"channel": "RECUPERARE"}},
+       {"id": "CS-002-garnishee-creditor-stated", "input": {"sender_class": "BANK_THIRD_PARTY", "sender": "segreteria@pec.bancavalmarina.example", "party": "ALFA MARINA S.R.L.", "text": "Procedura promossa da ALFA MARINA S.R.L., con sede in Esempio, PEC crediti@pec.alfamarina.example, contro il debitore."}, "expect": {"channel": "crediti@pec.alfamarina.example"}},
+       {"id": "CS-002-lawyer-own-address", "input": {"sender_class": "LAWYER", "sender": "marina.tellini@pec.foroesempio.example", "party": "ALFA MARINA S.R.L.", "text": "Per conto e nell'interesse di ALFA MARINA S.R.L., rappresentata e difesa dall'Avv. Marina Tellini."}, "expect": {"channel": "RECUPERARE"}},
+       {"id": "CS-002-court-sibling-domain", "input": {"sender_class": "COURT", "sender": "esecuzioni@pec.giustizia-borgo.example", "party": "BORGO LEGNAMI S.R.L.", "text": "Per le comunicazioni: segreteria@giustizia-borgo.example"}, "expect": {"channel": "RECUPERARE"}}
+     ]},
+    {"id": "CS-003", "when": {"any": true},
+     "then": {"sender_side": "exclude", "body_address_needs_party_name": true},
+     "rationale": "Any other sender class - an unclassified sender (RECUPERARE) or a class added later - is presumed a third party: when in doubt, abstain. A committed channel then needs an address stated in the text with the party's own name, as in CS-002.",
+     "tests": [
+       {"id": "CS-003-unclassified-sender", "input": {"sender_class": "RECUPERARE", "sender": "info@pec.marinaservizi.example", "party": "ALFA MARINA S.R.L.", "text": "Si trasmette la comunicazione in oggetto."}, "expect": {"channel": "RECUPERARE"}},
+       {"id": "CS-003-unknown-class", "input": {"sender_class": "NOTARY", "sender": "info@pec.marinaservizi.example", "party": "ALFA MARINA S.R.L.", "text": "Si trasmette la comunicazione in oggetto."}, "expect": {"channel": "RECUPERARE"}},
+       {"id": "CS-003-unclassified-creditor-stated", "input": {"sender_class": "RECUPERARE", "sender": "info@pec.marinaservizi.example", "party": "ALFA MARINA S.R.L.", "text": "Creditore: ALFA MARINA S.R.L., PEC crediti@pec.alfamarina.example."}, "expect": {"channel": "crediti@pec.alfamarina.example"}}
+     ]}
+  ],
   "author_rules": {
     "tail_lines": 3,
     "lawyer_signature_regex": "Avv(?:ocato|\\.)\\s+([A-ZÀ-Ý][a-zà-ÿ’']+(?:\\s+[A-ZÀ-Ý][a-zà-ÿ’']+){1,2})",
