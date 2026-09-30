@@ -1,0 +1,45 @@
+{
+  "version": "2026.09.30-1",
+  "kind": "misc",
+  "debtor_exclusion": {
+    "id": "X-001",
+    "fields": ["party_entity", "author_entity", "transmitter_entity", "counterparty_channel"],
+    "action": "candidates resolving to the debtor are discarded before scoring; a debtor transmitter is rendered as the @DEBTOR sentinel; assert_debtor_excluded() fails the run if violated",
+    "rationale": "the debtor is never a creditor - and not the other way round either (thesis decision 3). Structural, not left to model judgement.",
+    "tests": ["S05", "tests/test_s5_classify.py::DebtorExclusion"]
+  },
+  "text_recovery": {
+    "id": "TR-001",
+    "min_text_chars_per_page": 25,
+    "ocr_min_confidence": 0.80,
+    "rationale": "a page with fewer than 25 characters in its text layer is treated as a scan; OCR below 0.80 mean confidence -> RECUPERARE (A.1)"
+  },
+  "dissent_nature": {
+    "id": "DN-001",
+    "rules": [
+      {"id": "DN-01", "regex": "^\\s*(none|no dissent\\.?|nessun dissenso\\.?|nessuno)?\\s*$", "nature": "none"},
+      {"id": "DN-02", "regex": "(no dissent on the merits|nessun dissenso nel merito|however|tuttavia|si segnala|for the record|per completezza)", "nature": "note"},
+      {"id": "DN-03", "regex": ".", "nature": "dissent"}
+    ],
+    "rationale": "L6: not every non-empty field is a dispute"
+  },
+  "owners": {
+    "rationale": "who owns outgoing documents per area (L2 scanner groups findings by owner)",
+    "by_area": {
+      "collection": ["tesoreria"], "tax": ["ufficio-fiscale"], "local_tax": ["ufficio-fiscale"],
+      "social_security": ["ufficio-personale"], "pre_enforcement": ["ufficio-legale"], "payment_order": ["ufficio-legale"],
+      "enforcement": ["ufficio-legale"], "third_party_attachment": ["ufficio-legale", "tesoreria"],
+      "civil_litigation": ["ufficio-legale"], "insolvency": ["direzione"], "court": ["ufficio-legale"],
+      "banking": ["tesoreria"], "out_of_court_recovery": ["amministrazione"]
+    }
+  },
+  "scanner_guards": {
+    "id": "SG-001",
+    "skip_name_regex": "(?i)(archivio|archive|snapshot|storico|_SUPERSEDED)",
+    "historical_context_regex": "(?i)\\b(in precedenza|precedente(mente)?|previously|was|were|storic[oa]|historical|già|originariamente|ex importo|vecchio importo|totale versato|versati finora)\\b",
+    "quoted_line_regex": "^\\s*>",
+    "require_counterparty_or_ref_in_document": true,
+    "rationale": "L2 precision guards: context, snapshots, comparisons, owner closure"
+  },
+  "staleness": {"max_age_hours": 26, "rationale": "L4: nightly cadence + 2h grace; older data is flagged STALE"}
+}

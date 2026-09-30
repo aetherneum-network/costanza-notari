@@ -1,0 +1,66 @@
+{
+  "version": "2026.09.30-1",
+  "kind": "amounts",
+  "note": "Ordered label rules for amount_due; the first label found (in rule order) wins. Historical totals ('totale versato', 'già corrisposto') are deliberately not labels. expects_amount: doc types whose missing amount is RECUPERARE (not silently null).",
+  "rules": [
+    {
+      "id": "A-001",
+      "when": {
+        "doc_type": [
+          "provvedimento_rateizzazione"
+        ],
+        "label": "importo della (?:prima )?rata|rata(?: mensile)? di"
+      },
+      "then": {
+        "field": "amount_due"
+      },
+      "rationale": "for an instalment plan the actionable figure is the instalment",
+      "tests": [
+        {
+          "id": "A-001-a",
+          "input": {
+            "doc_type": "provvedimento_rateizzazione",
+            "text": "Importo complessivo rateizzato: € 40.982,40. Importo della rata: € 3.415,20."
+          },
+          "expect": {
+            "amount_due": "3415.20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "A-002",
+      "when": {
+        "label": "importo (?:complessivo )?dovuto|totale (?:dovuto|da pagare)|somma (?:complessiva )?di|per complessivi|importo di|importo da pagare"
+      },
+      "then": {
+        "field": "amount_due"
+      },
+      "rationale": "labels that introduce the amount claimed",
+      "tests": [
+        {
+          "id": "A-002-a",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "intima di pagare la somma di € 12.380,00 oltre interessi"
+          },
+          "expect": {
+            "amount_due": "12380.00"
+          }
+        }
+      ]
+    }
+  ],
+  "expects_amount": [
+    "atto_precetto",
+    "decreto_ingiuntivo",
+    "avviso_accertamento",
+    "cartella_pagamento",
+    "intimazione_pagamento",
+    "avviso_addebito",
+    "provvedimento_rateizzazione",
+    "atto_citazione",
+    "diffida_messa_in_mora",
+    "sollecito_pagamento"
+  ]
+}

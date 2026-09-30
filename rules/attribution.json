@@ -1,0 +1,31 @@
+{
+  "version": "2026.09.30-1",
+  "kind": "attribution",
+  "note": "Author / party extraction and the counterparty contact-channel scorer. Weights are the thesis weights: domain keyword +60, local-part keyword +30, corporate local-part +15, CORPORATE_PEC domain +30, same domain as sender -30, legal class -50; plus an explicit declared-contact cue +20 (v2). Accept >= 75; 45..74 = ambiguous; < 45 rejected. Two accepted within 15 points -> RECUPERARE.",
+  "channel": {
+    "weights": {"domain_keyword": 60, "localpart_keyword": 30, "corporate_localpart": 15, "corporate_pec": 30,
+                "same_domain_as_sender": -30, "legal_class": -50, "declared_contact": 20},
+    "thresholds": {"accept": 75, "reject": 45, "margin": 15},
+    "corporate_localparts": ["amministrazione", "info", "ufficio", "contabilita", "crediti", "segreteria", "protocollo", "direzione", "notifica", "tributi", "legale"],
+    "pec_domain_regex": "(^|\\.)pec\\.|legalmail|(^|\\.)pec$",
+    "legal_keywords": ["avv.", "avvocat", "ordineavvocati", "studiolegale"],
+    "excluded_address_regex": ["^posta-certificata@", "^noreply@", "^no-reply@"],
+    "declared_contact_regex": "(per (le )?comunicazioni|rispondere (esclusivamente )?a|indirizzo pec (per le comunicazioni|dedicato))[^@]*$",
+    "party_sends_itself_for": ["CORPORATE_PEC", "BANK_CORPORATE"]
+  },
+  "author_rules": {
+    "tail_lines": 3,
+    "lawyer_signature_regex": "Avv(?:ocato|\\.)\\s+([A-ZÀ-Ý][a-zà-ÿ’']+(?:\\s+[A-ZÀ-Ý][a-zà-ÿ’']+){1,2})",
+    "letterhead_regex": "^(TRIBUNALE|AGENZIA|ISTITUTO|COMUNE|BANCA|CREDITO)\\b|\\b(S\\.R\\.L\\.|S\\.P\\.A\\.|S\\.A\\.S\\.|S\\.N\\.C\\.|SOC\\. COOP\\.|S\\.S\\.)"
+  },
+  "party_patterns": [
+    {"id": "P-1", "regex": "in qualità di terzo pignorato nella procedura (?:esecutiva )?promossa da ([^,;]+)", "rationale": "garnishee letters name the attaching creditor: the bank is author, not party"},
+    {"id": "P-2", "regex": "per conto e nell['’]interesse di ([^,;]+)", "rationale": "lawyer acting for a client"},
+    {"id": "P-3", "regex": "nell['’]interesse di ([^,;]+)", "rationale": "lawyer acting for a client"},
+    {"id": "P-4", "regex": "per conto di ([^,;]+)", "rationale": "mandate"},
+    {"id": "P-5", "regex": "(?:su ricorso di|ricorso\\b[^.;]{0,90}?(?:depositato|presentato)(?: (?:in data|il) [^,;]{1,25}?)? da) ([^,;]+)", "rationale": "petitioner in court acts"},
+    {"id": "P-6", "regex": "(?:causa|procedura|procedimento) (?:esecutiv[oa] )?promoss[oa] da ([^,;]+)", "rationale": "plaintiff / attaching creditor"},
+    {"id": "P-7", "regex": "creditore procedente:?\\s+([^,;]+)", "rationale": "enforcement creditor"}
+  ],
+  "party_is_sender_for": ["CORPORATE_PEC", "BANK_CORPORATE"]
+}

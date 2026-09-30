@@ -1,0 +1,217 @@
+{
+  "version": "2026.09.30-1",
+  "kind": "deadline_nature",
+  "note": "Ordered, first match wins. 'before' = text of the same sentence preceding the date (anchored patterns end with $: the cue must sit immediately before the date); 'after' = text following the date in the same sentence. N-000 runs first when the notification date is known. Unmatched future date -> RECUPERARE (surfaced, never driving).",
+  "rules": [
+    {
+      "id": "N-000",
+      "when": {
+        "date_vs_reference": "on_or_before"
+      },
+      "then": {
+        "nature": "historical"
+      },
+      "rationale": "a date on or before the notification date cannot be a future term (a past hearing, an invoice, the document date)",
+      "tests": [
+        {
+          "id": "N-000-a",
+          "input": {
+            "before": "udite le parti all'udienza del",
+            "after": "",
+            "date": "2026-09-10",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        },
+        {
+          "id": "N-000-b",
+          "input": {
+            "before": "Esempio, ",
+            "after": "",
+            "date": "2026-10-01",
+            "reference": "2026-10-02"
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-001",
+      "when": {
+        "before": "\\b(qualora|in caso di|nel caso in cui|laddove|a condizione che|ove non)\\b[^.;]*$"
+      },
+      "then": {
+        "nature": "conditional"
+      },
+      "rationale": "a condition governs the clause: drives urgency only when triggered",
+      "tests": [
+        {
+          "id": "N-001-a",
+          "input": {
+            "before": "qualora entro il",
+            "after": " non pervenga il pagamento"
+          },
+          "expect": {
+            "nature": "conditional"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-002",
+      "when": {
+        "before": "\\b(doveva(no)?|avrebbe(ro)? dovuto|era(no)? tenut[oaie]|originariamente|in precedenza|precedentemente|annulla e sostituisce)\\b[^.;]*$"
+      },
+      "then": {
+        "nature": "historical"
+      },
+      "rationale": "past modal or superseded term: the date is a recital, even if 'entro il' follows",
+      "tests": [
+        {
+          "id": "N-002-a",
+          "input": {
+            "before": "il pagamento doveva avvenire entro il",
+            "after": ""
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        },
+        {
+          "id": "N-002-b",
+          "input": {
+            "before": "il termine originariamente fissato al",
+            "after": " deve intendersi superato"
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-003",
+      "when": {
+        "before": "\\b(scadut[oaie]|decors[oaie]|spirat[oaie])\\s+(il|in data)?\\s*$"
+      },
+      "then": {
+        "nature": "historical"
+      },
+      "rationale": "'scaduta il' - an expired term, not a deadline",
+      "tests": [
+        {
+          "id": "N-003-a",
+          "input": {
+            "before": "fattura n. 118, scaduta il",
+            "after": ""
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-004",
+      "when": {
+        "after": "^\\W*(non è stat[oa] rispettat|non sono stati rispettati|è scadut|è decors|è spirat|risulta scadut|è stat[oa] revocat|deve intendersi superat)"
+      },
+      "then": {
+        "nature": "historical"
+      },
+      "rationale": "'the term of 2025-06-30 was not met'",
+      "tests": [
+        {
+          "id": "N-004-a",
+          "input": {
+            "before": "il termine del",
+            "after": " non è stato rispettato"
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-005",
+      "when": {
+        "before": "(entro\\s+(e\\s+non\\s+oltre\\s+)?il|entro\\s+la\\s+data\\s+del|udienza\\s+(del|fissata\\s+(per\\s+il|al)|al)|rinviat[oa]\\s+(l['’]\\s*)?udienza\\s+al|scade\\s+il|scadrà\\s+il|con\\s+scadenza\\s+(il|al)|scadenza:?\\s*(il|del|al)?|termine\\s+ultimo\\s+(del|il)|da\\s+versare\\s+entro\\s+il|fissat[oa]\\s+(per\\s+il|al)|comparire\\s+(il|all['’]\\s*udienza\\s+del))\\s*$"
+      },
+      "then": {
+        "nature": "actionable"
+      },
+      "rationale": "an explicit future term or hearing",
+      "tests": [
+        {
+          "id": "N-005-a",
+          "input": {
+            "before": "a comparire all'udienza del",
+            "after": " ore 9:30"
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        },
+        {
+          "id": "N-005-b",
+          "input": {
+            "before": "La prima rata scade il",
+            "after": ""
+          },
+          "expect": {
+            "nature": "actionable"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-006",
+      "when": {
+        "before": "(\\bdel|\\bin\\s+data|emess[oa]\\s+il|depositat[oa]\\s+(il|in\\s+data)|notificat[oa]\\s+(il|in\\s+data)|pervenut[oa]\\s+il|datat[oa]|redatt[oa]\\s+il|eseguit[oa]\\s+(il|in\\s+data)|stipulat[oa]\\s+il|res[oa]\\s+esecutiv[oa]\\s+il|dichiarat[oa]\\s+esecutiv[oa]\\s+il|presentat[oa]\\s+il|sottoscritt[oa]\\s+il|avvenut[oa]\\s+il)\\s*$"
+      },
+      "then": {
+        "nature": "historical"
+      },
+      "rationale": "document references (dated acts, invoices, filings)",
+      "tests": [
+        {
+          "id": "N-006-a",
+          "input": {
+            "before": "fattura n. 118 del",
+            "after": ""
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        }
+      ]
+    },
+    {
+      "id": "N-007",
+      "when": {
+        "before": "\\b(già|risalente|pregress[oa])\\b[^.;]*$"
+      },
+      "then": {
+        "nature": "historical"
+      },
+      "rationale": "clause-level past cue",
+      "tests": [
+        {
+          "id": "N-007-a",
+          "input": {
+            "before": "già comunicato",
+            "after": ""
+          },
+          "expect": {
+            "nature": "historical"
+          }
+        }
+      ]
+    }
+  ]
+}
