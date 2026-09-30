@@ -1,5 +1,10 @@
 # Blind run protocol - v2.2
 
+> **Superseded for any new run by `BLIND_PROTOCOL_v2.2.1.md`** (added after the tag `v2.2.1-freeze`):
+> `v2.2-freeze` carries a never-event inherited from v2.0 - a garnishee bank's own PEC committed as the
+> counterparty channel, found by the evaluator on seeds 20261006 and 20261007 - fixed in v2.2.1
+> (CHANGELOG 2.2.1). The text below is kept as it was.
+
 Synthetic project: every entity is fictitious. This file says how to measure `v2.2-freeze` on a corpus
 nobody has looked at, without changing a line of code. It replaces `BLIND_PROTOCOL_v2.1.md` for v2.2; the
 v2.1 file is kept as it was.
