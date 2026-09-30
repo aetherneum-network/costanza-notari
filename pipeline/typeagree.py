@@ -22,15 +22,27 @@ subject-only fallback: the title says something that the subject alone does not 
 A PEC subject that names ANOTHER act does not veto a title confirmed by the stated term: the subject is
 typed by the sender's office and may mislead (the v2.0 strict rules already let the title win over it,
 e.g. DT-014). It simply does not count as a confirmation.
+
+v2.2 - two title readers. The reader above (the *agreement* reader, arm A) now works next to the
+*title-exclusive* reader ported from arm B: rules DT-030.. of ``rules/doc_type.json`` (``basis:
+"title_exclusive"``), which commit on the title alone when it names ONE act and no other. ``resolve``
+puts the two readings side by side and looks the pair up in the ordered table ``title_merge`` of the
+same file: two readers that commit different types, or a committing reader facing two confirmed
+families, give RECUPERARE; a reader that commits while the other has no opinion commits under its own
+conditions. A pair the table does not list is RECUPERARE (fail closed).
 """
 from __future__ import annotations
 
 import re
 from dataclasses import dataclass
 
+from .rules_engine import HEADING_CHARS, MAX_TITLE_LEN, title_line_list  # one definition of a title line
+
 RECUPERARE = "RECUPERARE"
-HEADING_CHARS = 600   # same window as the strict 'heading_matches' rules
-MAX_TITLE_LEN = 90
+# the five things the agreement reader can say, and the two the title-exclusive reader can say
+AGREEMENT_STATES = ("silent", "not_understood", "unconfirmed", "committed", "conflict")
+EXCLUSIVE_STATES = ("silent", "committed")
+MERGE_OUTCOMES = ("exclusive", "agreement", "fallback", RECUPERARE)
 _REFERENCE = re.compile(r"\S*\d\S*")           # "12/2026", "SYN-DI-0101": a reference, not a word
 _WORD = re.compile(r"[A-ZÀ-Ý]+")
 
@@ -39,22 +51,35 @@ _WORD = re.compile(r"[A-ZÀ-Ý]+")
 class Families:
     items: tuple            # (family id, doc_type, title regex, subject regex)
     neutral: frozenset
+    merge: tuple = ()       # v2.2: the ordered table 'title_merge' (id, exclusive, agreement states, same_type, outcome)
+
+
+@dataclass(frozen=True)
+class Reading:
+    """What the agreement reader says about a text: one of AGREEMENT_STATES, the type when committed."""
+    state: str
+    doc_type: str | None
+    basis: str
 
 
 def compile_families(doc_type_rules: dict) -> Families:
     items = tuple((f["id"], f["doc_type"], re.compile(f["title"]), re.compile(f["subject"], re.I))
                   for f in doc_type_rules.get("title_families", []))
-    return Families(items, frozenset(doc_type_rules.get("title_neutral_words", [])))
+    merge = []
+    for r in doc_type_rules.get("title_merge", []):
+        w, outcome = r["when"], r["then"]["outcome"]
+        states = tuple(w["agreement"])
+        if w["exclusive"] not in EXCLUSIVE_STATES or outcome not in MERGE_OUTCOMES or not states or any(
+                st not in AGREEMENT_STATES for st in states):
+            raise ValueError(f"doc_type.json:{r['id']}: unknown reader state or outcome")
+        merge.append((r["id"], w["exclusive"], states, w.get("same_type"), outcome))
+    return Families(items, frozenset(doc_type_rules.get("title_neutral_words", [])), tuple(merge))
 
 
 def title_lines(text: str) -> list[str]:
-    """Upper-case lines of the heading: the way a title is typeset. Running text is never a title."""
-    out = []
-    for line in (text or "")[:HEADING_CHARS].splitlines():
-        s = line.strip()
-        if s and len(s) <= MAX_TITLE_LEN and any(c.isalpha() for c in s) and s == s.upper():
-            out.append(s)
-    return out
+    """Upper-case lines of the heading: the way a title is typeset. Running text is never a title.
+    (v2.2: the definition lives in rules_engine, shared with the title-exclusive rules.)"""
+    return title_line_list(text, HEADING_CHARS)
 
 
 def read_title(text: str, fam: Families) -> tuple[list, list]:
@@ -89,14 +114,16 @@ def _term_confirms(doc_type: str, terms: list[dict], terms_cfg: dict) -> str | N
     return None
 
 
-def read(text: str, subject: str, terms: list[dict], fam: Families, terms_cfg: dict) -> tuple[str | None, str]:
-    """Return (doc_type | 'RECUPERARE' | None, basis). None = no title line names a known family."""
+def read_state(text: str, subject: str, terms: list[dict], fam: Families, terms_cfg: dict) -> Reading:
+    """The agreement reader alone. States: silent (no title line names a known family), not_understood,
+    unconfirmed, committed (exactly one confirmed family), conflict (several confirmed families)."""
     candidates, not_understood = read_title(text, fam)
     if not candidates and not not_understood:
-        return None, "no act family on a title line"
+        return Reading("silent", None, "no act family on a title line")
     if not_understood:
         line, foreign = not_understood[0]
-        return RECUPERARE, f"title '{line}' names an act family together with {', '.join(foreign)}: not understood"
+        return Reading("not_understood", None,
+                       f"title '{line}' names an act family together with {', '.join(foreign)}: not understood")
     confirmed = []
     for fid, doc_type, rx_subject in candidates:
         by = []
@@ -110,11 +137,66 @@ def read(text: str, subject: str, terms: list[dict], fam: Families, terms_cfg: d
     names = ", ".join(f"{fid} {dt}" for fid, dt, _ in candidates)
     if len(confirmed) == 1:
         fid, doc_type, by = confirmed[0]
-        return doc_type, f"{fid} title family confirmed by {by}"
+        return Reading("committed", doc_type, f"{fid} title family confirmed by {by}")
     if not confirmed:
-        return RECUPERARE, f"title names {names}: no independent reading (subject, stated term) confirms it"
-    return RECUPERARE, (f"title names {names}: " + " and ".join(f"{fid} confirmed by {by}" for fid, _, by in confirmed)
-                        + " - more than one confirmed family")
+        return Reading("unconfirmed", None,
+                       f"title names {names}: no independent reading (subject, stated term) confirms it")
+    return Reading("conflict", None,
+                   f"title names {names}: " + " and ".join(f"{fid} confirmed by {by}" for fid, _, by in confirmed)
+                   + " - more than one confirmed family")
+
+
+def read(text: str, subject: str, terms: list[dict], fam: Families, terms_cfg: dict) -> tuple[str | None, str]:
+    """The agreement reader alone, as in v2.1: (doc_type | 'RECUPERARE' | None, basis).
+    None = no title line names a known family."""
+    r = read_state(text, subject, terms, fam, terms_cfg)
+    if r.state == "silent":
+        return None, r.basis
+    return (r.doc_type if r.state == "committed" else RECUPERARE), r.basis
+
+
+def merge_rule(exclusive_type: str | None, agreement: Reading, fam: Families) -> tuple[str | None, str]:
+    """First row of 'title_merge' that describes the pair of readings: (rule id, outcome).
+    No row -> (None, RECUPERARE): a pair nobody has thought about is not committed."""
+    exclusive = "committed" if exclusive_type else "silent"
+    same = (exclusive_type == agreement.doc_type) if exclusive_type and agreement.state == "committed" else None
+    for rid, excl, states, same_type, outcome in fam.merge:
+        if excl == exclusive and agreement.state in states and (same_type is None or same_type == same):
+            return rid, outcome
+    return None, RECUPERARE
+
+
+def resolve(then: dict | None, rule: str | None, text: str, subject: str, terms: list[dict], fam: Families,
+            terms_cfg: dict) -> tuple[str | None, str, str | None]:
+    """Put the two title readers side by side. ``then``/``rule`` are what the ordered rules of doc_type.json
+    returned: a title-exclusive rule (basis 'title_exclusive'), a subject fallback, or nothing.
+
+    Returns (doc_type | 'RECUPERARE' | None, basis, merge rule id). None = both title readers are silent:
+    the caller keeps the result of the ordered rules (subject fallback, or no rule), as in v2.0."""
+    exclusive_type = then["doc_type"] if then and then.get("basis") == "title_exclusive" else None
+    a = read_state(text, subject, terms, fam, terms_cfg)
+    rid, outcome = merge_rule(exclusive_type, a, fam)
+    if outcome == "fallback" and exclusive_type is None and a.state == "silent":
+        return None, a.basis, rid
+    if outcome == "agreement" and a.state == "committed" and exclusive_type in (None, a.doc_type):
+        # the agreement reader alone, or both readers on the same type: its basis, worded as in v2.1
+        return a.doc_type, a.basis + (f" + {rule} (title names this act alone)" if exclusive_type else ""), rid
+    if outcome == "exclusive" and exclusive_type and a.state != "conflict" and a.doc_type in (None, exclusive_type):
+        if a.state == "committed":
+            return exclusive_type, f"{a.basis} + {rule} (title names this act alone)", rid
+        return exclusive_type, f"{rule} title names this act alone ({rid}; agreement reader: {a.state})", rid
+    if outcome == RECUPERARE and rid is not None:
+        if exclusive_type and a.state == "committed":
+            return RECUPERARE, (f"{rid} the two title readers disagree: {rule} reads {exclusive_type}, "
+                                f"{a.basis} reads {a.doc_type}"), rid
+        if exclusive_type:
+            return RECUPERARE, f"{rid} {rule} reads {exclusive_type}, but {a.basis}", rid
+        return RECUPERARE, a.basis, rid      # the agreement reader's own abstention, worded as in v2.1
+    # no row, or a row whose outcome the readings cannot support (it would let one reader override the
+    # other, or commit a reading nobody made): fail closed
+    return RECUPERARE, (f"title_merge {rid or 'has no rule'} for exclusive="
+                        f"{'committed' if exclusive_type else 'silent'}, agreement={a.state} "
+                        f"(outcome {outcome}): not committed"), rid
 
 
 def run_inline_tests(doc_type_rules: dict, terms_cfg: dict) -> list[str]:
@@ -131,4 +213,28 @@ def run_inline_tests(doc_type_rules: dict, terms_cfg: dict) -> list[str]:
                 failures.append(f"doc_type.json:{f['id']}:{t['id']}: got {got!r} ({basis}), expected {want!r}")
             elif want == f["doc_type"] and not basis.startswith(f["id"] + " "):
                 failures.append(f"doc_type.json:{f['id']}:{t['id']}: decided by another family ({basis})")
+    return failures
+
+
+def run_merge_tests(doc_rules, doc_type_rules: dict, terms_cfg: dict) -> list[str]:
+    """Tests carried by each row of 'title_merge'. They go through the ordered rules of doc_type.json first
+    (``doc_rules``: the RuleFile), exactly as the pipeline does, so each test names a real pair of readings."""
+    fam = compile_families(doc_type_rules)
+    failures = []
+    for r in doc_type_rules.get("title_merge", []):
+        for t in r["tests"]:
+            i = t["input"]
+            terms = [{"days": d, "from_event": e, "conditional": False} for d, e in i.get("terms", [])]
+            then, rule = doc_rules.apply({"subject": i.get("subject", ""), "text": i.get("text", "")})
+            if then is not None and then.get("basis") not in ("subject", "title_exclusive"):
+                failures.append(f"doc_type.json:{r['id']}:{t['id']}: strict rule {rule} matched, the readers never ran")
+                continue
+            got, basis, rid = resolve(then, rule, i.get("text", ""), i.get("subject", ""), terms, fam, terms_cfg)
+            if got is None:                       # both silent: the pipeline keeps the ordered rules' result
+                got = then["doc_type"] if then else RECUPERARE
+            if rid != t.get("expect_rule", r["id"]):
+                failures.append(f"doc_type.json:{r['id']}:{t['id']}: decided by {rid} ({basis})")
+            elif got != t["expect"]["doc_type"]:
+                failures.append(f"doc_type.json:{r['id']}:{t['id']}: got {got!r} ({basis}), "
+                                f"expected {t['expect']['doc_type']!r}")
     return failures

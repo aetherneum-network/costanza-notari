@@ -6,7 +6,7 @@ deadline accuracy, attribution, signatures, dedup and editions.
     python eval/score.py --seed N --perturb --history-key KEY
                                          # any other seed, no code change: fresh corpus under
                                          # build/eval/seed-N-perturbed, pipeline, AGGREGATE numbers only on
-                                         # stdout, one new entry in eval/history.json (eval/BLIND_PROTOCOL_v2.1.md)
+                                         # stdout, one new entry in eval/history.json (eval/BLIND_PROTOCOL_v2.2.md)
 
 Suites (honesty first):
   dev                corpus/out, seed 20260930 - the corpus the rules were developed and adjusted against.

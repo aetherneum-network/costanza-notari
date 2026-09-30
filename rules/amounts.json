@@ -1,7 +1,7 @@
 {
-  "version": "2026.10.01-2",
+  "version": "2026.10.02-1",
   "kind": "amounts",
-  "note": "Ordered label rules for amount_due; the first label found (in rule order) wins. Historical totals ('totale versato', 'già corrisposto') are deliberately not labels. expects_amount: doc types whose missing amount is RECUPERARE (not silently null). v2.1: A-003 reads the label by its structure (amount noun + up to three qualifiers + ':' or 'di') and commits only when the document states ONE monetary amount ('unique_amount'): with two or more, which one is due is a guess -> no match. when.after_not: the rule does not apply when the rest of the sentence after the figure matches.",
+  "note": "Ordered label rules for amount_due; the first label found (in rule order) wins. Historical totals ('totale versato', 'già corrisposto') are deliberately not labels. expects_amount: doc types whose missing amount is RECUPERARE (not silently null). v2.1: A-003 reads the label by its structure (amount noun + up to three qualifiers + ':' or 'di') and commits only when the document states ONE monetary amount ('unique_amount'): with two or more, which one is due is a guess -> no match. when.after_not: the rule does not apply when the rest of the sentence after the figure matches. v2.2: two readers. 'when.reader' says who applies a rule: 'labels' (default; arm A: A-001..A-003), 'grammar' (arm B's label grammar, ported as A-004) or 'both' (A-001, the same rule in both arms). Each reader reads by itself and the pair of readings is looked up in 'agreement' (ordered, first match wins, abstention at the top). when.label_not: the rule does not apply when the matched label itself matches.",
   "rules": [
     {
       "id": "A-001",
@@ -9,6 +9,7 @@
         "doc_type": [
           "provvedimento_rateizzazione"
         ],
+        "reader": "both",
         "label": "importo della (?:prima )?rata|rata(?: mensile)? di"
       },
       "then": {
@@ -249,6 +250,351 @@
             "amount_due": "1234.56"
           },
           "comment": "the next sentence is not the rest of this one"
+        }
+      ]
+    },
+    {
+      "id": "A-004",
+      "when": {
+        "reader": "grammar",
+        "label": "\\b(?:(?:importo|somma|totale)(?:\\s+(?:complessiv[oa]|dovut[oa]|residu[oa]|a\\s+debito|da\\s+pagare|da\\s+versare|richiest[oa]|ingiunt[oa]|precettat[oa]))*(?:\\s+(?:di|pari\\s+a))?|per\\s+complessivi)",
+        "unique_amount": true,
+        "after_not": "\\b(?:versat|corrispost|pagat|saldat|rimborsat|accreditat|stornat|annullat|incassat|restituit)[oaie]\\b|\\bda\\s+(?:rimborsare|restituire|accreditare|stornare)\\b|\\bnon\\s+(?:(?:è|sono|più)\\s+)?dovut[oaie]\\b|\\ba\\s+(?:vostro|suo|tuo|vs\\.?)\\s+(?:favore|credito)\\b|\\bbonificat[oaie]\\b|\\bnota\\s+di\\s+credito\\b|\\ba\\s+titolo\\s+di\\s+(?:sconto|abbuono)\\b",
+        "label_not": "^(?!.*\\b(?:dovut[oa]|a\\s+debito|da\\s+(?:pagare|versare)|richiest[oa]|ingiunt[oa]|precettat[oa])\\b).*\\bresidu[oa]\\b"
+      },
+      "then": {
+        "field": "amount_due"
+      },
+      "rationale": "v2.2, label grammar ported from arm B (its A-002; the pattern inside the word boundary is verbatim): head noun (importo | somma | totale) + any number of the qualifiers (complessivo, dovuto, residuo, a debito, da pagare, da versare, richiesto, ingiunto, precettato) + optional 'di' / 'pari a'; 'per complessivi' kept as is. The currency word is optional and read by the amount pattern. It reads what A-002/A-003 do not: the connector 'pari a', a label with no connector at all ('Totale da versare € 310,00'), 'precettato', more than three qualifiers. In arm B it had no condition. Here it is a second reader: alone (A-X04) it commits only under arm A's nets for a generalised label - one monetary amount in the document (unique_amount), nothing in the rest of the sentence that says the figure is not due (after_not: the pattern of A-002/A-003 plus three phrases for this reader only - 'bonificato', 'nota di credito', 'a titolo di sconto / abbuono'), a word boundary before the noun ('sottototale') - and label_not: 'residuo' is read only next to a qualifier that says the residue is owed ('importo residuo dovuto'); a bare 'importo residuo' may be what is left for a later notice (arm A's A-003-neg-residual). Whether a residue is the amount due is [TO CONFIRM with counsel]. Without the nets it is still used, to see whether it contradicts the labels reader (A-X01).",
+      "tests": [
+        {
+          "id": "A-004-a",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Vi invitiamo al pagamento dell'importo residuo dovuto pari a EUR 700,00."
+          },
+          "expect": {
+            "amount_due": "700.00"
+          }
+        },
+        {
+          "id": "A-004-b",
+          "input": {
+            "doc_type": "intimazione_pagamento",
+            "text": "Totale da versare € 310,00 entro cinque giorni."
+          },
+          "expect": {
+            "amount_due": "310.00"
+          },
+          "comment": "no connector between label and figure"
+        },
+        {
+          "id": "A-004-c",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "intima di pagare la somma precettata di € 5.000,00 oltre interessi"
+          },
+          "expect": {
+            "amount_due": "5000.00"
+          }
+        },
+        {
+          "id": "A-004-d",
+          "input": {
+            "doc_type": "diffida_messa_in_mora",
+            "text": "a corrispondere un importo pari a Euro 2.300,00 entro quindici giorni"
+          },
+          "expect": {
+            "amount_due": "2300.00"
+          }
+        },
+        {
+          "id": "A-004-e",
+          "input": {
+            "doc_type": "cartella_pagamento",
+            "text": "Importo complessivo dovuto a debito da pagare: € 1.500,00."
+          },
+          "expect": {
+            "amount_due": "1500.00"
+          },
+          "comment": "four qualifiers: A-003 stops at three"
+        },
+        {
+          "id": "A-004-neg-two-amounts",
+          "input": {
+            "doc_type": "diffida_messa_in_mora",
+            "text": "Importo dovuto pari a € 1.000,00, oltre spese per € 50,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "arm B read 1000.00; with two amounts in the document the grammar alone does not commit"
+        },
+        {
+          "id": "A-004-neg-paid-after",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "importo pari a € 500,00 già versato in data 01/09/2026."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-004-neg-credit-after",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Somma pari a € 1.234,56 a Vostro favore."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-004-neg-residual",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "L'importo residuo pari a € 800,00 sarà oggetto di separata comunicazione."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "arm B read 800.00"
+        },
+        {
+          "id": "A-004-neg-word-boundary",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Sottototale € 50,00 (IVA esclusa)."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "arm B's pattern had no word boundary and read 50.00"
+        },
+        {
+          "id": "A-004-neg-plural",
+          "input": {
+            "doc_type": "pignoramento_presso_terzi",
+            "text": "sono state accantonate somme pari a € 1.754,21."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-004-neg-qualifier",
+          "input": {
+            "doc_type": "provvedimento_rateizzazione",
+            "text": "La dilazione è ammessa con importo minimo pari a € 50,00 per rata."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "an unknown qualifier: not read, as in A-003"
+        },
+        {
+          "id": "A-004-neg-credit-note",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Abbiamo emesso un importo pari a € 800,00 quale nota di credito."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-004-neg-discount",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Totale pari a € 120,00 riconosciuto a titolo di sconto."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        },
+        {
+          "id": "A-004-neg-wired",
+          "input": {
+            "doc_type": "diffida_messa_in_mora",
+            "text": "La somma pari a € 640,00 Vi è stata bonificata il 2 ottobre."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
+        }
+      ]
+    }
+  ],
+  "agreement_note": "v2.2 merge of the two amount readers. 'labels' / 'grammar': committed | silent - for the grammar, what it reads BEFORE its nets (what it sees); same_value compares the two figures. Outcomes: RECUPERARE | labels (the labels reader's figure and rule id) | grammar (the grammar's figure, only if its rule's nets hold; otherwise nothing) | none. A pair that no row describes is not committed.",
+  "agreement": [
+    {
+      "id": "A-X01",
+      "when": {
+        "labels": "committed",
+        "grammar": "committed",
+        "same_value": false
+      },
+      "then": {
+        "outcome": "RECUPERARE"
+      },
+      "rationale": "the two readers read DIFFERENT figures as the amount due: each stopped at a different label. Which label introduces the sum to pay is exactly what is not known: no figure is committed and amount_due is RECUPERARE, whatever the document type. v2.1 committed the labels reader's figure, arm B the grammar's",
+      "tests": [
+        {
+          "id": "A-X01-a",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "L'importo residuo di € 800,00 resta sospeso. Importo dovuto: € 500,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": "A-X01",
+          "comment": "labels: A-002 'importo dovuto' = 500.00; grammar: 'importo residuo di' = 800.00"
+        },
+        {
+          "id": "A-X01-b",
+          "input": {
+            "doc_type": "diffida_messa_in_mora",
+            "text": "Somma dovuta € 900,00; importo da pagare: € 1.000,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": "A-X01",
+          "comment": "labels: A-002 'importo da pagare' = 1000.00; grammar: 'Somma dovuta' = 900.00"
+        }
+      ]
+    },
+    {
+      "id": "A-X02",
+      "when": {
+        "labels": "committed",
+        "grammar": "committed",
+        "same_value": true
+      },
+      "then": {
+        "outcome": "labels"
+      },
+      "rationale": "both readers read the same figure: committed, under the labels reader's rule id (as in v2.1)",
+      "tests": [
+        {
+          "id": "A-X02-a",
+          "input": {
+            "doc_type": "atto_precetto",
+            "text": "intima di pagare la somma di € 12.380,00 oltre interessi"
+          },
+          "expect": {
+            "amount_due": "12380.00"
+          },
+          "expect_rule": "A-002"
+        },
+        {
+          "id": "A-X02-b",
+          "input": {
+            "doc_type": "provvedimento_rateizzazione",
+            "text": "Importo complessivo rateizzato: € 40.982,40. Importo della rata: € 3.415,20."
+          },
+          "expect": {
+            "amount_due": "3415.20"
+          },
+          "expect_rule": "A-001",
+          "comment": "A-001 belongs to both readers, as in both arms"
+        }
+      ]
+    },
+    {
+      "id": "A-X03",
+      "when": {
+        "labels": "committed",
+        "grammar": "silent"
+      },
+      "then": {
+        "outcome": "labels"
+      },
+      "rationale": "only the labels reader reads a figure; the grammar sees no label. The labels reader's rules carry their own nets (A-002 after_not; A-003 unique_amount, after_not): committed, as in v2.1",
+      "tests": [
+        {
+          "id": "A-X03-a",
+          "input": {
+            "doc_type": "diffida_messa_in_mora",
+            "text": "a corrispondere la somma capitale di € 1.250,00 entro quindici giorni"
+          },
+          "expect": {
+            "amount_due": "1250.00"
+          },
+          "expect_rule": "A-003",
+          "comment": "'capitale' is a qualifier of A-003, not of the grammar"
+        }
+      ]
+    },
+    {
+      "id": "A-X04",
+      "when": {
+        "labels": "silent",
+        "grammar": "committed"
+      },
+      "then": {
+        "outcome": "grammar"
+      },
+      "rationale": "only the grammar sees a label. It commits if and only if the nets written in its rule (A-004) hold; if they do not, nothing is read - for a type that expects an amount that is RECUPERARE. This is the port: v2.1 abstained on all of these",
+      "tests": [
+        {
+          "id": "A-X04-a",
+          "input": {
+            "doc_type": "sollecito_pagamento",
+            "text": "Vi invitiamo al pagamento dell'importo residuo dovuto pari a EUR 700,00."
+          },
+          "expect": {
+            "amount_due": "700.00"
+          },
+          "expect_rule": "A-004"
+        },
+        {
+          "id": "A-X04-neg",
+          "input": {
+            "doc_type": "diffida_messa_in_mora",
+            "text": "Importo dovuto pari a € 1.000,00, oltre spese per € 50,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null,
+          "comment": "the grammar sees 1000.00 but the document states two amounts"
+        }
+      ]
+    },
+    {
+      "id": "A-X05",
+      "when": {
+        "labels": "silent",
+        "grammar": "silent"
+      },
+      "then": {
+        "outcome": "none"
+      },
+      "rationale": "no reader sees a label: no amount (RECUPERARE for a type that expects one), as in v2.0",
+      "tests": [
+        {
+          "id": "A-X05-a",
+          "input": {
+            "doc_type": "pignoramento_mobiliare",
+            "text": "si procede a pignoramento mobiliare per il credito di € 9.000,00."
+          },
+          "expect": {
+            "amount_due": null
+          },
+          "expect_rule": null
         }
       ]
     }

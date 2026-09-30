@@ -115,11 +115,13 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
     doc_type = then["doc_type"] if then else RECUPERARE
     trace["doc_type"] = rule or "no rule matched"
     doc_reason = "no title/subject rule matched" + (" (no readable text)" if not text else "")
-    if text and (then is None or then.get("basis") == "subject"):
-        # no strict title rule: the type needs two independent readings that agree (pipeline/typeagree.py)
-        agreed, basis = typeagree.read(text, subject, text_terms, ctx.title_families, ctx.terms_cfg)
-        if agreed is not None:
-            doc_type, trace["doc_type"], doc_reason = agreed, basis, basis
+    if text and (then is None or then.get("basis") in ("subject", "title_exclusive")):
+        # no strict title rule. v2.2: two title readers - the title-exclusive rule that may have matched
+        # (arm B's reading) and the agreement reader (arm A's) - merged by the table 'title_merge' of
+        # rules/doc_type.json; None = both silent, the result of the ordered rules stands (pipeline/typeagree.py)
+        merged, basis, _ = typeagree.resolve(then, rule, text, subject, text_terms, ctx.title_families, ctx.terms_cfg)
+        if merged is not None:
+            doc_type, trace["doc_type"], doc_reason = merged, basis, basis
     if doc_type == RECUPERARE:
         rec_fields.append("doc_type")
         reasons["doc_type"] = doc_reason
@@ -156,11 +158,18 @@ def classify_record(env: dict, sig: dict, txt: dict, ctx: Context) -> dict:
         else "transport signature not verified: daticert timestamp untrusted" if pec_time else "no daticert timestamp")
 
     # amounts (edition-bound) ----------------------------------------------------------------
-    amount, arule = amounts.extract_amount(text, doc_type)
+    # v2.2: two readers (arm A's labels, arm B's label grammar) merged by 'agreement' in rules/amounts.json
+    reading = amounts.read_amount(text, doc_type)
+    amount, arule = reading.value, reading.rule
     trace["amount_due"] = arule or "no label matched"
     if amount and pdoc.get("signature_integrity") == "failed":
         reasons["amount_due"] = "signed document failed integrity: figure not trusted"
         amount = None
+    if reading.reason:
+        # the readers saw a labelled figure and do not agree on it: RECUPERARE for every document type -
+        # a silent null would hide that the document states a sum
+        rec_fields.append("amount_due")
+        reasons["amount_due"] = reading.reason
     if amount is None and (doc_type in ctx.expects_amount or doc_type == RECUPERARE):
         rec_fields.append("amount_due")
         reasons.setdefault("amount_due", "no readable amount")

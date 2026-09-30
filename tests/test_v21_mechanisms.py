@@ -304,19 +304,39 @@ class TypeByAgreement(unittest.TestCase):
         self.assertIn("subject", r["rule_trace"]["doc_type"])
 
     def test_title_alone_is_not_enough(self):
-        r = record(self.DIFFIDA.format("senza indugio"))
+        """For the agreement reader. v2.2 changed what the PIPELINE does with the first two inputs below: the
+        title-exclusive rule DT-031 (ported from arm B) reads 'LETTERA DI DIFFIDA' on its own conditions and the
+        merge table commits it (TM-004) - see tests/test_v22_merge.py. The agreement reader itself still says
+        'unconfirmed', and a family that has no title-exclusive rule still abstains in the pipeline."""
+        fam, cfg = CTX.title_families, CTX.terms_cfg
+        text = self.DIFFIDA.format("senza indugio")
+        got, basis = typeagree.read(text, "Comunicazione", [], fam, cfg)
+        self.assertEqual(got, "RECUPERARE")
+        self.assertIn("no independent reading", basis)
+        # a term that runs from the notification does not confirm a private demand (T-009 runs from receipt)
+        notif = [{"days": 15, "from_event": "notification", "conditional": False}]
+        self.assertEqual(typeagree.read_state(text, "Comunicazione", notif, fam, cfg).state, "unconfirmed")
+        # pipeline, v2.2: committed by DT-031; the deadline follows the text (none stated / 15 days stated)
+        r = record(text)
+        self.assertEqual((r["doc_type"], r["deadline"]), ("diffida_messa_in_mora", "RECUPERARE"))   # v2.1: RECUPERARE, RECUPERARE
+        r = record(self.DIFFIDA.format("entro quindici giorni dalla notifica"))
+        self.assertEqual((r["doc_type"], r["deadline"]), ("diffida_messa_in_mora", "2026-10-21"))   # v2.1: RECUPERARE, RECUPERARE
+        # pipeline, unchanged: a family without a title-exclusive rule, nothing confirms it
+        r = record("AGENZIA ESEMPIO RISCOSSIONE\nAVVISO DI INTIMAZIONE\nSi intima il pagamento senza indugio.")
         self.assertEqual((r["doc_type"], r["deadline"]), ("RECUPERARE", "RECUPERARE"))
         self.assertIn("no independent reading", r["recuperare_reasons"]["doc_type"])
-        # a term that runs from the notification does not confirm a private demand (T-009 runs from receipt)
-        r = record(self.DIFFIDA.format("entro quindici giorni dalla notifica"))
-        self.assertEqual((r["doc_type"], r["deadline"]), ("RECUPERARE", "RECUPERARE"))
 
     def test_two_families_on_the_title_are_resolved_only_by_a_second_reading(self):
         r = record(self.PRECETTO.format("nel termine di giorni dieci dalla notifica del presente atto"),
                    subject="Sollecito", sender=LAWYER)
         self.assertEqual((r["doc_type"], r["deadline"]), ("atto_precetto", "2026-10-16"))
+        # v2.2: no second reading, but DT-030 (ported from arm B) reads 'ATTO DI PRECETTO E INTIMAZIONE' as a
+        # precetto on its own conditions (TM-004); v2.1 gave RECUPERARE, RECUPERARE. The agreement reader alone
+        # still does not commit it:
+        self.assertEqual(typeagree.read(self.PRECETTO.format("senza indugio"), "Sollecito", [], CTX.title_families,
+                                        CTX.terms_cfg)[0], "RECUPERARE")
         r = record(self.PRECETTO.format("senza indugio"), subject="Sollecito", sender=LAWYER)
-        self.assertEqual((r["doc_type"], r["deadline"]), ("RECUPERARE", "RECUPERARE"))
+        self.assertEqual((r["doc_type"], r["deadline"]), ("atto_precetto", "2026-10-16"))
         # subject says precetto, the stated term (5 days) is the one of an intimazione: two confirmed families
         r = record(self.PRECETTO.format("entro cinque giorni dalla notifica"), subject="Atto di precetto", sender=LAWYER)
         self.assertEqual((r["doc_type"], r["deadline"]), ("RECUPERARE", "RECUPERARE"))
@@ -355,7 +375,10 @@ class TypeByAgreement(unittest.TestCase):
 class GeneralisedAmountLabel(unittest.TestCase):
     def test_inline(self):
         rules = json.loads((ROOT / "rules" / "amounts.json").read_text(encoding="utf-8"))["rules"]
-        self.assertEqual([r["id"] for r in rules], ["A-001", "A-002", "A-003"])  # strict labels first
+        # strict labels first; v2.2 appends A-004, the grammar reader ported from arm B (tests/test_v22_merge.py)
+        self.assertEqual([r["id"] for r in rules], ["A-001", "A-002", "A-003", "A-004"])
+        self.assertEqual([r["id"] for r in rules if r["when"].get("reader", "labels") in ("labels", "both")],
+                         ["A-001", "A-002", "A-003"])
 
     def test_read(self):
         for text, want in (("Totale a debito: Euro 6.877,15, comprensivo di sanzioni e interessi.", "6877.15"),

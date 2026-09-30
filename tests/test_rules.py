@@ -21,7 +21,8 @@ class RuleFileStructure(unittest.TestCase):
         seen = set()
         for name, key in (("doc_type.json", "rules"), ("area.json", "rules"), ("deadline_nature.json", "rules"),
                           ("urgency.json", "rules"), ("amounts.json", "rules"), ("term_clauses.json", "rules"),
-                          ("doc_type.json", "title_families"), ("deadline_nature.json", "vetoes")):
+                          ("doc_type.json", "title_families"), ("deadline_nature.json", "vetoes"),
+                          ("doc_type.json", "title_merge"), ("amounts.json", "agreement")):
             for r in load(name)[key]:
                 for k in ("id", "rationale", "tests"):
                     self.assertIn(k, r, f"{name}:{r.get('id')}")
@@ -67,6 +68,10 @@ class InlineRuleTests(unittest.TestCase):
     def test_title_family_rules(self):
         self.assertEqual(typeagree.run_inline_tests(load("doc_type.json"), load("terms.json")), [])
 
+    def test_title_merge_rules(self):
+        self.assertEqual(typeagree.run_merge_tests(RuleFile.load("doc_type.json"), load("doc_type.json"),
+                                                   load("terms.json")), [])
+
     def test_urgency_rules(self):
         as_of = dt.date(2026, 10, 21)
         for r in load("urgency.json")["rules"]:
@@ -85,6 +90,14 @@ class InlineRuleTests(unittest.TestCase):
                 v, rid = amounts.extract_amount(t["input"]["text"], t["input"]["doc_type"])
                 want_rule = t["expect_rule"] if "expect_rule" in t else r["id"]
                 self.assertEqual((v, rid), (t["expect"]["amount_due"], want_rule), t["id"])
+
+    def test_amount_agreement_rules(self):
+        """Each test of a row must be decided by that row; 'expect_rule' is the rule id left in the trace."""
+        for r in load("amounts.json")["agreement"]:
+            for t in r["tests"]:
+                got = amounts.read_amount(t["input"]["text"], t["input"]["doc_type"])
+                self.assertEqual((got.value, got.rule, got.agreement),
+                                 (t["expect"]["amount_due"], t["expect_rule"], r["id"]), t["id"])
 
     def test_dissent_natures(self):
         self.assertEqual(classify_dissent("none")[0], "none")

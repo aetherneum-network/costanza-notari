@@ -2,6 +2,124 @@
 
 All notable changes to the Costanza Notari v2 proof pack. Synthetic project: every entity is fictitious.
 
+## [2.2.0] - 2026-09-30
+
+A merge, not a new reader. Two independent v2.1 builds existed: **arm A** (this line, `v2.1-freeze` +
+two commits, `04ae6b9`) and **arm B** (another worktree, commit `ad443ae`). Decision D12 of 2026-09-30:
+adopt arm A as the base, port into it arm B's reading of the document type from the title and of the
+amount, then freeze. Rule of the merge: **two readers of the same field that disagree -> RECUPERARE; one
+reader that commits while the other has no opinion -> committed only if that reader's own safety
+conditions hold.** The deadline / term reading of arm A is not touched: `pipeline/termclauses.py`,
+`pipeline/deadlines.py`, `rules/term_clauses.json`, `rules/deadline_nature.json`, `rules/terms.json` are
+byte-identical to `04ae6b9`.
+
+**Who wrote what.** The ported mechanisms (title rules DT-030..DT-032, the label grammar of the amount,
+and their tests) originate in **arm B, built by Claude Fable 5.1**. The merge - the agreement tables, the
+nets around the ported rules, the engine conditions, the tests for every disagreement path - is by
+**Claude Opus 5.5**, in Costanza's voice. No model or API is called by the code or by the tests.
+
+**What the numbers can and cannot show.** On the five corpora every aggregate of v2.2 is identical to
+v2.1 arm A (`eval/history.json`, key `v2_2_before_blind`; `eval/results.json` regenerates byte for byte).
+Those corpora hold only the generator's eleven rewrites, which both arms already read: on the four I may
+open, the ported readers never committed alone and never disagreed with arm A's readers (both title
+readers named the same type on 25 / 28 / 28 records of the three perturbed corpora, 0 on dev). So the
+suites show that the merge did not regress and **nothing else**. The evidence for the port is
+`tests/test_v22_merge.py`: wording written for the tests, positive and negative. No blind run of v2.2 has
+been made at the time of this entry (`eval/BLIND_PROTOCOL_v2.2.md`).
+
+### Ported from arm B
+- **Title-exclusive reader** (`rules/doc_type.json`, DT-030 *atto_precetto*, DT-031
+  *diffida_messa_in_mora*, DT-032 *sollecito_pagamento*; `then.basis = "title_exclusive"`). An upper-case
+  title line names the act inside a wrapped title (*ATTO DI PRECETTO E INTIMAZIONE*, *LETTERA DI DIFFIDA*,
+  *LETTERA DI SOLLECITO*) and no other act: arm B's exclusivity lists are kept verbatim. They sit after the
+  strict title rules (DT-001..DT-024, unchanged, still first) and before the subject rules.
+- **Label grammar of the amount** (`rules/amounts.json`, A-004, `reader: "grammar"`): head noun
+  (*importo / somma / totale*) + any number of "owed" qualifiers + optional *di / pari a*; arm B's pattern
+  verbatim inside a word boundary. It reads *importo pari a*, a label with no connector
+  (*Totale da versare € 310,00*), *somma precettata*, more than three qualifiers.
+- **Rule-engine conditions** (`pipeline/rules_engine.py`): `title_matches`, `title_not_matches` (arm B),
+  over one shared definition of a title line (upper-case, with a letter, at most 90 characters, in the first
+  600) now used by both title readers.
+- Arm B's tests for these mechanisms, positive and negative (`TitleExclusiveReader`, `AmountTwoReaders`,
+  `EndToEndInvariance` in `tests/test_v22_merge.py`; inline `tests` of the rules).
+
+### Disagreement rules - ordered tables in the rule files, first match wins, abstentions on top
+- **Title, `title_merge` in `rules/doc_type.json`** (`typeagree.resolve`). *exclusive* = what DT-030..032
+  say; *agreement* = arm A's reader (title family in a neutral frame, confirmed by the subject or by the
+  stated term).
+  - TM-001 both commit, different types -> RECUPERARE.
+  - TM-002 exclusive commits, agreement finds two confirmed families (conflict) -> RECUPERARE.
+  - TM-003 both commit the same type -> committed (trace carries both).
+  - TM-004 exclusive commits, agreement has no opinion (unconfirmed / not understood / silent) ->
+    committed on the rule's own conditions. **This is the port**: v2.1 arm A abstained here.
+  - TM-005 only the agreement reader commits -> committed, as in v2.1.
+  - TM-006 exclusive silent, agreement abstains -> RECUPERARE, and the subject-only fallback stays vetoed,
+    as in v2.1 (arm A's net, kept).
+  - TM-007 both silent -> the ordered rules decide, as in v2.0.
+  - A pair that no row describes, a missing or broken table -> RECUPERARE (fail closed, tested).
+- **Amount, `agreement` in `rules/amounts.json`** (`amounts.read_amount`). *labels* = arm A's A-001..A-003
+  with their nets; *grammar* = A-004 (A-001 belongs to both).
+  - A-X01 the two read different figures -> RECUPERARE, flagged for every document type. To see a
+    disagreement the grammar is read **without** its nets; that reading never commits.
+  - A-X02 same figure -> committed under the labels rule id, as in v2.1.
+  - A-X03 labels only -> committed, as in v2.1.
+  - A-X04 grammar only -> committed only if the nets of A-004 hold: one money figure in the document
+    (`unique_amount`), nothing after it that says the figure is not due (`after_not`: arm A's pattern
+    plus *bonificato*, *nota di credito*, *a titolo di sconto / abbuono*), the word boundary
+    (*sottototale*), and `label_not` - a bare *importo residuo* is not read.
+  - A-X05 neither -> no amount, as in v2.0.
+
+### Nets added by the merge around the ported title rules - each one only abstains
+- **Head position** (`title_before_words`): on its title line the act name may be preceded only by frame
+  words - arm A's neutral frame plus a short list (*STRAGIUDIZIALE, RACCOMANDATA, URGENTE, INVITO,
+  RINNOVAZIONE*, ordinals). *RISCONTRO A VOSTRA DIFFIDA*, *MEMORIA SULL'ATTO DI PRECETTO*,
+  *CHIARIMENTI SUL SOLLECITO* are not read. Arm B read them.
+- **Inverting words** (`{INVERTING}`, any title line): *OPPOSIZIONE, REVOCA, RINUNCIA, SOSPENSIONE,
+  RISCONTRO, BOZZA, FAC-SIMILE, NON, NULLO, PAGAMENTO EFFETTUATO, SALDATA...* -> not read.
+- **Other acts under the names arm A knows** (`{OTHER_ACT_SYNONYMS}`): *INGIUNZIONE DI PAGAMENTO,
+  RATEAZIONE, DILAZIONE* count as a second act name.
+- **Closed tail for a reminder** (`title_after_words`): after *SOLLECITO* only payment words may follow
+  (*SOLLECITO INVIO DOCUMENTAZIONE* is not a payment reminder).
+- **Tail of a precetto / diffida line** (`{ABOUT_TAIL}`, `{NOT_A_DEMAND_TAIL}`, bound to the line of the
+  act): *ATTO DI PRECETTO PERVENUTO*, *LETTERA DI DIFFIDA - RICHIESTA DI INCONTRO*, *MESSA IN MORA DEL
+  CREDITORE*, *DIFFIDA ACCERTATIVA*, *DIFFIDA DAL PROSEGUIRE* are not read. Apart from these lists the
+  tail of a precetto or diffida title is open: a tail outside them that changes the act is not caught.
+  Which of these titles are the same act is **[TO CONFIRM with counsel]**.
+- Rule files gain `defs` (named pattern fragments, `{NAME}`) and `"@list"` references, so that a net is
+  written once and the code only extracts.
+
+### Changed behaviour with respect to v2.1 arm A (each change is commented in the tests it touched)
+- A wrapped title of a precetto, a diffida or a reminder is now committed **on the title alone** when arm
+  A's reader has no confirmation (TM-004). For a precetto this also computes the statutory term
+  (T-001) where v2.1 left type and deadline RECUPERARE. The deadline reader itself is unchanged: a stated
+  term it cannot read is still RECUPERARE.
+- An amount may now be committed by A-004 alone (A-X04), and two labels that give different figures are
+  now RECUPERARE (A-X01) where v2.1 committed the first labels rule.
+- Rule versions `2026.10.02-1` (`doc_type.json`, `amounts.json`). The versions and the type trace are
+  written into the index, so the determinism hashes changed (README); no value in the dev index changed.
+
+### Not ported, and why
+- **Arm B's subject-only fallback when the title is not understood.** Arm A vetoes it (v2.1, TM-006) and an
+  abstain-only net of arm A is not removed. If part of arm B's advantage on unseen titles came from this
+  fallback and not from its title rules, v2.2 does not reproduce that part. I cannot tell the two apart
+  without the evaluator's corpora, which I may not open.
+- Title-alone reading for the other families of arm A (cartella, avviso, decreto...): arm B has no title
+  rule for them; nothing to port.
+- Arm B's grammar as an unconditioned reader: kept only as a detector of disagreement (A-X01).
+- Arm B's deadline / term readers and its changes to `eval/score.py`: arm A's are the base.
+
+### Known limits, unchanged
+- The strict rules still win first: DT-022 reads any title line that **begins** with *DIFFIDA / MESSA IN
+  MORA* (*DIFFIDA - REVOCA*, *MESSA IN MORA DEL CREDITORE*, *DIFFIDA ACCERTATIVA...*), as in v2.0 and v2.1.
+  The nets above guard only the new path.
+- A-002 / A-003 of arm A are unchanged: *importo di € 800,00 quale nota di credito* is still read by A-002.
+- The PEC subject neither confirms nor vetoes a title-exclusive rule; only the agreement reader uses it.
+
+### Verification
+- 249 `unittest` tests (v2.1 arm A: 202), 10/10 scenarios, determinism test green.
+- `eval/score.py --seed N --perturb` unchanged; checked once more on the burned seed 20261004
+  (`eval/history.json`, `generic_seed_path_check_v2_2_seed_20261004`).
+
 ## [2.1.0] - 2026-09-30
 
 Goal: fewer abstentions on deadline reading, **without one wrong committed deadline**. v2.0 abstained on
