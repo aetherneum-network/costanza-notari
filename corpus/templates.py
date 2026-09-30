@@ -17,6 +17,7 @@ from .reference_terms import is_non_working
 MONTHS = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre",
           "ottobre", "novembre", "dicembre"]
 DEBTOR_UP = "FORNACE AURELIA S.R.L."
+PERTURB = None  # set only by the stress evaluation suite (corpus/perturb.py)
 DEBTOR_ADDR = "FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12"
 
 
@@ -93,6 +94,8 @@ class Ctx:
 
 def wrap(paras: list[str], width: int = 92) -> list[str]:
     out = []
+    if PERTURB is not None:
+        paras = [PERTURB(p) for p in paras]
     for p in paras:
         if p == "":
             out.append("")

@@ -372,6 +372,7 @@ def main(argv=None):
     ap.add_argument("--write-manifest", action="store_true", help="write corpus/MANIFEST.sha256")
     ap.add_argument("--check", action="store_true", help="regenerate into build/corpus-check and compare")
     ap.add_argument("--seed", type=int, default=SEED, help="held-out corpora use a different seed (e.g. 20261001)")
+    ap.add_argument("--perturb", action="store_true", help="stress suite: rewrite phrasings the rules never saw")
     a = ap.parse_args(argv)
     if a.check:
         out = ROOT / "build" / "corpus-check"
@@ -388,6 +389,9 @@ def main(argv=None):
             print("  differs:", k)
         return 0 if not diff and gold_ok else 1
     out = Path(a.out)
+    if a.perturb:
+        from corpus import perturb
+        T.PERTURB = perturb.make(a.seed)
     res = generate(out, Path(a.gold), a.seed)
     if a.write_manifest:
         with open(ROOT / "corpus" / "MANIFEST.sha256", "w", encoding="utf-8", newline="\n") as fh:

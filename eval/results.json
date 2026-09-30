@@ -1,0 +1,2614 @@
+{
+  "as_of": "2026-10-21T09:40:00+02:00",
+  "note": "over committed (non-RECUPERARE) predictions. All three suites are synthetic and share templates, so",
+  "results": {
+    "dev": {
+      "amount_due": {
+        "abstained": 20,
+        "accuracy": 1.0,
+        "wrong_committed": 0
+      },
+      "area": {
+        "abstained_RECUPERARE": 0,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "n": 292,
+        "per_class": {
+          "banking": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 11
+          },
+          "civil_litigation": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "collection": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 62
+          },
+          "court": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "enforcement": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "insolvency": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 12
+          },
+          "local_tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "out_of_court_recovery": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 46
+          },
+          "payment_order": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "pre_enforcement": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          },
+          "social_security": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 15
+          },
+          "third_party_attachment": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "attribution": {
+        "author_entity": {
+          "abstained": 16,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "counterparty_channel": {
+          "abstained": 79,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "party_entity": {
+          "abstained": 6,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "transmitter_entity": {
+          "abstained": 0,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "urgency": {
+          "abstained": 0,
+          "accuracy": 0.9966,
+          "precision_committed": 0.9966,
+          "wrong_committed": 1
+        }
+      },
+      "deadline": {
+        "abstained_RECUPERARE": 1,
+        "driving_deadline_exact": 0.9961,
+        "driving_deadline_n": 254,
+        "driving_nature_exact": 0.9961,
+        "expected_RECUPERARE_hit": 7,
+        "expected_RECUPERARE_n": 7,
+        "no_deadline_correct": 31,
+        "no_deadline_expected_n": 31,
+        "urgency_exact": 0.9966,
+        "written_dates_nature_precision": 0.9986,
+        "written_dates_nature_recall": 0.9986,
+        "wrong_date_committed": 0
+      },
+      "doc_type": {
+        "abstained_RECUPERARE": 0,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "n": 292,
+        "per_class": {
+          "atto_citazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "atto_precetto": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          },
+          "avviso_accertamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "avviso_addebito": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "cartella_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          },
+          "comunicazione_cancelleria": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "decreto_ingiuntivo": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "diffida_messa_in_mora": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          },
+          "intimazione_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 13
+          },
+          "pignoramento_mobiliare": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "pignoramento_presso_terzi": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "provvedimento_rateizzazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 17
+          },
+          "ricorso_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "sentenza_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 3
+          },
+          "sollecito_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "envelopes": 300,
+      "error_counts": {
+        "deadline": 1,
+        "sender_class": 13
+      },
+      "error_examples": {
+        "deadline": [
+          {
+            "gold": "2026-11-26",
+            "hard_cases": [
+              "transport_signature_broken"
+            ],
+            "kind": "ppt_bank",
+            "pred": "RECUPERARE",
+            "record": "ARC-0257"
+          }
+        ],
+        "sender_class": [
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "pign_mob",
+            "pred": "RECUPERARE",
+            "record": "ARC-0005"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "mixed_scan_page"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0011"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0023"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0049"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "citazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0063"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "recital_future_date"
+            ],
+            "kind": "citazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0118"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0137"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0154"
+          }
+        ]
+      },
+      "ledger": {
+        "duplicate_ignored": 8,
+        "duplicates_expected": 8,
+        "revisions_expected": 6,
+        "supersede_events": 6
+      },
+      "perturbed": false,
+      "recuperare": {
+        "per_field": {
+          "amount_due": {
+            "expected": 20,
+            "flagged": 20,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "area": {
+            "expected": 0,
+            "flagged": 0,
+            "precision": null,
+            "recall": null
+          },
+          "author_entity": {
+            "expected": 16,
+            "flagged": 16,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "counterparty_channel": {
+            "expected": 79,
+            "flagged": 79,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "deadline": {
+            "expected": 7,
+            "flagged": 8,
+            "precision": 0.875,
+            "recall": 1.0
+          },
+          "doc_type": {
+            "expected": 0,
+            "flagged": 0,
+            "precision": null,
+            "recall": null
+          },
+          "party_entity": {
+            "expected": 6,
+            "flagged": 6,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "text": {
+            "expected": 28,
+            "flagged": 28,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "rate_records_expected": 0.3322,
+        "rate_records_predicted": 0.3596
+      },
+      "run_status": "OK",
+      "scored_unique": 292,
+      "seed": 20260930,
+      "sender_class": {
+        "abstained_RECUPERARE": 13,
+        "accuracy": 0.9555,
+        "macro_f1": 0.983,
+        "n": 292,
+        "per_class": {
+          "BANK_CORPORATE": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 11
+          },
+          "BANK_THIRD_PARTY": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 8
+          },
+          "CORPORATE_PEC": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 140
+          },
+          "COURT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          },
+          "LAWYER": {
+            "f1": 0.8807,
+            "precision": 1.0,
+            "recall": 0.7869,
+            "support": 61
+          },
+          "TARGET": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "TRANSMIT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "signatures": {
+        "agreement": 1.0,
+        "attachment_signatures": 149,
+        "transport_agreement": 1.0
+      },
+      "suite": "dev"
+    },
+    "holdout": {
+      "amount_due": {
+        "abstained": 16,
+        "accuracy": 1.0,
+        "wrong_committed": 0
+      },
+      "area": {
+        "abstained_RECUPERARE": 2,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "n": 292,
+        "per_class": {
+          "banking": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 11
+          },
+          "civil_litigation": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "collection": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 62
+          },
+          "court": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "enforcement": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "insolvency": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 12
+          },
+          "local_tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "out_of_court_recovery": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 46
+          },
+          "payment_order": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "pre_enforcement": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 30
+          },
+          "social_security": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 15
+          },
+          "third_party_attachment": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "attribution": {
+        "author_entity": {
+          "abstained": 13,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "counterparty_channel": {
+          "abstained": 79,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "party_entity": {
+          "abstained": 6,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "transmitter_entity": {
+          "abstained": 0,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "urgency": {
+          "abstained": 0,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        }
+      },
+      "deadline": {
+        "abstained_RECUPERARE": 0,
+        "driving_deadline_exact": 1.0,
+        "driving_deadline_n": 253,
+        "driving_nature_exact": 1.0,
+        "expected_RECUPERARE_hit": 8,
+        "expected_RECUPERARE_n": 8,
+        "no_deadline_correct": 31,
+        "no_deadline_expected_n": 31,
+        "urgency_exact": 1.0,
+        "written_dates_nature_precision": 0.9987,
+        "written_dates_nature_recall": 0.9987,
+        "wrong_date_committed": 0
+      },
+      "doc_type": {
+        "abstained_RECUPERARE": 2,
+        "accuracy": 1.0,
+        "macro_f1": 1.0,
+        "n": 292,
+        "per_class": {
+          "atto_citazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "atto_precetto": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 30
+          },
+          "avviso_accertamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "avviso_addebito": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "cartella_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          },
+          "comunicazione_cancelleria": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "decreto_ingiuntivo": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "diffida_messa_in_mora": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          },
+          "intimazione_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 13
+          },
+          "pignoramento_mobiliare": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "pignoramento_presso_terzi": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "provvedimento_rateizzazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 17
+          },
+          "ricorso_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "sentenza_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 3
+          },
+          "sollecito_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "envelopes": 300,
+      "error_counts": {
+        "sender_class": 16
+      },
+      "error_examples": {
+        "sender_class": [
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0009"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0017"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "ppt",
+            "pred": "RECUPERARE",
+            "record": "ARC-0042"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0084"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "pign_mob",
+            "pred": "RECUPERARE",
+            "record": "ARC-0085"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0101"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0130"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "ppt",
+            "pred": "RECUPERARE",
+            "record": "ARC-0131"
+          }
+        ]
+      },
+      "ledger": {
+        "duplicate_ignored": 8,
+        "duplicates_expected": 8,
+        "revisions_expected": 6,
+        "supersede_events": 6
+      },
+      "perturbed": false,
+      "recuperare": {
+        "per_field": {
+          "amount_due": {
+            "expected": 16,
+            "flagged": 16,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "area": {
+            "expected": 2,
+            "flagged": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "author_entity": {
+            "expected": 13,
+            "flagged": 13,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "counterparty_channel": {
+            "expected": 79,
+            "flagged": 79,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "deadline": {
+            "expected": 8,
+            "flagged": 8,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "doc_type": {
+            "expected": 2,
+            "flagged": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "party_entity": {
+            "expected": 6,
+            "flagged": 6,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "text": {
+            "expected": 21,
+            "flagged": 21,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "rate_records_expected": 0.3082,
+        "rate_records_predicted": 0.3425
+      },
+      "run_status": "OK",
+      "scored_unique": 292,
+      "seed": 20261001,
+      "sender_class": {
+        "abstained_RECUPERARE": 16,
+        "accuracy": 0.9452,
+        "macro_f1": 0.9799,
+        "n": 292,
+        "per_class": {
+          "BANK_CORPORATE": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 11
+          },
+          "BANK_THIRD_PARTY": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 8
+          },
+          "CORPORATE_PEC": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 140
+          },
+          "COURT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          },
+          "LAWYER": {
+            "f1": 0.8596,
+            "precision": 1.0,
+            "recall": 0.7538,
+            "support": 65
+          },
+          "TARGET": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "TRANSMIT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 29
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "signatures": {
+        "agreement": 1.0,
+        "attachment_signatures": 163,
+        "transport_agreement": 1.0
+      },
+      "suite": "holdout"
+    },
+    "stress-blind": {
+      "amount_due": {
+        "abstained": 69,
+        "accuracy": 0.7911,
+        "wrong_committed": 0
+      },
+      "area": {
+        "abstained_RECUPERARE": 27,
+        "accuracy": 0.9247,
+        "macro_f1": 0.9675,
+        "n": 292,
+        "per_class": {
+          "banking": {
+            "f1": 0.8421,
+            "precision": 1.0,
+            "recall": 0.7273,
+            "support": 11
+          },
+          "civil_litigation": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "collection": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 62
+          },
+          "court": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "enforcement": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "insolvency": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 12
+          },
+          "local_tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "out_of_court_recovery": {
+            "f1": 0.7895,
+            "precision": 1.0,
+            "recall": 0.6522,
+            "support": 46
+          },
+          "payment_order": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 22
+          },
+          "pre_enforcement": {
+            "f1": 0.9455,
+            "precision": 1.0,
+            "recall": 0.8966,
+            "support": 29
+          },
+          "social_security": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 15
+          },
+          "third_party_attachment": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "attribution": {
+        "author_entity": {
+          "abstained": 6,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "counterparty_channel": {
+          "abstained": 76,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "party_entity": {
+          "abstained": 6,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "transmitter_entity": {
+          "abstained": 0,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "urgency": {
+          "abstained": 0,
+          "accuracy": 0.6986,
+          "precision_committed": 0.6986,
+          "wrong_committed": 88
+        }
+      },
+      "deadline": {
+        "abstained_RECUPERARE": 115,
+        "driving_deadline_exact": 0.5472,
+        "driving_deadline_n": 254,
+        "driving_nature_exact": 0.5472,
+        "expected_RECUPERARE_hit": 7,
+        "expected_RECUPERARE_n": 7,
+        "no_deadline_correct": 31,
+        "no_deadline_expected_n": 31,
+        "urgency_exact": 0.6986,
+        "written_dates_nature_precision": 0.9651,
+        "written_dates_nature_recall": 0.6658,
+        "wrong_date_committed": 0
+      },
+      "doc_type": {
+        "abstained_RECUPERARE": 27,
+        "accuracy": 0.9247,
+        "macro_f1": 0.9694,
+        "n": 292,
+        "per_class": {
+          "atto_citazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "atto_precetto": {
+            "f1": 0.9455,
+            "precision": 1.0,
+            "recall": 0.8966,
+            "support": 29
+          },
+          "avviso_accertamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "avviso_addebito": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "cartella_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          },
+          "comunicazione_cancelleria": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "decreto_ingiuntivo": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 22
+          },
+          "diffida_messa_in_mora": {
+            "f1": 0.5957,
+            "precision": 1.0,
+            "recall": 0.4242,
+            "support": 33
+          },
+          "intimazione_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 13
+          },
+          "pignoramento_mobiliare": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "pignoramento_presso_terzi": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "provvedimento_rateizzazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 17
+          },
+          "ricorso_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "sentenza_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 3
+          },
+          "sollecito_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "envelopes": 300,
+      "error_counts": {
+        "deadline": 115,
+        "doc_type": 22,
+        "sender_class": 16
+      },
+      "error_examples": {
+        "deadline": [
+          {
+            "gold": "2026-08-14",
+            "hard_cases": [],
+            "kind": "cartella",
+            "pred": "RECUPERARE",
+            "record": "ARC-0001"
+          },
+          {
+            "gold": "2026-07-20",
+            "hard_cases": [],
+            "kind": "rateizzazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0002"
+          },
+          {
+            "gold": "2026-06-25",
+            "hard_cases": [],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0003"
+          },
+          {
+            "gold": "2026-09-01",
+            "hard_cases": [],
+            "kind": "ppt",
+            "pred": "RECUPERARE",
+            "record": "ARC-0005"
+          },
+          {
+            "gold": "2026-08-17",
+            "hard_cases": [],
+            "kind": "addebito",
+            "pred": "RECUPERARE",
+            "record": "ARC-0011"
+          },
+          {
+            "gold": "2026-07-28",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "tampered_p7m"
+            ],
+            "kind": "ppt",
+            "pred": "RECUPERARE",
+            "record": "ARC-0015"
+          },
+          {
+            "gold": "2026-08-19",
+            "hard_cases": [],
+            "kind": "cartella",
+            "pred": "RECUPERARE",
+            "record": "ARC-0016"
+          },
+          {
+            "gold": "2026-09-01",
+            "hard_cases": [],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0019"
+          }
+        ],
+        "doc_type": [
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0022"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0024"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0044"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0045"
+          },
+          {
+            "gold": "atto_precetto",
+            "hard_cases": [
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0115"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0132"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0143"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0149"
+          }
+        ],
+        "sender_class": [
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0008"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "tampered_p7m"
+            ],
+            "kind": "ppt",
+            "pred": "RECUPERARE",
+            "record": "ARC-0015"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0051"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0057"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "pign_mob",
+            "pred": "RECUPERARE",
+            "record": "ARC-0075"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "recital_future_date"
+            ],
+            "kind": "citazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0116"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0130"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0135"
+          }
+        ]
+      },
+      "ledger": {
+        "duplicate_ignored": 8,
+        "duplicates_expected": 8,
+        "revisions_expected": 6,
+        "supersede_events": 6
+      },
+      "perturbed": true,
+      "recuperare": {
+        "per_field": {
+          "amount_due": {
+            "expected": 11,
+            "flagged": 69,
+            "precision": 0.1594,
+            "recall": 1.0
+          },
+          "area": {
+            "expected": 5,
+            "flagged": 27,
+            "precision": 0.1852,
+            "recall": 1.0
+          },
+          "author_entity": {
+            "expected": 6,
+            "flagged": 6,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "counterparty_channel": {
+            "expected": 76,
+            "flagged": 76,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "deadline": {
+            "expected": 7,
+            "flagged": 122,
+            "precision": 0.0574,
+            "recall": 1.0
+          },
+          "doc_type": {
+            "expected": 5,
+            "flagged": 27,
+            "precision": 0.1852,
+            "recall": 1.0
+          },
+          "party_entity": {
+            "expected": 6,
+            "flagged": 6,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "text": {
+            "expected": 15,
+            "flagged": 15,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "rate_records_expected": 0.2979,
+        "rate_records_predicted": 0.6918
+      },
+      "run_status": "OK",
+      "scored_unique": 292,
+      "seed": 20261004,
+      "sender_class": {
+        "abstained_RECUPERARE": 16,
+        "accuracy": 0.9452,
+        "macro_f1": 0.9799,
+        "n": 292,
+        "per_class": {
+          "BANK_CORPORATE": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 11
+          },
+          "BANK_THIRD_PARTY": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 8
+          },
+          "CORPORATE_PEC": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 140
+          },
+          "COURT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          },
+          "LAWYER": {
+            "f1": 0.8596,
+            "precision": 1.0,
+            "recall": 0.7538,
+            "support": 65
+          },
+          "TARGET": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "TRANSMIT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 29
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "signatures": {
+        "agreement": 1.0,
+        "attachment_signatures": 143,
+        "transport_agreement": 1.0
+      },
+      "suite": "stress-blind"
+    },
+    "stress-diag-a": {
+      "amount_due": {
+        "abstained": 62,
+        "accuracy": 0.8253,
+        "wrong_committed": 0
+      },
+      "area": {
+        "abstained_RECUPERARE": 19,
+        "accuracy": 0.9452,
+        "macro_f1": 0.9781,
+        "n": 292,
+        "per_class": {
+          "banking": {
+            "f1": 0.9,
+            "precision": 1.0,
+            "recall": 0.8182,
+            "support": 11
+          },
+          "civil_litigation": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "collection": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 62
+          },
+          "court": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "enforcement": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "insolvency": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 12
+          },
+          "local_tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "out_of_court_recovery": {
+            "f1": 0.85,
+            "precision": 1.0,
+            "recall": 0.7391,
+            "support": 46
+          },
+          "payment_order": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 23
+          },
+          "pre_enforcement": {
+            "f1": 0.9655,
+            "precision": 1.0,
+            "recall": 0.9333,
+            "support": 30
+          },
+          "social_security": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 15
+          },
+          "third_party_attachment": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "attribution": {
+        "author_entity": {
+          "abstained": 11,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "counterparty_channel": {
+          "abstained": 81,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "party_entity": {
+          "abstained": 6,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "transmitter_entity": {
+          "abstained": 0,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "urgency": {
+          "abstained": 0,
+          "accuracy": 0.7603,
+          "precision_committed": 0.7603,
+          "wrong_committed": 70
+        }
+      },
+      "deadline": {
+        "abstained_RECUPERARE": 96,
+        "driving_deadline_exact": 0.6206,
+        "driving_deadline_n": 253,
+        "driving_nature_exact": 0.6206,
+        "expected_RECUPERARE_hit": 8,
+        "expected_RECUPERARE_n": 8,
+        "no_deadline_correct": 31,
+        "no_deadline_expected_n": 31,
+        "urgency_exact": 0.7603,
+        "written_dates_nature_precision": 0.9579,
+        "written_dates_nature_recall": 0.6743,
+        "wrong_date_committed": 0
+      },
+      "doc_type": {
+        "abstained_RECUPERARE": 19,
+        "accuracy": 0.9452,
+        "macro_f1": 0.9798,
+        "n": 292,
+        "per_class": {
+          "atto_citazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "atto_precetto": {
+            "f1": 0.9655,
+            "precision": 1.0,
+            "recall": 0.9333,
+            "support": 30
+          },
+          "avviso_accertamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "avviso_addebito": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "cartella_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          },
+          "comunicazione_cancelleria": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "decreto_ingiuntivo": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 23
+          },
+          "diffida_messa_in_mora": {
+            "f1": 0.7308,
+            "precision": 1.0,
+            "recall": 0.5758,
+            "support": 33
+          },
+          "intimazione_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 13
+          },
+          "pignoramento_mobiliare": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "pignoramento_presso_terzi": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "provvedimento_rateizzazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 17
+          },
+          "ricorso_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "sentenza_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 3
+          },
+          "sollecito_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "envelopes": 300,
+      "error_counts": {
+        "deadline": 96,
+        "doc_type": 16,
+        "sender_class": 10
+      },
+      "error_examples": {
+        "deadline": [
+          {
+            "gold": "2026-07-01",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0002"
+          },
+          {
+            "gold": "2026-06-23",
+            "hard_cases": [],
+            "kind": "intimazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0003"
+          },
+          {
+            "gold": "2026-11-05",
+            "hard_cases": [],
+            "kind": "citazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0004"
+          },
+          {
+            "gold": "2026-09-28",
+            "hard_cases": [],
+            "kind": "accertamento_comune",
+            "pred": "RECUPERARE",
+            "record": "ARC-0022"
+          },
+          {
+            "gold": "2026-07-14",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0023"
+          },
+          {
+            "gold": "2026-09-01",
+            "hard_cases": [],
+            "kind": "pign_mob",
+            "pred": "RECUPERARE",
+            "record": "ARC-0026"
+          },
+          {
+            "gold": "2026-07-16",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0027"
+          },
+          {
+            "gold": "2026-07-13",
+            "hard_cases": [],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0028"
+          }
+        ],
+        "doc_type": [
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0002"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0023"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0027"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0071"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_bank",
+            "pred": "RECUPERARE",
+            "record": "ARC-0075"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0085"
+          },
+          {
+            "gold": "atto_precetto",
+            "hard_cases": [
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0089"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0099"
+          }
+        ],
+        "sender_class": [
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0037"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "pign_mob",
+            "pred": "RECUPERARE",
+            "record": "ARC-0048"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain",
+              "mixed_scan_page",
+              "recital_future_date"
+            ],
+            "kind": "citazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0055"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0090"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0123"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "ppt",
+            "pred": "RECUPERARE",
+            "record": "ARC-0132"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0196"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0198"
+          }
+        ]
+      },
+      "ledger": {
+        "duplicate_ignored": 8,
+        "duplicates_expected": 8,
+        "revisions_expected": 6,
+        "supersede_events": 6
+      },
+      "perturbed": true,
+      "recuperare": {
+        "per_field": {
+          "amount_due": {
+            "expected": 13,
+            "flagged": 62,
+            "precision": 0.2097,
+            "recall": 1.0
+          },
+          "area": {
+            "expected": 3,
+            "flagged": 19,
+            "precision": 0.1579,
+            "recall": 1.0
+          },
+          "author_entity": {
+            "expected": 11,
+            "flagged": 11,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "counterparty_channel": {
+            "expected": 81,
+            "flagged": 81,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "deadline": {
+            "expected": 8,
+            "flagged": 104,
+            "precision": 0.0769,
+            "recall": 1.0
+          },
+          "doc_type": {
+            "expected": 3,
+            "flagged": 19,
+            "precision": 0.1579,
+            "recall": 1.0
+          },
+          "party_entity": {
+            "expected": 6,
+            "flagged": 6,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "text": {
+            "expected": 23,
+            "flagged": 23,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "rate_records_expected": 0.3288,
+        "rate_records_predicted": 0.6473
+      },
+      "run_status": "OK",
+      "scored_unique": 292,
+      "seed": 20261002,
+      "sender_class": {
+        "abstained_RECUPERARE": 10,
+        "accuracy": 0.9658,
+        "macro_f1": 0.987,
+        "n": 292,
+        "per_class": {
+          "BANK_CORPORATE": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 11
+          },
+          "BANK_THIRD_PARTY": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 8
+          },
+          "CORPORATE_PEC": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 140
+          },
+          "COURT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          },
+          "LAWYER": {
+            "f1": 0.9091,
+            "precision": 1.0,
+            "recall": 0.8333,
+            "support": 60
+          },
+          "TARGET": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "TRANSMIT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 34
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "signatures": {
+        "agreement": 1.0,
+        "attachment_signatures": 142,
+        "transport_agreement": 1.0
+      },
+      "suite": "stress-diag-a"
+    },
+    "stress-diag-b": {
+      "amount_due": {
+        "abstained": 69,
+        "accuracy": 0.7979,
+        "wrong_committed": 0
+      },
+      "area": {
+        "abstained_RECUPERARE": 16,
+        "accuracy": 0.9452,
+        "macro_f1": 0.9744,
+        "n": 292,
+        "per_class": {
+          "banking": {
+            "f1": 0.8421,
+            "precision": 1.0,
+            "recall": 0.7273,
+            "support": 11
+          },
+          "civil_litigation": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "collection": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 62
+          },
+          "court": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "enforcement": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "insolvency": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 12
+          },
+          "local_tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "out_of_court_recovery": {
+            "f1": 0.8916,
+            "precision": 1.0,
+            "recall": 0.8043,
+            "support": 46
+          },
+          "payment_order": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "pre_enforcement": {
+            "f1": 0.9333,
+            "precision": 1.0,
+            "recall": 0.875,
+            "support": 32
+          },
+          "social_security": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "tax": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 15
+          },
+          "third_party_attachment": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "attribution": {
+        "author_entity": {
+          "abstained": 8,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "counterparty_channel": {
+          "abstained": 83,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "party_entity": {
+          "abstained": 6,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "transmitter_entity": {
+          "abstained": 0,
+          "accuracy": 1.0,
+          "precision_committed": 1.0,
+          "wrong_committed": 0
+        },
+        "urgency": {
+          "abstained": 0,
+          "accuracy": 0.7397,
+          "precision_committed": 0.7397,
+          "wrong_committed": 76
+        }
+      },
+      "deadline": {
+        "abstained_RECUPERARE": 92,
+        "driving_deadline_exact": 0.6392,
+        "driving_deadline_n": 255,
+        "driving_nature_exact": 0.6392,
+        "expected_RECUPERARE_hit": 6,
+        "expected_RECUPERARE_n": 6,
+        "no_deadline_correct": 31,
+        "no_deadline_expected_n": 31,
+        "urgency_exact": 0.7397,
+        "written_dates_nature_precision": 0.9712,
+        "written_dates_nature_recall": 0.7258,
+        "wrong_date_committed": 0
+      },
+      "doc_type": {
+        "abstained_RECUPERARE": 16,
+        "accuracy": 0.9452,
+        "macro_f1": 0.9807,
+        "n": 292,
+        "per_class": {
+          "atto_citazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 14
+          },
+          "atto_precetto": {
+            "f1": 0.9333,
+            "precision": 1.0,
+            "recall": 0.875,
+            "support": 32
+          },
+          "avviso_accertamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "avviso_addebito": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 19
+          },
+          "cartella_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          },
+          "comunicazione_cancelleria": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "decreto_ingiuntivo": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          },
+          "diffida_messa_in_mora": {
+            "f1": 0.7778,
+            "precision": 1.0,
+            "recall": 0.6364,
+            "support": 33
+          },
+          "intimazione_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 13
+          },
+          "pignoramento_mobiliare": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "pignoramento_presso_terzi": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 21
+          },
+          "provvedimento_rateizzazione": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 17
+          },
+          "ricorso_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 9
+          },
+          "sentenza_liquidazione_giudiziale": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 3
+          },
+          "sollecito_pagamento": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 24
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "envelopes": 300,
+      "error_counts": {
+        "deadline": 92,
+        "doc_type": 16,
+        "sender_class": 14
+      },
+      "error_examples": {
+        "deadline": [
+          {
+            "gold": "2026-08-14",
+            "hard_cases": [],
+            "kind": "cartella",
+            "pred": "RECUPERARE",
+            "record": "ARC-0001"
+          },
+          {
+            "gold": "2026-06-22",
+            "hard_cases": [],
+            "kind": "intimazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0008"
+          },
+          {
+            "gold": "2026-06-29",
+            "hard_cases": [
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0012"
+          },
+          {
+            "gold": "2026-07-03",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0013"
+          },
+          {
+            "gold": "2026-11-04",
+            "hard_cases": [
+              "recital_future_date"
+            ],
+            "kind": "citazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0019"
+          },
+          {
+            "gold": "2026-07-04",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0021"
+          },
+          {
+            "gold": "2026-09-01",
+            "hard_cases": [],
+            "kind": "rateizzazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0022"
+          },
+          {
+            "gold": "2026-06-30",
+            "hard_cases": [
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0023"
+          }
+        ],
+        "doc_type": [
+          {
+            "gold": "atto_precetto",
+            "hard_cases": [
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0012"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0013"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0021"
+          },
+          {
+            "gold": "atto_precetto",
+            "hard_cases": [
+              "subject_mismatch"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0023"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0038"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0081"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_company",
+            "pred": "RECUPERARE",
+            "record": "ARC-0094"
+          },
+          {
+            "gold": "diffida_messa_in_mora",
+            "hard_cases": [],
+            "kind": "diffida_bank",
+            "pred": "RECUPERARE",
+            "record": "ARC-0100"
+          }
+        ],
+        "sender_class": [
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "pign_mob",
+            "pred": "RECUPERARE",
+            "record": "ARC-0016"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0038"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0041"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "citazione",
+            "pred": "RECUPERARE",
+            "record": "ARC-0042"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "diffida_lawyer",
+            "pred": "RECUPERARE",
+            "record": "ARC-0045"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0046"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "precetto",
+            "pred": "RECUPERARE",
+            "record": "ARC-0130"
+          },
+          {
+            "gold": "LAWYER",
+            "hard_cases": [
+              "lawyer_generic_domain"
+            ],
+            "kind": "decreto_ingiuntivo",
+            "pred": "RECUPERARE",
+            "record": "ARC-0166"
+          }
+        ]
+      },
+      "ledger": {
+        "duplicate_ignored": 8,
+        "duplicates_expected": 8,
+        "revisions_expected": 6,
+        "supersede_events": 6
+      },
+      "perturbed": true,
+      "recuperare": {
+        "per_field": {
+          "amount_due": {
+            "expected": 14,
+            "flagged": 69,
+            "precision": 0.2029,
+            "recall": 1.0
+          },
+          "area": {
+            "expected": 0,
+            "flagged": 16,
+            "precision": 0.0,
+            "recall": null
+          },
+          "author_entity": {
+            "expected": 8,
+            "flagged": 8,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "counterparty_channel": {
+            "expected": 83,
+            "flagged": 83,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "deadline": {
+            "expected": 6,
+            "flagged": 98,
+            "precision": 0.0612,
+            "recall": 1.0
+          },
+          "doc_type": {
+            "expected": 0,
+            "flagged": 16,
+            "precision": 0.0,
+            "recall": null
+          },
+          "party_entity": {
+            "expected": 6,
+            "flagged": 6,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "text": {
+            "expected": 18,
+            "flagged": 18,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "rate_records_expected": 0.3219,
+        "rate_records_predicted": 0.6575
+      },
+      "run_status": "OK",
+      "scored_unique": 292,
+      "seed": 20261003,
+      "sender_class": {
+        "abstained_RECUPERARE": 14,
+        "accuracy": 0.9521,
+        "macro_f1": 0.9818,
+        "n": 292,
+        "per_class": {
+          "BANK_CORPORATE": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 11
+          },
+          "BANK_THIRD_PARTY": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 8
+          },
+          "CORPORATE_PEC": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 140
+          },
+          "COURT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 33
+          },
+          "LAWYER": {
+            "f1": 0.8727,
+            "precision": 1.0,
+            "recall": 0.7742,
+            "support": 62
+          },
+          "TARGET": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 6
+          },
+          "TRANSMIT": {
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "support": 32
+          }
+        },
+        "precision_committed": 1.0,
+        "wrong_committed": 0
+      },
+      "signatures": {
+        "agreement": 1.0,
+        "attachment_signatures": 146,
+        "transport_agreement": 1.0
+      },
+      "suite": "stress-diag-b"
+    }
+  }
+}
