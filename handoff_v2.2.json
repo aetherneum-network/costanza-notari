@@ -1,0 +1,215 @@
+{
+  "handoff": "costanza-notari v2.2 - merge of arm A with arm B's title and amount readers, frozen for the blind run (synthetic project, fictitious entities)",
+  "data_as_of": "2026-09-30 19:03 Europe/Rome (tests 19:01-19:03, suites scored 18:57, generic seed path 19:03)",
+  "branch": "upgrade/2026-10-v2.2-unione",
+  "tag": "v2.2-freeze",
+  "authorship": {
+    "ported_mechanisms": "arm B, built by Claude Fable 5.1 (title rules DT-030..DT-032, amount label grammar A-004, their tests)",
+    "merge": "Claude Opus 5.5 (agreement tables TM-001..TM-007 and A-X01..A-X05, nets, engine conditions, disagreement tests)"
+  },
+  "anchors": {
+    "1_parent_sha": {
+      "code_commit": "d1b09c66a2db735d1ada52ad72bf4666caaa5b54",
+      "base_arm_A": "04ae6b9528837edd6b4e11b748906c7a25b82bff",
+      "source_arm_B": "ad443ae (worktree _bench/fable/costanza-notari-v2.1, read only, not an ancestor of this branch)",
+      "note": "the tag v2.2-freeze points to the commit that adds this file; its parent is code_commit. The two differ only by this file and one entry of eval/history.json"
+    },
+    "2_tests": {
+      "command": "python -m unittest discover -s tests -t .",
+      "line": "Ran 249 tests in 79.434s",
+      "result": "OK",
+      "v2_1_arm_A": "Ran 202 tests"
+    },
+    "3_scenarios": {
+      "command": "python scenarios/run_all.py",
+      "line": "Scenarios: 10/10 PASS"
+    },
+    "4_suites": {
+      "dev": {
+        "seed": 20260930,
+        "wrong_committed": {
+          "deadline_wrong_committed": 0,
+          "doc_type_wrong_committed": 0,
+          "sender_class_wrong_committed": 0,
+          "area_wrong_committed": 0,
+          "amount_wrong_committed": 0,
+          "party_wrong_committed": 0,
+          "author_wrong_committed": 0,
+          "transmitter_wrong_committed": 0,
+          "channel_wrong_committed": 0
+        },
+        "deadline_exact": 1.0,
+        "deadline_abstained": "0/254",
+        "doc_type_accuracy": 1.0,
+        "doc_type_abstained": 0,
+        "amount_abstained": 20,
+        "recuperare_predicted": 0.3596,
+        "recuperare_expected": 0.3322,
+        "same_as_v2_1_arm_A": true,
+        "readers": {
+          "amount_grammar_alone_committed_A-004": 0,
+          "amount_readers_disagree_A-X01": 0,
+          "title_both_readers_same_type_TM-003": 0,
+          "title_exclusive_alone_committed_TM-004": 0,
+          "title_readers_disagree_TM-001_TM-002": 0
+        }
+      },
+      "holdout": {
+        "seed": 20261001,
+        "wrong_committed": {
+          "deadline_wrong_committed": 0,
+          "doc_type_wrong_committed": 0,
+          "sender_class_wrong_committed": 0,
+          "area_wrong_committed": 0,
+          "amount_wrong_committed": 0,
+          "party_wrong_committed": 0,
+          "author_wrong_committed": 0,
+          "transmitter_wrong_committed": 0,
+          "channel_wrong_committed": 0
+        },
+        "deadline_exact": 1.0,
+        "deadline_abstained": "0/253",
+        "doc_type_accuracy": 1.0,
+        "doc_type_abstained": 2,
+        "amount_abstained": 16,
+        "recuperare_predicted": 0.3425,
+        "recuperare_expected": 0.3082,
+        "same_as_v2_1_arm_A": true,
+        "readers": "not read: holdout records are never opened (aggregates only)"
+      },
+      "stress-diag-a": {
+        "seed": 20261002,
+        "wrong_committed": {
+          "deadline_wrong_committed": 0,
+          "doc_type_wrong_committed": 0,
+          "sender_class_wrong_committed": 0,
+          "area_wrong_committed": 0,
+          "amount_wrong_committed": 0,
+          "party_wrong_committed": 0,
+          "author_wrong_committed": 0,
+          "transmitter_wrong_committed": 0,
+          "channel_wrong_committed": 0
+        },
+        "deadline_exact": 1.0,
+        "deadline_abstained": "0/253",
+        "doc_type_accuracy": 1.0,
+        "doc_type_abstained": 3,
+        "amount_abstained": 13,
+        "recuperare_predicted": 0.3459,
+        "recuperare_expected": 0.3288,
+        "same_as_v2_1_arm_A": true,
+        "readers": {
+          "amount_grammar_alone_committed_A-004": 0,
+          "amount_readers_disagree_A-X01": 0,
+          "title_both_readers_same_type_TM-003": 25,
+          "title_exclusive_alone_committed_TM-004": 0,
+          "title_readers_disagree_TM-001_TM-002": 0
+        }
+      },
+      "stress-diag-b": {
+        "seed": 20261003,
+        "wrong_committed": {
+          "deadline_wrong_committed": 0,
+          "doc_type_wrong_committed": 0,
+          "sender_class_wrong_committed": 0,
+          "area_wrong_committed": 0,
+          "amount_wrong_committed": 0,
+          "party_wrong_committed": 0,
+          "author_wrong_committed": 0,
+          "transmitter_wrong_committed": 0,
+          "channel_wrong_committed": 0
+        },
+        "deadline_exact": 1.0,
+        "deadline_abstained": "0/255",
+        "doc_type_accuracy": 1.0,
+        "doc_type_abstained": 0,
+        "amount_abstained": 14,
+        "recuperare_predicted": 0.3425,
+        "recuperare_expected": 0.3219,
+        "same_as_v2_1_arm_A": true,
+        "readers": {
+          "amount_grammar_alone_committed_A-004": 0,
+          "amount_readers_disagree_A-X01": 0,
+          "title_both_readers_same_type_TM-003": 28,
+          "title_exclusive_alone_committed_TM-004": 0,
+          "title_readers_disagree_TM-001_TM-002": 0
+        }
+      },
+      "stress-blind": {
+        "seed": 20261004,
+        "wrong_committed": {
+          "deadline_wrong_committed": 0,
+          "doc_type_wrong_committed": 0,
+          "sender_class_wrong_committed": 0,
+          "area_wrong_committed": 0,
+          "amount_wrong_committed": 0,
+          "party_wrong_committed": 0,
+          "author_wrong_committed": 0,
+          "transmitter_wrong_committed": 0,
+          "channel_wrong_committed": 0
+        },
+        "deadline_exact": 1.0,
+        "deadline_abstained": "0/254",
+        "doc_type_accuracy": 1.0,
+        "doc_type_abstained": 5,
+        "amount_abstained": 11,
+        "recuperare_predicted": 0.3322,
+        "recuperare_expected": 0.2979,
+        "same_as_v2_1_arm_A": true,
+        "readers": {
+          "amount_grammar_alone_committed_A-004": 0,
+          "amount_readers_disagree_A-X01": 0,
+          "title_both_readers_same_type_TM-003": 28,
+          "title_exclusive_alone_committed_TM-004": 0,
+          "title_readers_disagree_TM-001_TM-002": 0
+        }
+      }
+    },
+    "5_determinism": {
+      "master_index.xlsx": "96015de738088296fa195cca08b5f87d6677687a62cdbad0ac50ebf13351e3f8",
+      "report.docx": "c9160072b097d7201e762d45110bde55a48ffa1b0822d40421df2f67f61ed04d",
+      "note": "changed from v2.1 (50d6c32d... / 47933f32...): rule-file versions are written into the artefacts; no classified value of the dev corpus changed"
+    },
+    "6_generic_seed_path": {
+      "history_key": "generic_seed_path_check_v2_2_seed_20261004",
+      "code": "v2.1-freeze-3-gd1b09c6",
+      "equals_stress_blind_aggregates": true
+    },
+    "7_blind_run": {
+      "protocol": "eval/BLIND_PROTOCOL_v2.2.md",
+      "done": false,
+      "burned_seeds": [
+        20260930,
+        20261001,
+        20261002,
+        20261003,
+        20261004,
+        20261005,
+        20261006,
+        20261007,
+        20261008
+      ],
+      "never_generated_or_opened_by_the_author_of_v2_2": [
+        20261005,
+        20261006,
+        20261007,
+        20261008
+      ]
+    }
+  },
+  "not_blind": "none of the five suites is blind for v2.2; holdout was read as aggregates only. The suites hold only the generator's eleven rewrites: identical aggregates show no regression, they do not show that the port generalises. Evidence for the port: tests/test_v22_merge.py (wording written for the tests).",
+  "receipt": {
+    "understood": [
+      "base = arm A at 04ae6b9; ported = arm B's title reading and amount reading; then freeze",
+      "two readers that disagree abstain; one that commits while the other has no opinion commits only under its own conditions",
+      "no abstain-only net of arm A is removed; the deadline / term files of arm A are byte-identical to 04ae6b9",
+      "wrong committed = 0 on every suite I may look at; holdout read as aggregates only; seeds 20261005+ never opened"
+    ],
+    "dissent": [
+      "TM-004 lets a title commit alone where arm A abstained: it is what the port is, and it is the only place where v2.2 commits more than arm A on the document type; for a precetto it also computes the statutory term",
+      "arm B's subject-only fallback for a title that is not understood is NOT ported (arm A's veto is an abstain-only net): if arm B's advantage on outside wording came from it, v2.2 will not show that part",
+      "the nets added around DT-030..DT-032 make the merged reader narrower than arm B's: some titles arm B read are left RECUPERARE",
+      "channel_wrong_committed was 2 (seed 20261006) and 1 (seed 20261007) for v2.1 arm A: inherited, not diagnosed, outside what I may open"
+    ]
+  }
+}

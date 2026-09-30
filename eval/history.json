@@ -992,5 +992,52 @@
         }
       }
     }
+  },
+  "generic_seed_path_check_v2_2_seed_20261004": {
+    "seed": 20261004,
+    "perturbed": true,
+    "scored_unique": 292,
+    "run_status": "OK",
+    "deadline_exact": 1.0,
+    "deadline_n": 254,
+    "deadline_wrong_committed": 0,
+    "deadline_abstained": 0,
+    "deadline_expected_recuperare_hit": "7/7",
+    "no_deadline_correct": "31/31",
+    "written_dates_nature_recall": 1.0,
+    "written_dates_nature_precision": 1.0,
+    "recuperare_rate_predicted": 0.3322,
+    "recuperare_rate_expected": 0.2979,
+    "recuperare_flagged_vs_expected": {
+      "amount_due": "11/11",
+      "area": "5/5",
+      "author_entity": "6/6",
+      "counterparty_channel": "76/76",
+      "deadline": "7/7",
+      "doc_type": "5/5",
+      "party_entity": "6/6",
+      "text": "15/15"
+    },
+    "doc_type_accuracy": 1.0,
+    "doc_type_precision_committed": 1.0,
+    "doc_type_wrong_committed": 0,
+    "doc_type_abstained": 5,
+    "sender_class_accuracy": 0.9452,
+    "sender_class_precision_committed": 1.0,
+    "sender_class_wrong_committed": 0,
+    "sender_class_abstained": 16,
+    "area_wrong_committed": 0,
+    "amount_wrong_committed": 0,
+    "amount_abstained": 11,
+    "party_wrong_committed": 0,
+    "author_wrong_committed": 0,
+    "transmitter_wrong_committed": 0,
+    "channel_wrong_committed": 0,
+    "editions_linked": "6/6",
+    "duplicates_ignored": "8/8",
+    "signatures_agreement": 1.0,
+    "code": "v2.1-freeze-3-gd1b09c6",
+    "as_of": "2026-10-21T09:40:00+02:00",
+    "when": "check of the generic --seed path at the v2.2 code (commit d1b09c6, before the freeze tag) on an ALREADY BURNED seed: not a blind run"
   }
 }
