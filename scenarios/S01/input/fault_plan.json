@@ -1,0 +1,9 @@
+{
+  "note": "TEST ONLY - simulates the consolidator's transcription error of Appendix A, L1",
+  "transpose": [
+    {
+      "record_id": "ARC-0412",
+      "field": "amount_due"
+    }
+  ]
+}

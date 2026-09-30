@@ -1,0 +1,9 @@
+{
+  "exit_code": 3,
+  "status": "FAILED",
+  "failure_contains": "version conflict: run read v1, store is at v2",
+  "run_report_banner": "[RED BANNER] RUN FAILED",
+  "draft_index_banner_prefix": "RUN FAILED",
+  "stdout_must_not_contain": "RUN OK",
+  "reader": {"version": 2, "as_of": "2026-10-20T03:05:00+02:00", "stale": true}
+}

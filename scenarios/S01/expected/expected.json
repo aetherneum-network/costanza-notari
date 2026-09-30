@@ -1,0 +1,16 @@
+{
+  "release": "BLOCKED",
+  "false_blocks": 0,
+  "mismatches": [
+    {
+      "id": "ARC-0412",
+      "anchor": "amount_due",
+      "sent": "12380.00",
+      "understood": "12830.00",
+      "handoff_file": "handoff_ARC-0412.json",
+      "handoff_from": "chunk-03",
+      "receipt_file": "receipt_ARC-0412.json",
+      "receipt_by": "consolidator"
+    }
+  ]
+}
