@@ -139,7 +139,8 @@ def parse_envelope(raw: bytes, att_dir: Path, base: Path | None = None) -> dict:
 def run(input_root: Path, enum_state: dict, work_dir: Path, out_path: Path) -> dict:
     records = []
     for r in enum_state["records"]:
-        raw = open(extended(Path(input_root) / r["envelope"]), "rb").read()
+        with open(extended(Path(input_root) / r["envelope"]), "rb") as fh:
+            raw = fh.read()
         if hashlib.sha256(raw).hexdigest() != r["sha256"]:
             raise RuntimeError(f"{r['envelope']} changed between stage 1 and stage 2")
         try:

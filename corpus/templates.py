@@ -494,7 +494,8 @@ def target_forward(ctx: Ctx) -> Doc:
         subj, dt_, area = f"Documento scansionato - protocollo n. SYN-PROT-{ctx.seq:04d}", None, None
     body = "Si inoltra per l'archiviazione l'atto pervenuto a mezzo posta raccomandata.\nUfficio Protocollo"
     hard = ["debtor_forward_scan"]
-    if r.random() < 0.5:
+    r.random()  # keep the random stream stable; the trap is planted deterministically below
+    if ctx.seq % 2 == 0:
         body += f"\nDocumento trasmesso nell'interesse di {DEBTOR_UP}, per la sola conservazione."
         hard.append("debtor_named_as_party_trap")
     return Doc(kind="target_forward", doc_type=dt_, area=area, sender_class="TARGET",
