@@ -1,0 +1,5 @@
+# Runtime dependencies (pinned to the versions the proof pack was verified with).
+openpyxl==3.1.5
+python-docx==1.2.0
+pypdf==6.19.0
+# Optional, never imported by tests: anthropic (only if llm_classifier is enabled)

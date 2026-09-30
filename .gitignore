@@ -1,0 +1,6 @@
+# Build artefacts: always rebuilt from source/state, never hand-edited.
+build/
+corpus/out/
+__pycache__/
+*.pyc
+.pytest_cache/
