@@ -1,0 +1,13 @@
+{
+  "last_full_window": "2026-10-19",
+  "runs": [
+    {
+      "now_utc": "2026-10-20T01:05:00+00:00",
+      "mode": "full",
+      "windows": [
+        "2026-10-19"
+      ],
+      "catch_up": false
+    }
+  ]
+}

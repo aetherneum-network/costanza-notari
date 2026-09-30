@@ -1,0 +1,13 @@
+{
+  "signature": {
+    "format": "CAdES-attached",
+    "signature_integrity": "ok",
+    "signer_chain_verified": false,
+    "chain_status": "untrusted_issuer",
+    "revocation_checked": false,
+    "qualified_status": "not_assessed"
+  },
+  "index_chain_column": "NO",
+  "signatures_sheet": ["ok", "false", "untrusted_issuer"],
+  "report_row": "Signatures: signer chain verified / NOT verified"
+}

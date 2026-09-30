@@ -67,14 +67,19 @@ def naive_walk(root: Path | str) -> list[str]:
 
 
 def robocopy_count(root: Path | str, log_path: Path) -> int | None:
-    """Independent count via ``robocopy /L`` (list only, copies nothing). Windows only."""
+    """Independent count via ``robocopy /L`` (list only: copies nothing, creates nothing). Windows only.
+
+    The destination is a path that does not exist and is never created (/L). /R:0 /W:0 matter:
+    robocopy's defaults retry a failing item a million times, 30 s apart.
+    """
     if os.name != "nt":
         return None
     log_path.parent.mkdir(parents=True, exist_ok=True)
-    cmd = ["robocopy", str(root), "NUL", "/L", "/S", "/NJH", "/NJS", "/NDL", "/NC", "/NS", "/NP", "/FP",
-           f"/UNILOG:{log_path}"]
+    target = log_path.parent / "_robocopy_list_only_target_never_created"
+    cmd = ["robocopy", str(root), str(target), "/L", "/S", "/NJH", "/NJS", "/NDL", "/NC", "/NS", "/NP", "/FP",
+           "/R:0", "/W:0", f"/UNILOG:{log_path}"]
     try:
-        subprocess.run(cmd, capture_output=True, timeout=300, check=False)
+        subprocess.run(cmd, capture_output=True, timeout=120, check=False)
         text = log_path.read_bytes().decode("utf-16", errors="replace")
     except (OSError, subprocess.SubprocessError):
         return None
