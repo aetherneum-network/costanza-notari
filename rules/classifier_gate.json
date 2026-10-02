@@ -1,0 +1,124 @@
+{
+  "version": "2026.10.02-1",
+  "kind": "classifier_gate",
+  "note": "v2.3. The deterministic gate between the deadline classifier (pipeline/llm_classifier.py) and the record: the model never commits on its own. Rules are evaluated in order; the FIRST rule that refuses wins and its id and reason are stored in the record (classifier.gate). A refused answer is an abstention: the deadline stays RECUPERARE. kind: no_answer = the call gave nothing usable; model_abstained = the model itself answered RECUPERARE; refusal = the model proposed a value and the gate refused it. The code only extracts and compares (pipeline/classifier_gate.py); fix a rule here, never an output.",
+  "test_source": "ATTO DI PRECETTO\nSi intima di pagare entro dieci giorni dalla notifica del presente atto la somma di euro 1.000,00.\nUdienza fissata per il giorno 14/11/2026. Fattura del 03/09/2026.",
+  "rules": [
+    {
+      "id": "G-01", "check": "answer_usable", "kind": "no_answer",
+      "rationale": "A refusal, a truncated answer (max_tokens), a missing text block, invalid JSON, a value outside the schema or a transport error is a non-answer: nothing to check, the deadline stays RECUPERARE.",
+      "tests": [
+        {"id": "G-01-a", "input": {"status": "refusal", "answer": null}, "expect": {"rule": "G-01"}},
+        {"id": "G-01-b", "input": {"status": "transport_error", "answer": null}, "expect": {"rule": "G-01"}}
+      ]
+    },
+    {
+      "id": "G-02", "check": "model_answered", "kind": "model_abstained",
+      "rationale": "The model may abstain: RECUPERARE is always safe. Counted apart from the gate's own refusals.",
+      "tests": [
+        {"id": "G-02-a", "input": {"answer": {"deadline": "RECUPERARE", "nature": "unknown", "act_type": "atto_precetto", "evidence": "", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-02"}}
+      ]
+    },
+    {
+      "id": "G-03", "check": "date_parses", "kind": "refusal",
+      "rationale": "The date must parse as a real calendar day. NONE (no deadline) is decided by the rules alone: a classifier that says NONE where a deadline exists makes a never-event, so NONE is never committed from a model.",
+      "tests": [
+        {"id": "G-03-a", "input": {"answer": {"deadline": "NONE", "nature": "none", "act_type": "atto_precetto", "evidence": "ATTO DI PRECETTO", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-03"}},
+        {"id": "G-03-b", "input": {"answer": {"deadline": "2026-02-30", "nature": "actionable", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno 14/11/2026", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-03"}},
+        {"id": "G-03-c", "input": {"answer": {"deadline": "14/11/2026", "nature": "actionable", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno 14/11/2026", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-03"}}
+      ]
+    },
+    {
+      "id": "G-04", "check": "nature_known", "kind": "refusal",
+      "rationale": "Only actionable and computed deadlines drive urgency in the rules (pipeline/deadlines.py driving_deadline). Any other nature cannot be the driving deadline.",
+      "tests": [
+        {"id": "G-04-a", "input": {"answer": {"deadline": "2026-11-14", "nature": "unknown", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno 14/11/2026", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-04"}}
+      ]
+    },
+    {
+      "id": "G-05", "check": "evidence_present", "kind": "refusal",
+      "rationale": "A value without the words it rests on cannot be checked by anyone.",
+      "tests": [
+        {"id": "G-05-a", "input": {"answer": {"deadline": "2026-11-14", "nature": "actionable", "act_type": "atto_precetto", "evidence": "  ", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-05"}}
+      ]
+    },
+    {
+      "id": "G-06", "check": "evidence_not_joined", "kind": "refusal",
+      "rationale": "Evidence made of several passages joined by '...' is not one verbatim substring of the record: the reader cannot find it, and the join may connect a date to a clause it does not belong to. D14 (2026-10-02) saw 12 correct dates whose evidence was joined this way: they abstain too.",
+      "tests": [
+        {"id": "G-06-a", "input": {"answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "ATTO DI PRECETTO ... entro dieci giorni dalla notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-06"}},
+        {"id": "G-06-b", "input": {"answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "Si intima di pagare … dalla notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-06"}}
+      ]
+    },
+    {
+      "id": "G-07", "check": "evidence_verbatim", "kind": "refusal",
+      "rationale": "The evidence must be ONE verbatim passage of the record (subject, e-mail body or document text; runs of whitespace count as one space). A paraphrase is not evidence.",
+      "tests": [
+        {"id": "G-07-a", "input": {"answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "entro 10 giorni dalla notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-07"}}
+      ]
+    },
+    {
+      "id": "G-08", "check": "actionable_date_written", "kind": "refusal",
+      "rationale": "An actionable deadline is a date written in the act: the date reader (pipeline/deadlines.py find_dates) must find it in the evidence.",
+      "tests": [
+        {"id": "G-08-a", "input": {"answer": {"deadline": "2026-11-14", "nature": "actionable", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-08"}}
+      ]
+    },
+    {
+      "id": "G-09", "check": "actionable_not_contradicted", "kind": "refusal",
+      "rationale": "If the nature rules (rules/deadline_nature.json) read that written date only as historical or conditional, the model's 'actionable' contradicts a rule output: refused.",
+      "tests": [
+        {"id": "G-09-a", "input": {"rec": {"dates": [{"date": "2026-11-14", "nature": "historical", "rule": "N-TEST"}]}, "answer": {"deadline": "2026-11-14", "nature": "actionable", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno 14/11/2026", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-09"}}
+      ]
+    },
+    {
+      "id": "G-10", "check": "computed_notification_known", "kind": "refusal",
+      "rationale": "A computed term counts from the notification. When the rules do not trust a notification date (internal forward of an act received by post, transport signature not verified), the term is RECUPERARE (docs/TERMS.md).",
+      "tests": [
+        {"id": "G-10-a", "input": {"rec": {"doc_type": "atto_precetto", "notification_note": "internal forward: act received by post, notification date unknown"}, "answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "entro dieci giorni dalla notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-10"}}
+      ]
+    },
+    {
+      "id": "G-11", "check": "computed_act_type_known", "kind": "refusal",
+      "rationale": "The term policy (suspension, roll-over, 21:00 rule) comes from rules/terms.json for the act type: the act type must be in that table and, when the rules committed one, must be the rules' own.",
+      "tests": [
+        {"id": "G-11-a", "input": {"rec": {"doc_type": "atto_precetto", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "lettera_generica", "evidence": "entro dieci giorni dalla notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-11"}},
+        {"id": "G-11-b", "input": {"rec": {"doc_type": "decreto_ingiuntivo", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "entro dieci giorni dalla notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-11"}}
+      ]
+    },
+    {
+      "id": "G-12", "check": "computed_after_notification", "kind": "refusal",
+      "rationale": "Day 1 is the day after notification (art. 155 c.1 c.p.c., docs/TERMS.md): a computed term cannot end on or before it.",
+      "tests": [
+        {"id": "G-12-a", "input": {"rec": {"doc_type": "atto_precetto", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-05", "nature": "computed", "act_type": "atto_precetto", "evidence": "ATTO DI PRECETTO", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-12"}}
+      ]
+    },
+    {
+      "id": "G-13", "check": "computed_recount", "kind": "refusal",
+      "rationale": "The pipeline counts the term itself with pipeline/terms.py and the act type's policy, and the proposed date must be that count: the term stated in the evidence when the term reader parses it with certainty (pipeline/termclauses.py), otherwise the statutory term of rules/terms.json (the rules' own default when the text is silent). Evidence that writes another number of days in words the reader does not parse refuses the statutory count; an act type with no statutory term and no parsed term cannot be counted.",
+      "tests": [
+        {"id": "G-13-a", "input": {"rec": {"doc_type": "atto_precetto", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-16", "nature": "computed", "act_type": "atto_precetto", "evidence": "entro dieci giorni dalla notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-13"}},
+        {"id": "G-13-b-statutory", "input": {"rec": {"doc_type": "atto_precetto", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-16", "nature": "computed", "act_type": "atto_precetto", "evidence": "ATTO DI PRECETTO", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-13"}},
+        {"id": "G-13-c-other-days", "input": {"source": "ATTO DI PRECETTO\nSi intima di pagare entro e non oltre venti giorni dal ricevimento della notifica del presente atto.", "rec": {"doc_type": "atto_precetto", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "entro e non oltre venti giorni dal ricevimento della notifica", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-13"}},
+        {"id": "G-13-d-no-term", "input": {"rec": {"doc_type": "diffida_messa_in_mora", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-20", "nature": "computed", "act_type": "diffida_messa_in_mora", "evidence": "ATTO DI PRECETTO", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-13"}},
+        {"id": "G-13-e-statutory-pass", "input": {"rec": {"doc_type": "atto_precetto", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "ATTO DI PRECETTO", "computation": "", "confidence": "high"}}, "expect": {"rule": "passed"}}
+      ]
+    },
+    {
+      "id": "G-14", "check": "driving_consistent", "kind": "refusal",
+      "rationale": "The driving deadline is the earliest actionable or computed deadline on or after as_of, else the latest (pipeline/deadlines.py). Added to the deadlines the rules already found, the proposal must be the driving one; otherwise the workbook would show another date.",
+      "tests": [
+        {"id": "G-14-a", "input": {"rec": {"doc_type": "atto_precetto", "deadlines": [{"date": "2026-11-02", "nature": "actionable", "rule": "N-TEST"}]}, "answer": {"deadline": "2026-11-14", "nature": "actionable", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno 14/11/2026", "computation": "", "confidence": "high"}}, "expect": {"rule": "G-14"}}
+      ]
+    },
+    {
+      "id": "G-15", "check": "confidence_not_low", "kind": "refusal",
+      "rationale": "A value the model itself rates low is not committed.",
+      "tests": [
+        {"id": "G-15-a", "input": {"rec": {"doc_type": "atto_precetto"}, "answer": {"deadline": "2026-11-14", "nature": "actionable", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno 14/11/2026", "computation": "", "confidence": "low"}}, "expect": {"rule": "G-15"}},
+        {"id": "G-15-pass-actionable", "input": {"rec": {"doc_type": "atto_precetto"}, "answer": {"deadline": "2026-11-14", "nature": "actionable", "act_type": "atto_precetto", "evidence": "Udienza fissata per il giorno 14/11/2026", "computation": "", "confidence": "high"}}, "expect": {"rule": "passed"}},
+        {"id": "G-15-pass-computed", "input": {"rec": {"doc_type": "atto_precetto", "notification_date": "2026-10-05", "pec_time": "2026-10-05T10:00:00+02:00"}, "answer": {"deadline": "2026-10-15", "nature": "computed", "act_type": "atto_precetto", "evidence": "Si intima di pagare entro dieci giorni   dalla notifica", "computation": "", "confidence": "medium"}}, "expect": {"rule": "passed"}}
+      ]
+    }
+  ]
+}

@@ -94,7 +94,8 @@ def judgement_lines(rows_state: dict, ledger_state: dict, sentinel: dict, sig_st
     ]
 
 
-def run(args) -> dict:
+def run(args, llm=None) -> dict:
+    """``llm``: an already built classifier (tests and measurements inject one); otherwise ``--llm``."""
     as_of = tzrome.parse_iso(args.as_of) if args.as_of else (
         _dt.datetime.fromtimestamp(int(os.environ["SOURCE_DATE_EPOCH"]), _dt.timezone.utc)
         if os.environ.get("SOURCE_DATE_EPOCH") else _dt.datetime.now(_dt.timezone.utc))
@@ -111,6 +112,9 @@ def run(args) -> dict:
     store_version_at_start = pub.read_version(store)
     report["store_version_read"] = store_version_at_start
     try:
+        # v2.3: the classifier is built before any stage - '--llm anthropic' without a key FAILS here
+        llm = llm if llm is not None else llm_classifier.get(getattr(args, "llm", None),
+                                                       effort=getattr(args, "llm_effort", None))
         s1 = s1_enumerate.run(inp, state / "01_enumeration.json",
                               manifest=Path(args.manifest) if args.manifest else (inp / "manifest.json"),
                               robocopy_log=(work / "robocopy.log") if args.robocopy else None)
@@ -135,10 +139,12 @@ def run(args) -> dict:
         report["stages"]["s4_text"] = {**s4["summary"], "ocr": s4["ocr_note"] or s4["ocr_engine"]}
         guard.freeze(state / "04_text.json")
         s5 = s5_classify.run(s2, s3, s4, config, as_of, work / "fanout", state / "05_classification.json",
-                             chunk_size=config.get("chunk_size", 40), llm=llm_classifier.get(args.llm))
+                             chunk_size=config.get("chunk_size", 40), llm=llm)
         guard.verify("s5_classify")
         report["stages"]["s5_classify"] = {"chunks": len(s5["chunks"]), "records": len(s5["records"]),
                                            "llm": s5["llm"]["enabled"]}
+        if s5["llm"]["enabled"]:
+            report["stages"]["s5_classify"]["classifier"] = s5["llm"]["classifier"]
         guard.freeze(state / "05_classification.json", work / "fanout" / "chunks", work / "fanout" / "handoffs")
         fi = jsonio.read(Path(args.fault_injection)) if args.fault_injection else None
         s6 = s6_consolidate.run(s5, work / "fanout", state / "06_consolidation.json", fault_injection=fi)
@@ -268,13 +274,20 @@ def parser() -> argparse.ArgumentParser:
     ap.add_argument("--fault-injection", default=None, help="TEST ONLY: JSON fault plan for the consolidator")
     ap.add_argument("--simulate-concurrent-publish", action="store_true", help="TEST ONLY (S04)")
     ap.add_argument("--robocopy", action="store_true", help="also count with robocopy /L (Windows)")
-    ap.add_argument("--llm", default=None, help="optional: 'anthropic' (disabled by default)")
+    ap.add_argument("--llm", default=None,
+                    help="optional deadline classifier: 'anthropic' (OFF by default; needs ANTHROPIC_API_KEY, "
+                         "otherwise the run FAILS)")
+    ap.add_argument("--llm-effort", choices=("low", "medium", "high"), default=None,
+                    help="with --llm: effort of the classifier (default: $COSTANZA_LLM_EFFORT, else medium)")
     return ap
 
 
-def main(argv=None) -> int:
-    args = parser().parse_args(argv)
-    rep = run(args)
+def main(argv=None, llm=None) -> int:
+    ap = parser()
+    args = ap.parse_args(argv)
+    if args.llm_effort and not args.llm and llm is None:
+        ap.error("--llm-effort needs --llm anthropic")
+    rep = run(args, llm=llm)
     if rep["status"] == "OK":
         print(f"RUN OK - {rep['run_id']} - store v{rep['published']['version']} - as_of {rep['as_of']}")
         return 0

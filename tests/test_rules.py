@@ -4,7 +4,8 @@ import json
 import unittest
 
 from tests._util import ROOT
-from pipeline import amounts, attribution, deadlines, entities, termclauses, typeagree, urgency
+from pipeline import amounts, attribution, classifier_gate, classify, deadlines, entities, termclauses, typeagree, urgency
+from pipeline.lib import tzrome
 from pipeline.rules_engine import RuleFile
 from pipeline.s6_consolidate import classify_dissent
 
@@ -23,7 +24,7 @@ class RuleFileStructure(unittest.TestCase):
                           ("urgency.json", "rules"), ("amounts.json", "rules"), ("term_clauses.json", "rules"),
                           ("doc_type.json", "title_families"), ("deadline_nature.json", "vetoes"),
                           ("doc_type.json", "title_merge"), ("amounts.json", "agreement"),
-                          ("attribution.json", "channel_sender_side")):
+                          ("attribution.json", "channel_sender_side"), ("classifier_gate.json", "rules")):
             for r in load(name)[key]:
                 for k in ("id", "rationale", "tests"):
                     self.assertIn(k, r, f"{name}:{r.get('id')}")
@@ -102,6 +103,10 @@ class InlineRuleTests(unittest.TestCase):
                 got = amounts.read_amount(t["input"]["text"], t["input"]["doc_type"])
                 self.assertEqual((got.value, got.rule, got.agreement),
                                  (t["expect"]["amount_due"], t["expect_rule"], r["id"]), t["id"])
+
+    def test_classifier_gate_rules(self):
+        ctx = classify.build_context(CONFIG, tzrome.parse_iso("2026-10-21T09:40:00+02:00"))
+        self.assertEqual(classifier_gate.run_inline_tests(ctx), [])
 
     def test_dissent_natures(self):
         self.assertEqual(classify_dissent("none")[0], "none")

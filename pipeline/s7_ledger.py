@@ -94,6 +94,8 @@ def bound(value, ed: dict, rec: dict) -> dict:
 
 def facts(rec: dict, ed: dict) -> dict:
     f = {k: rec.get(k) for k in FACT_FIELDS}
+    if "classifier" in rec:          # v2.3: only when the classifier ran on this record (OFF: no key at all)
+        f["classifier"] = rec["classifier"]
     f["amount_due"] = bound(rec.get("amount_due"), ed, rec)
     return f
 

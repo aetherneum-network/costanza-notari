@@ -7,6 +7,9 @@ deadline accuracy, attribution, signatures, dedup and editions.
                                          # any other seed, no code change: fresh corpus under
                                          # build/eval/seed-N-perturbed, pipeline, AGGREGATE numbers only on
                                          # stdout, one new entry in eval/history.json (eval/BLIND_PROTOCOL_v2.2.md)
+    python eval/score.py --suite holdout --llm anthropic --out FILE [--llm-effort medium]
+                                         # v2.3: the same with the deadline classifier ON (needs
+                                         # ANTHROPIC_API_KEY, spends money; run directory .../run-llm)
 
 Suites (honesty first):
   dev                corpus/out, seed 20260930 - the corpus the rules were developed and adjusted against.
@@ -72,15 +75,17 @@ def build_corpus(suite: str) -> tuple[Path, Path]:
     return out, gold
 
 
-def run_pipeline(suite: str, corpus: Path) -> Path:
+def run_pipeline(suite: str, corpus: Path, llm=None) -> Path:
+    """``llm``: a built classifier (pipeline/llm_classifier.py) or None (OFF, the default). ON runs use their
+    own directory, so an OFF result is never overwritten by an ON one."""
     from pipeline import run as runner
-    base = ROOT / "build" / "eval" / suite / "run"
+    base = ROOT / "build" / "eval" / suite / ("run" if llm is None else "run-llm")
     if base.exists():
         shutil.rmtree(base)
     trust = corpus / "testca" / "trust"
     with redirect_stdout(io.StringIO()):
         code = runner.main(["--input", str(corpus), "--work", str(base / "work"), "--ledger", str(base / "ledger"),
-                            "--store", str(base / "store"), "--as-of", AS_OF, "--trust", str(trust)])
+                            "--store", str(base / "store"), "--as-of", AS_OF, "--trust", str(trust)], llm=llm)
     if code not in (0, 2):
         raise SystemExit(f"{suite}: pipeline failed with exit code {code}")
     return base
@@ -112,9 +117,9 @@ def _r(x):
     return None if x is None else round(x, 4)
 
 
-def score(suite: str) -> dict:
+def score(suite: str, llm=None) -> dict:
     corpus, gold_path = build_corpus(suite)
-    base = run_pipeline(suite, corpus)
+    base = run_pipeline(suite, corpus, llm)
     from pipeline.lib import jsonio
     gold = {g["envelope"]: g for g in jsonio.read_jsonl(gold_path)}
     cons = jsonio.read(base / "work" / "state" / "06_consolidation.json")["records"]
@@ -280,7 +285,8 @@ def append_history(key: str, entry: dict, path: Path = HISTORY) -> None:
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
 
 
-def run_seed(seed: int, perturb: bool, reuse: bool, history_key: str | None, when: str | None, out: str | None) -> int:
+def run_seed(seed: int, perturb: bool, reuse: bool, history_key: str | None, when: str | None, out: str | None,
+             llm=None) -> int:
     if history_key is not None:                     # fail before the run, not after it
         if history_key in json.loads(HISTORY.read_text(encoding="utf-8")):
             raise SystemExit(f"{HISTORY.name}: key '{history_key}' already exists - choose a new key")
@@ -288,9 +294,9 @@ def run_seed(seed: int, perturb: bool, reuse: bool, history_key: str | None, whe
     SUITES[suite] = (seed, perturb)
     if not reuse:
         FRESH.add(suite)
-    res = score(suite)
+    res = score(suite) if llm is None else score(suite, llm)
     base = ROOT / "build" / "eval" / suite
-    full = Path(out) if out else base / "result.json"
+    full = Path(out) if out else base / ("result.json" if llm is None else "result-llm.json")
     full.parent.mkdir(parents=True, exist_ok=True)
     full.write_text(json.dumps({"as_of": AS_OF, "results": {suite: res}}, indent=2, ensure_ascii=False,
                                sort_keys=True) + "\n", encoding="utf-8", newline="\n")
@@ -316,16 +322,26 @@ def main(argv=None):
                     help="with --seed: accept an existing build/eval/seed-N[-perturbed] directory")
     ap.add_argument("--history-key", default=None, help="with --seed: append the aggregates to eval/history.json")
     ap.add_argument("--when", default=None, help="with --history-key: free text stored with the entry")
+    ap.add_argument("--llm", default=None, help="v2.3 deadline classifier: 'anthropic' (OFF by default; spends money)")
+    ap.add_argument("--llm-effort", choices=("low", "medium", "high"), default=None, help="with --llm")
     a = ap.parse_args(argv)
+    if a.llm_effort and not a.llm:
+        ap.error("--llm-effort needs --llm anthropic")
+    llm = None
+    if a.llm:
+        from pipeline import llm_classifier
+        llm = llm_classifier.get(a.llm, effort=a.llm_effort)
     if a.seed is not None:
         if a.suite != "all":
             ap.error("--seed and --suite are alternatives")
-        return run_seed(a.seed, a.perturb, a.reuse_corpus, a.history_key, a.when, a.out)
+        return run_seed(a.seed, a.perturb, a.reuse_corpus, a.history_key, a.when, a.out, llm)
     if a.perturb or a.reuse_corpus or a.history_key or a.when:
         ap.error("--perturb, --reuse-corpus, --history-key and --when need --seed")
+    if llm is not None and not a.out:
+        ap.error("--llm with named suites needs --out: eval/results.json holds the OFF numbers")
     a.out = a.out or str(ROOT / "eval" / "results.json")
     suites = list(SUITES) if a.suite == "all" else [a.suite]
-    res = {s: score(s) for s in suites}
+    res = {s: score(s, llm) for s in suites}
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"as_of": AS_OF, "note": NOTE, "results": res},
                                       indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8",

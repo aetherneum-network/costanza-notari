@@ -41,6 +41,26 @@ def _show(v):
     return "-" if v in (None, "") else v
 
 
+def _nature_shown(drv: dict | None):
+    """v2.3: a driving deadline filled by the gate-passed classifier says so wherever its nature is shown."""
+    if drv and drv.get("source") == "classifier":
+        return f"{drv.get('nature')} (classifier)"
+    return (drv or {}).get("nature")
+
+
+def classifier_note(c: dict | None) -> str:
+    """One line for the RECUPERARE sheet: what the classifier answered and why the gate kept the cell empty."""
+    if not c:
+        return ""
+    who = f"classifier {c.get('model')} ({c.get('effort')})"
+    g, a = c.get("gate") or {}, c.get("answer") or {}
+    if g.get("kind") == "no_answer":
+        return f"{who}: no usable answer ({c.get('status')})"
+    if g.get("kind") == "model_abstained":
+        return f"{who}: also RECUPERARE"
+    return f"{who} proposed {a.get('deadline')} ({a.get('nature')}); gate {g.get('rule')} refused it: {g.get('reason')}"
+
+
 def rows_from_view(view: list[dict], as_of: _dt.datetime, terms_cfg: dict) -> list[dict]:
     out = []
     for unit in view:
@@ -52,7 +72,7 @@ def rows_from_view(view: list[dict], as_of: _dt.datetime, terms_cfg: dict) -> li
         amount_label = edition_label(amt) or (RECUPERARE if "amount_due" in (f.get("recuperare_fields") or []) else "-")
         out.append({
             "party": f.get("party_entity"), "area": f.get("area"), "doc_type": f.get("doc_type"), "urgency": level,
-            "deadline": RECUPERARE if drec else (drv or {}).get("date"), "nature": (drv or {}).get("nature"),
+            "deadline": RECUPERARE if drec else (drv or {}).get("date"), "nature": _nature_shown(drv),
             "status": (drv or {}).get("status"), "days": days, "amount": amount_label,
             "amount_value": amt.get("v") if amt.get("v") not in (None, RECUPERARE) else None,
             "pratica": f.get("pratica"), "transmitter": f.get("transmitter_entity"), "author": f.get("author_entity"),
@@ -64,6 +84,7 @@ def rows_from_view(view: list[dict], as_of: _dt.datetime, terms_cfg: dict) -> li
             "recuperare": ", ".join(f.get("recuperare_fields") or []) or "-", "record": f.get("record_id"),
             "base_id": unit["base_id"], "reasons": f.get("recuperare_reasons") or {},
             "deadlines": f.get("deadlines") or [], "edition": unit["edition"], "history": unit["history"],
+            "classifier": f.get("classifier"),
         })
     rank = {lv: i for i, lv in enumerate(LEVELS)}
     out.sort(key=lambda r: (r["party"] or "~", rank[r["urgency"]], r["deadline"] or "9999", r["record"]))
@@ -155,7 +176,10 @@ def write_xlsx(path: Path, rows, *, as_of, title, banner, banner_kind, stale_aft
     s5.append(["Record", "Field", "Why (complete by hand, then fix the rule or the source)"])
     for r in rows:
         for fld in (r["recuperare"].split(", ") if r["recuperare"] != "-" else []):
-            s5.append([r["record"], fld, r["reasons"].get(fld, "-")])
+            why = r["reasons"].get(fld, "-")
+            if fld == "deadline" and r["classifier"]:
+                why = f"{why} | {classifier_note(r['classifier'])}"
+            s5.append([r["record"], fld, why])
     for row in s5.iter_rows(min_row=2, max_col=2, min_col=2):
         for cell in row:
             cell.font, cell.fill = rec_font, rec_fill
