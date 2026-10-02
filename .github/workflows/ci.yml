@@ -1,5 +1,6 @@
 # Offline CI: after checkout and `pip install` of the three pinned dependencies, nothing touches the
-# network. No test calls any API (the optional LLM interface is disabled by default and never imported).
+# network. No test calls any API: the optional deadline classifier (v2.3) is OFF by default, its tests use
+# a fake client with sockets blocked, and the anthropic package is never imported.
 name: ci
 on:
   push:

@@ -72,12 +72,18 @@ Server rules (the lessons, enforced server-side, not left to the client):
 
 ## 3. Model assignment (A.2)
 
-* `classify_chunk` callers (fan-out workers): Claude Haiku 4.5 (`claude-haiku-4-5`), or Claude Sonnet 5.5
-  when records need judgement. The ordered rule file carries the logic; the model reads RECUPERARE
-  reasons and proposes rule changes.
+* `classify_chunk` callers (fan-out workers): the ordered rule files, no model. The rule files carry the
+  logic.
+* Deadline classifier (v2.3, optional, OFF by default): Claude Opus 5.5 (`claude-opus-5-5`), effort
+  `medium` by default (`--llm-effort` / `COSTANZA_LLM_EFFORT`). It is called only on records whose deadline
+  the rules leave RECUPERARE, and it only proposes: the deterministic gate `rules/classifier_gate.json`
+  decides what is committed. Measured numbers: README, *The deadline classifier (v2.3)*.
 * Consolidation disputes and the nightly report narrative: Claude Opus 5.5 (`claude-opus-5-5`), which may
-  explain a sentinel mismatch but never choose the value (`pipeline/llm_classifier.py::resolve_dispute`).
+  explain a sentinel mismatch but never choose the value (`pipeline/llm_classifier.py::resolve_dispute`;
+  not wired into the pipeline).
 * Measure before splitting: the most capable model at low effort on the same chunk often matches a
   cheaper one; judge by cost per completed task. The nightly full run is not latency-sensitive (Batch API).
 
-The optional in-process LLM hook (`pipeline/llm_classifier.py`) is disabled by default; tests never call it.
+The optional deadline classifier (`pipeline/llm_classifier.py`) is OFF by default: it runs only with
+`--llm anthropic` and an `ANTHROPIC_API_KEY`. Tests never call the API: they use a fake client with sockets
+blocked.

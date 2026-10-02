@@ -2,6 +2,143 @@
 
 All notable changes to the Costanza Notari v2 proof pack. Synthetic project: every entity is fictitious.
 
+## [2.3.0] - 2026-10-02
+
+A model that proposes, a gate that decides. When the v2.2.1 rules leave a record's driving deadline
+RECUPERARE, and only then, an optional classifier - Claude Opus 5.5 (`claude-opus-5-5`), effort `medium` by
+default - proposes a date. A deterministic gate decides whether the date may be committed. **The
+classifier is OFF by default.** It runs only with `--llm anthropic` and an `ANTHROPIC_API_KEY`. No test and
+no CI step calls the API. Ordered by the Rector on 2026-10-02 (approval reference
+`chat-2026-10-02-classifier`), after the D14 measure (below) showed 0 wrong committed deadlines at every
+effort.
+
+### Added - `pipeline/llm_classifier.py` (rewritten)
+- `propose()` sends what the D14 measure sent:
+  - the system prompt: the "proposals only" contract, `docs/TERMS.md` verbatim and the term table;
+  - the user message: the record's text (subject, body, every attachment text).
+
+  Only two sentences of the system prompt differ from D14: the gate sentence, and the evidence bullet
+  ("ONE contiguous passage ... no fragments joined by "...""). The user message is byte-identical to D14
+  on all 110 records.
+- The answer follows a strict JSON schema: deadline, nature, act type, evidence, computation, confidence.
+- How each non-answer is handled:
+  - a refusal, `max_tokens`, no text block, invalid JSON or an off-schema answer is an abstention;
+  - a transport error (connection, timeout, rate limit, overload, 5xx) leaves RECUPERARE;
+  - any other API error (a 4xx) **fails the run** (exit 3).
+- No temperature or thinking parameter, no forced tool choice, no fallbacks. Streaming; the system
+  prompt is cached.
+- The request id of each call is recorded. It is the header of the stream's response (`e004f08`); D14
+  could not record it.
+- Effort knob: `--llm-effort low|medium|high` or `COSTANZA_LLM_EFFORT`. The flag wins; the default is
+  `medium`, and any other value is refused. `--llm-effort` without `--llm` is a usage error.
+- **Why medium.** The selection rule of the D14 protocol (rule 6: lowest cost per correct answer among
+  the efforts with 0 wrong committed) picks `low`. `medium` is the Dean's decision, on the Rector's
+  delegation: on the same 110 records low left 5 more dated deadlines (of 46) to human review, and saved
+  0.16 USD per 110 records. The rule's metric gives human review no price.
+
+### Added - the gate: `pipeline/classifier_gate.py` + `rules/classifier_gate.json`
+- Version `2026.10.02-1`, G-01..G-15 in order; the first refusal wins.
+- A proposed date is committed only if all of the following hold:
+  - the call gave a usable answer (G-01) and the model answered with a date (G-02);
+  - the date parses (G-03);
+  - the nature is one the rules know, actionable or computed (G-04);
+  - the evidence is present (G-05) and is ONE verbatim passage of the record. Whitespace is the only
+    tolerance; fragments joined by "..." are refused (G-06, G-07);
+  - an actionable date is written in the record (G-08), and the rules did not read it as historical or
+    conditional (G-09);
+  - for a computed term: the notification date is known (G-10); the act type is in `rules/terms.json` and
+    equals the rules' own type when they committed one (G-11); the date falls after the notification
+    (G-12);
+  - the date recounts with the rules' own day-walker from the term stated in the evidence, or else from
+    the statutory term (G-13). If the evidence states a number of days that differs from the statutory
+    term, the date is refused;
+  - the driving deadline stays consistent (G-14);
+  - the confidence is not low (G-15).
+- Each record keeps `classifier.gate` (rule, kind, reason) and the gate's version.
+
+### Changed
+- `s5_classify`:
+  - calls the classifier only on records whose `recuperare_fields` hold `deadline`;
+  - commits a passed date as a deadline entry with source `classifier` and rule id
+    `classifier claude-opus-5-5 (medium), gate passed`;
+  - recomputes the driving deadline and urgency;
+  - keeps the rules' own reason as `rules_reason`.
+- The stage report counts calls, commits, model abstentions, gate refusals by rule, and usage.
+- `s7_ledger` carries the `classifier` block.
+- `s8_build`:
+  - the index marks a committed date `(classifier)`;
+  - the RECUPERARE sheet appends the gate's reason.
+- `pipeline/run.py`:
+  - the classifier is built before stage 1, so a missing key fails before any stage;
+  - `--llm-effort` is added.
+- `eval/score.py`:
+  - `--llm` and `--llm-effort` are added; the classifier run goes to the directory `run-llm`;
+  - with named suites `--out` is mandatory, because `eval/results.json` keeps the OFF numbers.
+- `pipeline.__version__` 2.3.0.
+- `packaging/SKILL.md`, model assignment: the stale Haiku 4.5 worker line is replaced by the classifier.
+
+### Tests (308, v2.2.1 had 273)
+- `tests/test_v23_classifier.py` adds 34 tests. They run offline, with sockets blocked and a fake client.
+  They cover:
+  - OFF by default: the parser, the factory, and a run with a key and an effort in the environment; the
+    xlsx/docx stay byte-identical;
+  - refusal without a key (exit 3, no stage run);
+  - the effort knob;
+  - the prompt content: model, streaming, cache, no forbidden parameter, the strict schema, contract and
+    TERMS.md, the record text, the request id;
+  - one refusal case per gate rule;
+  - the 12 D14 answers whose evidence joined fragments, at all three efforts (36 cases): every one
+    abstains (G-06), while one of their fragments alone passes;
+  - end to end through the runner, on a simulated rule abstention;
+  - loud failures (a 4xx, and a caller's stop).
+- `tests/test_rules.py` adds the gate's inline tests to the structure check.
+- `tests/fixtures/classifier_d14_joined.json` holds the 12 records (synthetic) and their D14 answers.
+
+### Numbers
+With the classifier OFF, nothing moves:
+- `eval/results.json` regenerates byte-identical to v2.2.1;
+- the determinism hashes are unchanged;
+- scenarios 10/10.
+
+The same 110 records were measured three ways. They are the unique records whose deadline v2.2.1 leaves
+RECUPERARE, across nine corpora: the five named suites and seeds 20261006, 20261007, 20261009 and
+20261010, all perturbed. None of them is blind. Gold: 46 dated deadlines and 64 RECUPERARE.
+
+| measure (2026-10-02) | effort | correct | abstained | wrong committed | dates recovered of 46 | cost USD |
+|---|---|---|---|---|---|---|
+| D14: classifier alone, no gate, outside the pipeline | low | 102 | 8 | 0 | 38 | 0.73 |
+| D14: classifier alone, no gate, outside the pipeline | medium | 107 | 3 | 0 | 43 | 0.89 |
+| D14: classifier alone, no gate, outside the pipeline | high | 108 | 2 | 0 | 44 | 1.00 |
+| D14 answers replayed offline through the gate | low / medium / high | 90 / 95 / 96 | 20 / 15 / 14 | 0 | 26 / 31 / 32 | - |
+| **v2.3, real code path** (`eval/history.json`, `classifier_v2_3_medium_real_path_20261002`) | medium | 107 | 3 | **0** | 43 | 0.89 |
+
+Through the pipeline at medium there were 112 calls (the 110 records plus 2 duplicates), costing 0.8877 USD.
+- **Committed:** the gate committed 43 dates, all correct.
+- **Refused:** the gate refused one correct date, `seed-20261010-perturbed:ARC-0131` (G-13). It is a
+  *diffida* whose quoted term stops at "dal ricevimento della", which the term reader does not parse,
+  and the act has no statutory term.
+- **Model abstentions:** the model abstained on 66 records, the 64 RECUPERARE golds and 2 dated ones.
+- **The 12 joined-evidence records of D14:** 11 now quote one passage and pass; the twelfth is the G-13
+  refusal.
+- **Across the nine corpora:** 0 wrong committed in each one, and every record not sent to the model is
+  identical to the OFF run. Dated abstentions fall from 22 to 1 on seed 20261007 (deadline exact 0.913 ->
+  0.996) and from 24 to 2 on seed 20261010 (0.905 -> 0.992). OFF numbers: `eval/history.json`,
+  `fix_check_v2_2_1_seed_20261007` and `out_of_pool_v2_2_1_seed_20261010`. The other seven corpora had none.
+- **Cost:** before the run, `count_tokens` gave 573,346 input tokens over 112 requests, a projection of
+  1.09 USD with cache, against a cap of 5 USD. An earlier attempt was stopped after 7 calls (0.0469 USD)
+  because it recorded no request id (fixed in `e004f08`). Total spent: 0.9345 USD.
+
+### Not changed (open)
+- `resolve_dispute` is unchanged from v2.2: it still uses the server-side fallback beta, and it is not
+  wired into the pipeline.
+- G-13 refuses a correct computed date when the quoted term stops before the words the term reader needs
+  (`seed-20261010-perturbed:ARC-0131`: "entro quindici giorni dal ricevimento della" is refused, while
+  "... dal ricevimento della presente" passes on ARC-0079). The result is an abstention, never a wrong
+  value. Widening the term reader changes the gate, and that needs a new measure.
+- One pass per measure: the variance is not measured.
+- Only the driving deadline is measured. No other field is sent to the model.
+- The cost is computed from each response's `usage` at list prices. It is not reconciled with billing.
+
 ## [2.2.1] - 2026-09-30
 
 A fix of one never-event, not a new reader. **Inherited from v2.0** (the scorer came with stage 5,

@@ -2,4 +2,5 @@
 openpyxl==3.1.5
 python-docx==1.2.0
 pypdf==6.19.0
-# Optional, never imported by tests: anthropic (only if llm_classifier is enabled)
+# Optional, never imported by tests: anthropic (only for the v2.3 deadline classifier, --llm anthropic;
+# measured with anthropic 1.11.0)
