@@ -1,0 +1,1235 @@
+{
+ "as_of": "2026-10-21T09:40:00+02:00",
+ "cases": [
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = Sat 2026-07-25 (PEC 14:48, before 21:00, signature ok, sender LAWYER); day 1 = 26/07; stated 10 days per T-001, no August suspension; day 10 = Tue 2026-08-04, working day, no roll-over; only deadline, already expired",
+     "confidence": "medium",
+     "deadline": "2026-08-04",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-07-25 (Sat, 14:48, before 21:00); day 1 = 26/07; day 10 = Tue 2026-08-04; no suspension (T-001); working day, no roll-over; expired, only deadline",
+     "confidence": "high",
+     "deadline": "2026-08-04",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-07-25 (PEC 14:48, before 21:00); day 1 = 26/07; day 10 = Tue 2026-08-04; T-001 has no August suspension; working day, no roll-over; only deadline, expired before as_of",
+     "confidence": "medium",
+     "deadline": "2026-08-04",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... INTIMA a FORNACE AURELIA S.R.L. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-07-25T14:48:11+02:00",
+     "mittente": "ilaria.moscardini@pec.ordineavvocati-esempio.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Si notifica, ai sensi della L. 53/1994, l'atto allegato.\nAvv. Ilaria Moscardini"
+    }
+   },
+   "gold_deadline": "2026-08-04",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-AG-0088 Per conto e nell'interesse di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esempio, PEC amministrazione@pec.ghiaiola.example, rappresentata e difesa da",
+      "date": "2026-01-08",
+      "nature": "historical",
+      "raw": "2026-01-08",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-AG-0088 Per conto e nell'interesse di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esempio, PEC amministrazione@pec.ghiaiola.example, rappresentata e difesa da",
+      "date": "2026-05-06",
+      "nature": "historical",
+      "raw": "2026-05-06",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 23/07/2026 Avv. Ilaria Moscardini",
+      "date": "2026-07-23",
+      "nature": "historical",
+      "raw": "23/07/2026",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-07-25",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-07-25T14:48:11+02:00",
+    "record_id": "ARC-0091",
+    "recuperare_fields": [
+     "area",
+     "deadline",
+     "doc_type",
+     "text"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood",
+     "text": "pages without a text layer and no OCR: atto_precetto.pdf:p2"
+    },
+    "sender_class": "LAWYER",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0091",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO LEGALE MOSCARDINI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-AG-0088\nPer conto e nell'interesse di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esempio, PEC\namministrazione@pec.ghiaiola.example, rappresentata e difesa dall'Avv. Ilaria Moscardini,\npremesso che con decreto ingiuntivo n. SYN-DI-0088 emesso il 2026-01-08 dal Tribunale di\nEsempio, dichiarato esecutivo il 2026-05-06, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare entro il\ntermine di dieci giorni dalla notifica del presente atto la somma di € 27.898,32, oltre\ninteressi e spese, con avvertimento che in mancanza si procederà ad esecuzione forzata.\nEsempio, 23/07/2026\nAvv. Ilaria Moscardini"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = Mon 2026-07-27 16:56 (before 21:00, signature ok, sender LAWYER); day 1 = 28/07; 10 days, no August suspension (T-001); day 10 = Thu 2026-08-06, working day, no roll-over; only deadline, so expired driving",
+     "confidence": "medium",
+     "deadline": "2026-08-06",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-07-27 (16:56, before 21:00); day 1=28/07; 10 days, no August suspension (T-001); day 10=Thu 2026-08-06, working day, no roll-over; only deadline, expired, so driving",
+     "confidence": "medium",
+     "deadline": "2026-08-06",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-07-27 (PEC 16:56, before 21:00); day 1 = 28/07; day 10 = Thu 2026-08-06; T-001 has no August suspension; working day, no roll-over; expired, only deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-06",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-07-27T16:56:37+02:00",
+     "mittente": "ilaria.moscardini@pec.ordineavvocati-esempio.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Si notifica, ai sensi della L. 53/1994, l'atto allegato.\nAvv. Ilaria Moscardini"
+    }
+   },
+   "gold_deadline": "2026-08-06",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-TM-0092 Per conto e nell'interesse di TESSITURE MONTEVERDE S.R.L., con sede in Esempio, PEC amministrazione@pec.tessituremonteverde.example, rappresentata e ",
+      "date": "2026-03-20",
+      "nature": "historical",
+      "raw": "20/03/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-TM-0092 Per conto e nell'interesse di TESSITURE MONTEVERDE S.R.L., con sede in Esempio, PEC amministrazione@pec.tessituremonteverde.example, rappresentata e ",
+      "date": "2026-04-13",
+      "nature": "historical",
+      "raw": "13/04/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 25/07/2026 Avv. Ilaria Moscardini",
+      "date": "2026-07-25",
+      "nature": "historical",
+      "raw": "25/07/2026",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-07-27",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-07-27T16:56:37+02:00",
+    "record_id": "ARC-0096",
+    "recuperare_fields": [
+     "area",
+     "deadline",
+     "doc_type"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood"
+    },
+    "sender_class": "LAWYER",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0096",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO LEGALE MOSCARDINI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-TM-0092\nPer conto e nell'interesse di TESSITURE MONTEVERDE S.R.L., con sede in Esempio, PEC\namministrazione@pec.tessituremonteverde.example, rappresentata e difesa dall'Avv. Ilaria\nMoscardini,\npremesso che con decreto ingiuntivo n. SYN-DI-0092 emesso il 20/03/2026 dal Tribunale di\nEsempio, dichiarato esecutivo il 13/04/2026, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare non oltre\ndieci giorni a decorrere dalla notifica del presente atto la somma di € 27.592,11, oltre\ninteressi e spese, con avvertimento che in mancanza si procederà ad esecuzione forzata.\nEsempio, 25/07/2026\nAvv. Ilaria Moscardini"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = Fri 2026-07-31 (08:44, before 21:00); day 1 = 01/08; 10 days, no August suspension (T-001); day 10 = Mon 2026-08-10, working day, no roll-over; expired, and the only actionable or computed deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-10",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... INTIMA a FORNACE AURELIA S.R.L. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-07-31 (08:44, before 21:00); day 1=2026-08-01; day 10=Mon 2026-08-10; no suspension (T-001); no roll-over needed; expired (only deadline)",
+     "confidence": "medium",
+     "deadline": "2026-08-10",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-07-31 (PEC 08:44, before 21:00); day 1 = 01/08; 10 days, T-001 no August suspension; day 10 = Mon 2026-08-10, working day, no roll-over; expired, only deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-10",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-07-31T08:44:33+02:00",
+     "mittente": "invii@pec.gateway-esempio.example",
+     "oggetto": "Sollecito"
+    },
+    "inner": {
+     "body": "Messaggio trasmesso tramite il servizio di notifica di Gateway PEC Esempio S.r.l. per conto dell'Avv. Ilaria Moscardini.\nSi notifica l'atto allegato ai sensi della L. 53/1994.\nIl servizio non è responsabile del contenuto del messaggio."
+    }
+   },
+   "gold_deadline": "2026-08-10",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-VE-0107 Nell'interesse e per incarico di SOCIETÀ AGRICOLA VALLE DELL’ÈRTO S.S., con sede in Esempio, PEC segreteria@pec.valledellerto.example, rappresentata ",
+      "date": "2026-03-19",
+      "nature": "historical",
+      "raw": "19/03/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-VE-0107 Nell'interesse e per incarico di SOCIETÀ AGRICOLA VALLE DELL’ÈRTO S.S., con sede in Esempio, PEC segreteria@pec.valledellerto.example, rappresentata ",
+      "date": "2026-04-18",
+      "nature": "historical",
+      "raw": "18/04/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "che il pagamento doveva avvenire entro il 2026-06-30 e non è avvenuto;",
+      "date": "2026-06-30",
+      "nature": "historical",
+      "raw": "2026-06-30",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 2026-07-30 Avv. Ilaria Moscardini",
+      "date": "2026-07-30",
+      "nature": "historical",
+      "raw": "2026-07-30",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-07-31",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-07-31T08:44:33+02:00",
+    "record_id": "ARC-0111",
+    "recuperare_fields": [
+     "area",
+     "counterparty_channel",
+     "deadline",
+     "doc_type",
+     "party_entity"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood"
+    },
+    "sender_class": "TRANSMIT",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0111",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO LEGALE MOSCARDINI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-VE-0107\nNell'interesse e per incarico di SOCIETÀ AGRICOLA VALLE DELL’ÈRTO S.S., con sede in Esempio,\nPEC segreteria@pec.valledellerto.example, rappresentata e difesa dall'Avv. Ilaria\nMoscardini,\npremesso che con decreto ingiuntivo n. SYN-DI-0107 emesso il 19/03/2026 dal Tribunale di\nEsempio, dichiarato esecutivo il 18/04/2026, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nche il pagamento doveva avvenire entro il 2026-06-30 e non è avvenuto;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare entro il\ntermine di dieci giorni dalla notifica del presente atto un importo pari a EUR 29.119,23,\noltre interessi e spese, con avvertimento che in mancanza si procederà ad esecuzione\nforzata.\nEsempio, 2026-07-30\nAvv. Ilaria Moscardini"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "T-001: S=Thu 2026-08-06 13:44 (before 21:00, signature ok, TRANSMIT); day 1=07/08, day 10=Sun 16/08 (no Aug. suspension) -> Mon 2026-08-17; expired, the only deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-17",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-08-06 (13:44, before 21:00); day 1=07/08; day 10=Sun 16/08/2026 -> Mon 17/08/2026; T-001 no August suspension; expired, no later deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-17",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-08-06 (13:44, before 21:00); day 1 = 07/08; 10 days, no August suspension (T-001); day 10 = Sun 16/08/2026, rolled to Mon 17/08/2026 (expired: only deadline in the record)",
+     "confidence": "medium",
+     "deadline": "2026-08-17",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-08-06T13:44:39+02:00",
+     "mittente": "notifiche@pec.notifichedigitali.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Messaggio trasmesso tramite il servizio di notifica di Servizi Notifiche Digitali Esempio S.p.A. per conto dell'Avv. Serena Lupatelli.\nSi notifica l'atto allegato ai sensi della L. 53/1994.\nIl servizio non è responsabile del contenuto del messaggio."
+    }
+   },
+   "gold_deadline": "2026-08-17",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-CR-0121 Per conto e nell'interesse di CARPENTERIE ROVERE S.R.L., con sede in Esempio, PEC amministrazione@pec.carpenterierovere.example, rappresentata e dife",
+      "date": "2026-02-08",
+      "nature": "historical",
+      "raw": "08/02/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-CR-0121 Per conto e nell'interesse di CARPENTERIE ROVERE S.R.L., con sede in Esempio, PEC amministrazione@pec.carpenterierovere.example, rappresentata e dife",
+      "date": "2026-06-18",
+      "nature": "historical",
+      "raw": "18/06/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "che il pagamento doveva avvenire entro il 08/07/2026 e non è avvenuto;",
+      "date": "2026-07-08",
+      "nature": "historical",
+      "raw": "08/07/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 05/08/2026 Avv. Serena Lupatelli",
+      "date": "2026-08-05",
+      "nature": "historical",
+      "raw": "05/08/2026",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-08-06",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-08-06T13:44:39+02:00",
+    "record_id": "ARC-0125",
+    "recuperare_fields": [
+     "area",
+     "deadline",
+     "doc_type"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood"
+    },
+    "sender_class": "TRANSMIT",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0125",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO LEGALE LUPATELLI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-CR-0121\nPer conto e nell'interesse di CARPENTERIE ROVERE S.R.L., con sede in Esempio, PEC\namministrazione@pec.carpenterierovere.example, rappresentata e difesa dall'Avv. Serena\nLupatelli,\npremesso che con decreto ingiuntivo n. SYN-DI-0121 emesso il 08/02/2026 dal Tribunale di\nEsempio, dichiarato esecutivo il 18/06/2026, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nche il pagamento doveva avvenire entro il 08/07/2026 e non è avvenuto;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare entro il\ntermine di dieci giorni dalla notifica del presente atto un importo pari a EUR 57.669,91,\noltre interessi e spese, con avvertimento che in mancanza si procederà ad esecuzione\nforzata.\nEsempio, 05/08/2026\nAvv. Serena Lupatelli"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-08-20 13:21 (before 21:00); day 1=21/08; T-001 no Aug suspension; day 10=Sun 30/08 -> Mon 31/08 (expired, only deadline)",
+     "confidence": "medium",
+     "deadline": "2026-08-31",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-08-20 (13:21, before 21:00); day 1=21/08; day 10=Sun 30/08 -> Mon 2026-08-31; T-001 has no August suspension; expired, and no later deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-31",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-08-20 (13:21, before 21:00); day 1=21/08; day 10=Sun 30/08 -> Mon 31/08; T-001 has no August suspension; expired before as_of, and it is the only deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-31",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-08-20T13:21:13+02:00",
+     "mittente": "notifiche@pec.notifichedigitali.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Messaggio trasmesso tramite il servizio di notifica di Servizi Notifiche Digitali Esempio S.p.A. per conto dell'Avv. Serena Lupatelli.\nSi notifica l'atto allegato ai sensi della L. 53/1994.\nIl servizio non è responsabile del contenuto del messaggio."
+    }
+   },
+   "gold_deadline": "2026-08-31",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-SV-0151 Per conto e nell'interesse di COOPERATIVA SENTIERO VERDE SOC. COOP., con sede in Esempio, rappresentata e difesa dall'Avv. Serena Lupatelli, premesso",
+      "date": "2026-02-28",
+      "nature": "historical",
+      "raw": "28/02/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-SV-0151 Per conto e nell'interesse di COOPERATIVA SENTIERO VERDE SOC. COOP., con sede in Esempio, rappresentata e difesa dall'Avv. Serena Lupatelli, premesso",
+      "date": "2026-05-12",
+      "nature": "historical",
+      "raw": "12/05/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "che il pagamento doveva avvenire entro il 23/07/2026 e non è avvenuto;",
+      "date": "2026-07-23",
+      "nature": "historical",
+      "raw": "23/07/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 2026-08-19 Avv. Serena Lupatelli",
+      "date": "2026-08-19",
+      "nature": "historical",
+      "raw": "2026-08-19",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-08-20",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-08-20T13:21:13+02:00",
+    "record_id": "ARC-0155",
+    "recuperare_fields": [
+     "area",
+     "counterparty_channel",
+     "deadline",
+     "doc_type"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood"
+    },
+    "sender_class": "TRANSMIT",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0155",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO LEGALE LUPATELLI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-SV-0151\nPer conto e nell'interesse di COOPERATIVA SENTIERO VERDE SOC. COOP., con sede in Esempio,\nrappresentata e difesa dall'Avv. Serena Lupatelli,\npremesso che con decreto ingiuntivo n. SYN-DI-0151 emesso il 28/02/2026 dal Tribunale di\nEsempio, dichiarato esecutivo il 12/05/2026, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nche il pagamento doveva avvenire entro il 23/07/2026 e non è avvenuto;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare non oltre\ndieci giorni a decorrere dalla notifica del presente atto la somma di € 59.476,54, oltre\ninteressi e spese, con avvertimento che in mancanza si procederà ad esecuzione forzata.\nEsempio, 2026-08-19\nAvv. Serena Lupatelli"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-09-24 (PEC 08:28, before 21:00, signature ok); day 1 = 25/09, day 10 = Sun 04/10/2026 (also 4 Oct holiday) -> Mon 05/10; no Aug. suspension; expired before as_of, no other deadline",
+     "confidence": "medium",
+     "deadline": "2026-10-05",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... INTIMA a FORNACE AURELIA S.R.L. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-09-24 08:28 (before 21:00, signature ok); day 1=25/09; day 10=Sun 04/10/2026 (also a 4 Oct holiday) -> Mon 05/10; no suspension; expired, the only deadline",
+     "confidence": "medium",
+     "deadline": "2026-10-05",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-09-24 (PEC 08:28, before 21:00); day 1=25/09; day 10=Sun 04/10 (also a 4 Oct holiday) -> Mon 2026-10-05; no suspension; expired before as_of and the only deadline, so driving",
+     "confidence": "medium",
+     "deadline": "2026-10-05",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... INTIMA a FORNACE AURELIA S.R.L. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-09-24T08:28:52+02:00",
+     "mittente": "ilaria.moscardini@pec.ordineavvocati-esempio.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Si notifica, ai sensi della L. 53/1994, l'atto allegato.\nAvv. Ilaria Moscardini"
+    }
+   },
+   "gold_deadline": "2026-10-05",
+   "rec": {
+    "dates": [
+     {
+      "context": "STUDIO LEGALE MOSCARDINI PRECETTO EX ART. 480 C.P.C. Riferimento fascicolo n. PR-VE-0222 Nell'interesse e per incarico di SOCIETÀ AGRICOLA VALLE DELL’ÈRTO S.S.,",
+      "date": "2026-04-11",
+      "nature": "historical",
+      "raw": "11/04/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "STUDIO LEGALE MOSCARDINI PRECETTO EX ART. 480 C.P.C. Riferimento fascicolo n. PR-VE-0222 Nell'interesse e per incarico di SOCIETÀ AGRICOLA VALLE DELL’ÈRTO S.S.,",
+      "date": "2026-07-22",
+      "nature": "historical",
+      "raw": "22/07/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 2026-09-23 Avv. Ilaria Moscardini",
+      "date": "2026-09-23",
+      "nature": "historical",
+      "raw": "2026-09-23",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-09-24",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-09-24T08:28:52+02:00",
+    "record_id": "ARC-0227",
+    "recuperare_fields": [
+     "area",
+     "counterparty_channel",
+     "deadline",
+     "doc_type",
+     "party_entity",
+     "text"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood",
+     "text": "pages without a text layer and no OCR: atto_precetto.pdf:p2"
+    },
+    "sender_class": "LAWYER",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0227",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO LEGALE MOSCARDINI\nPRECETTO EX ART. 480 C.P.C.\nRiferimento fascicolo n. PR-VE-0222\nNell'interesse e per incarico di SOCIETÀ AGRICOLA VALLE DELL’ÈRTO S.S., con sede in Esempio,\nPEC segreteria@pec.valledellerto.example, rappresentata e difesa dall'Avv. Ilaria\nMoscardini,\npremesso che con decreto ingiuntivo n. SYN-DI-0222 emesso il 11/04/2026 dal Tribunale di\nEsempio, dichiarato esecutivo il 22/07/2026, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare non oltre\ndieci giorni a decorrere dalla notifica del presente atto la somma di € 20.868,95, oltre\ninteressi e spese, con avvertimento che in mancanza si procederà ad esecuzione forzata.\nEsempio, 2026-09-23\nAvv. Ilaria Moscardini"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = Wed 2026-09-30 (PEC 09:41, before 21:00); day 1 = 01/10, day 10 = Sat 10/10; no suspension; Saturday roll-over (T-001) -> Mon 2026-10-12, expired (no later deadline; 26/08/2026 is historical)",
+     "confidence": "medium",
+     "deadline": "2026-10-12",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... INTIMA ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S=2026-09-30 (PEC 09:41, before 21:00, signature ok); day 1=01/10, day 10=Sat 10/10/2026; no suspension; Saturday roll-over -> Mon 2026-10-12 (expired; no later actionable/computed deadline)",
+     "confidence": "medium",
+     "deadline": "2026-10-12",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-09-30 (PEC 09:41, before 21:00); day 1 = 01/10; day 10 = Sat 10/10; T-001 no suspension, Saturday roll-over gives Mon 2026-10-12 (expired; no later actionable or computed deadline)",
+     "confidence": "medium",
+     "deadline": "2026-10-12",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare non oltre dieci giorni a decorrere dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-09-30T09:41:47+02:00",
+     "mittente": "studio.olivieri@pec.professionisti.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Si notifica, ai sensi della L. 53/1994, l'atto allegato.\nAvv. Tancredi Olivieri"
+    }
+   },
+   "gold_deadline": "2026-10-12",
+   "rec": {
+    "dates": [
+     {
+      "context": "STUDIO OLIVIERI PRECETTO EX ART. 480 C.P.C. Riferimento fascicolo n. PR-AG-0239 Nell'interesse e per incarico di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esem",
+      "date": "2026-03-18",
+      "nature": "historical",
+      "raw": "2026-03-18",
+      "rule": "N-000"
+     },
+     {
+      "context": "STUDIO OLIVIERI PRECETTO EX ART. 480 C.P.C. Riferimento fascicolo n. PR-AG-0239 Nell'interesse e per incarico di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esem",
+      "date": "2026-06-12",
+      "nature": "historical",
+      "raw": "2026-06-12",
+      "rule": "N-000"
+     },
+     {
+      "context": "che il pagamento doveva avvenire entro il 26/08/2026 e non è avvenuto;",
+      "date": "2026-08-26",
+      "nature": "historical",
+      "raw": "26/08/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 30 settembre 2026 Avv. Tancredi Olivieri",
+      "date": "2026-09-30",
+      "nature": "historical",
+      "raw": "30 settembre 2026",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-09-30",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-09-30T09:41:47+02:00",
+    "record_id": "ARC-0244",
+    "recuperare_fields": [
+     "area",
+     "counterparty_channel",
+     "deadline",
+     "doc_type",
+     "party_entity",
+     "sender_class"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood",
+     "sender_class": "below threshold (best LAWYER=40, margin 10)"
+    },
+    "sender_class": "RECUPERARE",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0244",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO OLIVIERI\nPRECETTO EX ART. 480 C.P.C.\nRiferimento fascicolo n. PR-AG-0239\nNell'interesse e per incarico di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esempio, PEC\namministrazione@pec.ghiaiola.example, rappresentata e difesa dall'Avv. Tancredi Olivieri,\npremesso che con decreto ingiuntivo n. SYN-DI-0239 emesso il 2026-03-18 dal Tribunale di\nEsempio, dichiarato esecutivo il 2026-06-12, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nche il pagamento doveva avvenire entro il 26/08/2026 e non è avvenuto;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare non oltre\ndieci giorni a decorrere dalla notifica del presente atto un importo pari a EUR 13.393,37,\noltre interessi e spese, con avvertimento che in mancanza si procederà ad esecuzione\nforzata.\nEsempio, 30 settembre 2026\nAvv. Tancredi Olivieri"
+     },
+     {
+      "name": "relata_notifica.pdf",
+      "text": "RELATA DI NOTIFICA A MEZZO PEC\nIo sottoscritto Avv. Tancredi Olivieri, ai sensi dell'art. 3-bis della L. 53/1994, ho\nnotificato l'atto allegato a FORNACE AURELIA S.R.L. all'indirizzo PEC\nfornaceaurelia@pec.fornaceaurelia.example, estratto da pubblico elenco (sintetico).\nAvv. Tancredi Olivieri"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-10-01 (PEC 09:31, before 21:00); day 1 = 02/10; day 10 = Sun 11/10 -> Mon 2026-10-12; no suspension; already expired against as_of, and it is the only deadline",
+     "confidence": "medium",
+     "deadline": "2026-10-12",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S = Thu 2026-10-01 09:31 (before 21:00); day 1 = 02/10; day 10 = Sun 11/10 rolled to Mon 12/10; no suspension; expired, the only deadline",
+     "confidence": "medium",
+     "deadline": "2026-10-12",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = Thu 2026-10-01 (PEC 09:31, before 21:00); day 1 = 02/10; day 10 = Sun 11/10 -> Mon 2026-10-12 (Sunday roll-over); no suspension; only deadline, expired before as_of",
+     "confidence": "medium",
+     "deadline": "2026-10-12",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-10-01T09:31:24+02:00",
+     "mittente": "studio.olivieri@pec.professionisti.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Si notifica, ai sensi della L. 53/1994, l'atto allegato.\nAvv. Tancredi Olivieri"
+    }
+   },
+   "gold_deadline": "2026-10-12",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-AG-0243 Per conto e nell'interesse di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esempio, PEC amministrazione@pec.ghiaiola.example, rappresentata e difesa da",
+      "date": "2026-05-16",
+      "nature": "historical",
+      "raw": "2026-05-16",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-AG-0243 Per conto e nell'interesse di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esempio, PEC amministrazione@pec.ghiaiola.example, rappresentata e difesa da",
+      "date": "2026-07-25",
+      "nature": "historical",
+      "raw": "2026-07-25",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 01/10/2026 Avv. Tancredi Olivieri",
+      "date": "2026-10-01",
+      "nature": "historical",
+      "raw": "01/10/2026",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-10-01",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-10-01T09:31:24+02:00",
+    "record_id": "ARC-0248",
+    "recuperare_fields": [
+     "area",
+     "deadline",
+     "doc_type",
+     "sender_class"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood",
+     "sender_class": "below threshold (best LAWYER=40, margin 10)"
+    },
+    "sender_class": "RECUPERARE",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0248",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO OLIVIERI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-AG-0243\nPer conto e nell'interesse di AUTOTRASPORTI GHIAIOLA S.R.L., con sede in Esempio, PEC\namministrazione@pec.ghiaiola.example, rappresentata e difesa dall'Avv. Tancredi Olivieri,\npremesso che con decreto ingiuntivo n. SYN-DI-0243 emesso il 2026-05-16 dal Tribunale di\nEsempio, dichiarato esecutivo il 2026-07-25, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare entro il\ntermine di dieci giorni dalla notifica del presente atto un importo pari a EUR 34.787,96,\noltre interessi e spese, con avvertimento che in mancanza si procederà ad esecuzione\nforzata.\nEsempio, 01/10/2026\nAvv. Tancredi Olivieri"
+     },
+     {
+      "name": "relata_notifica.pdf",
+      "text": "RELATA DI NOTIFICA A MEZZO PEC\nIo sottoscritto Avv. Tancredi Olivieri, ai sensi dell'art. 3-bis della L. 53/1994, ho\nnotificato l'atto allegato a FORNACE AURELIA S.R.L. all'indirizzo PEC\nfornaceaurelia@pec.fornaceaurelia.example, estratto da pubblico elenco (sintetico).\nAvv. Tancredi Olivieri"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-10-05 (PEC 18:11, before 21:00); day 1 = 06/10, day 10 = Thu 2026-10-15; no August suspension, no roll-over needed; only deadline, expired before as_of",
+     "confidence": "high",
+     "deadline": "2026-10-15",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-10-05 (PEC delivered 18:11, before 21:00); day 1 = 06/10; day 10 = Thu 2026-10-15; no suspension; no roll-over needed; already expired, but it is the only deadline",
+     "confidence": "high",
+     "deadline": "2026-10-15",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... INTIMA ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = 2026-10-05 (PEC at 18:11, before 21:00); day 1 = 06/10; 10 days, no suspension; day 10 = Thu 2026-10-15, no roll-over needed; only deadline, expired before as_of",
+     "confidence": "high",
+     "deadline": "2026-10-15",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-10-05T18:11:27+02:00",
+     "mittente": "notifiche@pec.notifichedigitali.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Messaggio trasmesso tramite il servizio di notifica di Servizi Notifiche Digitali Esempio S.p.A. per conto dell'Avv. Donato Mariscotti.\nSi notifica l'atto allegato ai sensi della L. 53/1994.\nIl servizio non è responsabile del contenuto del messaggio."
+    }
+   },
+   "gold_deadline": "2026-10-15",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-CR-0256 Per conto e nell'interesse di CARPENTERIE ROVERE S.R.L., con sede in Esempio, rappresentata e difesa dall'Avv. Donato Mariscotti, premesso che con de",
+      "date": "2026-04-04",
+      "nature": "historical",
+      "raw": "04/04/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-CR-0256 Per conto e nell'interesse di CARPENTERIE ROVERE S.R.L., con sede in Esempio, rappresentata e difesa dall'Avv. Donato Mariscotti, premesso che con de",
+      "date": "2026-07-12",
+      "nature": "historical",
+      "raw": "12/07/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 2026-10-04 Avv. Donato Mariscotti",
+      "date": "2026-10-04",
+      "nature": "historical",
+      "raw": "2026-10-04",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-10-05",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-10-05T18:11:27+02:00",
+    "record_id": "ARC-0261",
+    "recuperare_fields": [
+     "area",
+     "counterparty_channel",
+     "deadline",
+     "doc_type"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood"
+    },
+    "sender_class": "TRANSMIT",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0261",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO LEGALE MARISCOTTI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-CR-0256\nPer conto e nell'interesse di CARPENTERIE ROVERE S.R.L., con sede in Esempio, rappresentata\ne difesa dall'Avv. Donato Mariscotti,\npremesso che con decreto ingiuntivo n. SYN-DI-0256 emesso il 04/04/2026 dal Tribunale di\nEsempio, dichiarato esecutivo il 12/07/2026, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare entro il\ntermine di dieci giorni dalla notifica del presente atto la somma di € 47.499,35, oltre\ninteressi e spese, con avvertimento che in mancanza si procederà ad esecuzione forzata.\nEsempio, 2026-10-04\nAvv. Donato Mariscotti"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "atto_precetto",
+     "computation": "S = Sat 2026-10-10 17:21 (before 21:00, signature ok); day 1 = 11/10, day 10 = Tue 20/10; no suspension, working day so no roll-over; expired before as_of, no later deadline, so latest expired is driving",
+     "confidence": "medium",
+     "deadline": "2026-10-20",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... INTIMA ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "atto_precetto",
+     "computation": "S = Sat 2026-10-10 17:21 (before 21:00); day 1 = 11/10, day 10 = Tue 20/10; no suspension, no roll-over needed; expired before as_of, and it is the only actionable/computed deadline",
+     "confidence": "medium",
+     "deadline": "2026-10-20",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "atto_precetto",
+     "computation": "S = Sat 2026-10-10 17:21 (before 21:00, signature ok); day 1 = 11/10; day 10 = Tue 2026-10-20; no suspension, no roll-over needed; expired before as_of and the only deadline, so driving (10/09/2026 is historical)",
+     "confidence": "medium",
+     "deadline": "2026-10-20",
+     "evidence": "PRECETTO EX ART. 480 C.P.C. ... di pagare entro il termine di dieci giorni dalla notifica del presente atto",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-10-10T17:21:19+02:00",
+     "mittente": "studio.olivieri@pec.professionisti.example",
+     "oggetto": "Notifica atto di precetto"
+    },
+    "inner": {
+     "body": "Si notifica, ai sensi della L. 53/1994, l'atto allegato.\nAvv. Tancredi Olivieri"
+    }
+   },
+   "gold_deadline": "2026-10-20",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-FO-0264 Nell'interesse e per incarico di FORNITURE DELL’ONTANO S.R.L., con sede in Esempio, rappresentata e difesa dall'Avv. Tancredi Olivieri, premesso che ",
+      "date": "2026-06-03",
+      "nature": "historical",
+      "raw": "2026-06-03",
+      "rule": "N-000"
+     },
+     {
+      "context": "PR-FO-0264 Nell'interesse e per incarico di FORNITURE DELL’ONTANO S.R.L., con sede in Esempio, rappresentata e difesa dall'Avv. Tancredi Olivieri, premesso che ",
+      "date": "2026-07-13",
+      "nature": "historical",
+      "raw": "2026-07-13",
+      "rule": "N-000"
+     },
+     {
+      "context": "che il pagamento doveva avvenire entro il 10/09/2026 e non è avvenuto;",
+      "date": "2026-09-10",
+      "nature": "historical",
+      "raw": "10/09/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 2026-10-07 Avv. Tancredi Olivieri",
+      "date": "2026-10-07",
+      "nature": "historical",
+      "raw": "2026-10-07",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-10-10",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-10-10T17:21:19+02:00",
+    "record_id": "ARC-0270",
+    "recuperare_fields": [
+     "area",
+     "counterparty_channel",
+     "deadline",
+     "doc_type",
+     "party_entity",
+     "sender_class"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'PRECETTO EX ART. 480 C.P.C.' names an act family together with EX, ART, C, P, C: not understood",
+     "sender_class": "below threshold (best LAWYER=40, margin 10)"
+    },
+    "sender_class": "RECUPERARE",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0270",
+   "suite": "seed-20261007-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "atto_precetto.pdf",
+      "text": "STUDIO OLIVIERI\nPRECETTO EX ART. 480 C.P.C.\nRif. pratica: PR-FO-0264\nNell'interesse e per incarico di FORNITURE DELL’ONTANO S.R.L., con sede in Esempio,\nrappresentata e difesa dall'Avv. Tancredi Olivieri,\npremesso che con decreto ingiuntivo n. SYN-DI-0264 emesso il 2026-06-03 dal Tribunale di\nEsempio, dichiarato esecutivo il 2026-07-13, è stato ingiunto a FORNACE AURELIA S.R.L. il\npagamento del credito;\nche il pagamento doveva avvenire entro il 10/09/2026 e non è avvenuto;\nINTIMA\na FORNACE AURELIA S.R.L., con sede in Esempio, Via delle Fornaci 12, di pagare entro il\ntermine di dieci giorni dalla notifica del presente atto la somma di € 10.242,57, oltre\ninteressi e spese, con avvertimento che in mancanza si procederà ad esecuzione forzata.\nEsempio, 2026-10-07\nAvv. Tancredi Olivieri"
+     },
+     {
+      "name": "relata_notifica.pdf",
+      "text": "RELATA DI NOTIFICA A MEZZO PEC\nIo sottoscritto Avv. Tancredi Olivieri, ai sensi dell'art. 3-bis della L. 53/1994, ho\nnotificato l'atto allegato a FORNACE AURELIA S.R.L. all'indirizzo PEC\nfornaceaurelia@pec.fornaceaurelia.example, estratto da pubblico elenco (sintetico).\nAvv. Tancredi Olivieri"
+     }
+    ],
+    "principal": "atto_precetto.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "diffida_messa_in_mora",
+     "computation": "T-009: S = PEC delivery 2026-07-20 (no 21:00 rule for this act); day 1 = 21/07; day 15 = Tue 2026-08-04; no suspension; working day, no roll-over; only deadline, already expired",
+     "confidence": "medium",
+     "deadline": "2026-08-04",
+     "evidence": "INTIMAZIONE E DIFFIDA AD ADEMPIERE ... Vi intimiamo il rientro dell'esposizione per la complessiva somma di euro 28.005,38 ... entro quindici giorni dal ricevimento della presente.",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "diffida_messa_in_mora",
+     "computation": "S=2026-07-20 (T-009: no 21:00 rule), day1=21/07, 15 days -> Tue 2026-08-04, no suspension, no roll-over needed; only deadline, expired",
+     "confidence": "medium",
+     "deadline": "2026-08-04",
+     "evidence": "INTIMAZIONE E DIFFIDA AD ADEMPIERE ... Vi intimiamo il rientro dell'esposizione ... entro quindici giorni dal ricevimento della presente.",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "diffida_messa_in_mora",
+     "computation": "T-009: S = PEC delivery 2026-07-20 (no 21:00 rule); day 1 = 21/07, day 15 = Tue 2026-08-04; no suspension, no roll-over needed; only deadline, expired",
+     "confidence": "medium",
+     "deadline": "2026-08-04",
+     "evidence": "INTIMAZIONE E DIFFIDA AD ADEMPIERE ... Vi intimiamo il rientro dell'esposizione ... entro quindici giorni dal ricevimento della presente.",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-07-20T22:28:43+02:00",
+     "mittente": "legale@pec.bancaaurora.example",
+     "oggetto": "Revoca affidamenti e messa in mora"
+    },
+    "inner": {
+     "body": "Si trasmette in allegato la comunicazione in oggetto."
+    }
+   },
+   "gold_deadline": "2026-08-04",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-BA-0078 Spett.le FORNACE AURELIA S.R.L., con la presente Vi comunichiamo la revoca degli affidamenti concessi sul conto corrente n. SYN-CC-0078 e Vi intimiam",
+      "date": "2026-07-15",
+      "nature": "historical",
+      "raw": "15.07.2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 19/07/2026 BANCA AURORA ESEMPIO S.P.A. - Direzione Crediti",
+      "date": "2026-07-19",
+      "nature": "historical",
+      "raw": "19/07/2026",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-07-20",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-07-20T22:28:43+02:00",
+    "record_id": "ARC-0079",
+    "recuperare_fields": [
+     "area",
+     "deadline",
+     "doc_type"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'INTIMAZIONE E DIFFIDA AD ADEMPIERE' names an act family together with AD, ADEMPIERE: not understood"
+    },
+    "sender_class": "BANK_CORPORATE",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0079",
+   "suite": "seed-20261010-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "comunicazione.pdf",
+      "text": "BANCA AURORA ESEMPIO S.P.A.\nDirezione Crediti\nINTIMAZIONE E DIFFIDA AD ADEMPIERE\nRif. pratica: PR-BA-0078\nSpett.le FORNACE AURELIA S.R.L.,\ncon la presente Vi comunichiamo la revoca degli affidamenti concessi sul conto corrente n.\nSYN-CC-0078 e Vi intimiamo il rientro dell'esposizione per la complessiva somma di euro\n28.005,38, pari al saldo debitore alla data del 15.07.2026, entro quindici giorni dal\nricevimento della presente.\nEsempio, 19/07/2026\nBANCA AURORA ESEMPIO S.P.A. - Direzione Crediti"
+     }
+    ],
+    "principal": "comunicazione.pdf"
+   }
+  },
+  {
+   "d14_answers": {
+    "high": {
+     "act_type": "diffida_messa_in_mora",
+     "computation": "S = 2026-08-12 (PEC delivery, signature ok); day 1 = 13/08; day 15 = Thu 2026-08-27; T-009: no August suspension, no roll-over needed; already expired, but it is the only deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-27",
+     "evidence": "INTIMAZIONE E DIFFIDA AD ADEMPIERE ... Vi intimiamo il rientro dell'esposizione per la somma di € 17.874,15 ... entro quindici giorni dal ricevimento della presente.",
+     "nature": "computed"
+    },
+    "low": {
+     "act_type": "diffida_messa_in_mora",
+     "computation": "T-009: S=2026-08-12 (PEC delivery); day 1=2026-08-13, day 15=Thu 2026-08-27; no August suspension, no roll-over needed; expired (only deadline)",
+     "confidence": "medium",
+     "deadline": "2026-08-27",
+     "evidence": "INTIMAZIONE E DIFFIDA AD ADEMPIERE ... Vi intimiamo il rientro dell'esposizione per la somma di € 17.874,15 ... entro quindici giorni dal ricevimento della presente.",
+     "nature": "computed"
+    },
+    "medium": {
+     "act_type": "diffida_messa_in_mora",
+     "computation": "S=2026-08-12 (PEC delivery, signature ok); day 1=13/08; day 15=Thu 2026-08-27; T-009 no Aug. suspension, no Sat. roll-over; working day, no roll-forward; expired, only deadline",
+     "confidence": "medium",
+     "deadline": "2026-08-27",
+     "evidence": "INTIMAZIONE E DIFFIDA AD ADEMPIERE ... Vi intimiamo il rientro dell'esposizione per la somma di € 17.874,15 ... entro quindici giorni dal ricevimento della presente.",
+     "nature": "computed"
+    }
+   },
+   "d14_outcome": {
+    "high": "correct",
+    "low": "correct",
+    "medium": "correct"
+   },
+   "env": {
+    "daticert": {
+     "data": "2026-08-12T11:12:46+02:00",
+     "mittente": "legale@pec.bancaaurora.example",
+     "oggetto": "Revoca affidamenti e messa in mora"
+    },
+    "inner": {
+     "body": "Si trasmette in allegato la comunicazione in oggetto."
+    }
+   },
+   "gold_deadline": "2026-08-27",
+   "rec": {
+    "dates": [
+     {
+      "context": "PR-BA-0129 Spett.le FORNACE AURELIA S.R.L., con la presente Vi comunichiamo la revoca degli affidamenti concessi sul conto corrente n. SYN-CC-0129 e Vi intimiam",
+      "date": "2026-08-07",
+      "nature": "historical",
+      "raw": "07/08/2026",
+      "rule": "N-000"
+     },
+     {
+      "context": "Esempio, 11.08.2026 BANCA AURORA ESEMPIO S.P.A. - Direzione Crediti",
+      "date": "2026-08-11",
+      "nature": "historical",
+      "raw": "11.08.2026",
+      "rule": "N-000"
+     }
+    ],
+    "deadline": "RECUPERARE",
+    "deadlines": [],
+    "doc_type": "RECUPERARE",
+    "notification_date": "2026-08-12",
+    "notification_note": "act type unknown: the term's legal policy cannot be chosen",
+    "pec_time": "2026-08-12T11:12:46+02:00",
+    "record_id": "ARC-0131",
+    "recuperare_fields": [
+     "area",
+     "deadline",
+     "doc_type"
+    ],
+    "recuperare_reasons": {
+     "deadline": "act type unknown: the term's legal policy cannot be chosen",
+     "doc_type": "title 'INTIMAZIONE E DIFFIDA AD ADEMPIERE' names an act family together with AD, ADEMPIERE: not understood"
+    },
+    "sender_class": "BANK_CORPORATE",
+    "transport_signature_integrity": "ok"
+   },
+   "record_id": "ARC-0131",
+   "suite": "seed-20261010-perturbed",
+   "txt": {
+    "documents": [
+     {
+      "name": "comunicazione.pdf",
+      "text": "BANCA AURORA ESEMPIO S.P.A.\nDirezione Crediti\nINTIMAZIONE E DIFFIDA AD ADEMPIERE\nRif. pratica: PR-BA-0129\nSpett.le FORNACE AURELIA S.R.L.,\ncon la presente Vi comunichiamo la revoca degli affidamenti concessi sul conto corrente n.\nSYN-CC-0129 e Vi intimiamo il rientro dell'esposizione per la somma di € 17.874,15, pari al\nsaldo debitore alla data del 07/08/2026, entro quindici giorni dal ricevimento della\npresente.\nEsempio, 11.08.2026\nBANCA AURORA ESEMPIO S.P.A. - Direzione Crediti"
+     }
+    ],
+    "principal": "comunicazione.pdf"
+   }
+  }
+ ],
+ "note": "Synthetic records (every entity fictitious). The 12 records of the D14 measure (2026-10-02, model claude-opus-5-5, efforts low/medium/high, records the v2.2.1 rules leave deadline RECUPERARE) whose correct date came with evidence made of verbatim fragments joined by '...'. Record fields as stage 5 of v2.2.1 writes them for the corpora rebuilt with the same seeds; answers copied from the D14 raw file. The gate must refuse every one of them (rule G-06)."
+}

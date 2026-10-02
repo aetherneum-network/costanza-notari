@@ -1,0 +1,9 @@
+{
+  "expected_envelopes": 1,
+  "files": [
+    {
+      "path": "envelopes/2026-10/PEC_S09_P7M.eml",
+      "sha256": "ec4e85f4d0c5fce498a622ec06922f81e060a6bca47bbd39b64b2d09f871cc9d"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "run": [
+    "python",
+    "check.py"
+  ]
+}

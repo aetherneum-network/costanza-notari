@@ -1,0 +1,7 @@
+{
+  "company": "Fornace Aurelia S.r.l. (synthetic debtor)",
+  "subset": "first 20 non-duplicate envelopes of the main corpus (corpus/gold/labels.jsonl order)",
+  "yesterday_run_as_of": "2026-10-20T03:05:00+02:00",
+  "today_run_as_of": "2026-10-21T09:40:00+02:00",
+  "fault": "--simulate-concurrent-publish: another writer republishes the store between our version read and our write (TEST ONLY)"
+}

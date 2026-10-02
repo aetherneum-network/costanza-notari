@@ -1,0 +1,39 @@
+# Offline CI: after checkout and `pip install` of the three pinned dependencies, nothing touches the
+# network. No test calls any API: the optional deadline classifier (v2.3) is OFF by default, its tests use
+# a fake client with sockets blocked, and the anthropic package is never imported.
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      PYTHONIOENCODING: utf-8
+      SOURCE_DATE_EPOCH: "1792568400"   # 2026-10-21T07:40:00Z - the corpus as_of
+      ANTHROPIC_API_KEY: ""              # belt and braces: no credentials in CI
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Regenerate the synthetic corpus and compare with MANIFEST.sha256
+        run: |
+          python corpus/generate.py
+          python corpus/generate.py --check
+      - name: Unit tests + scenario checks + determinism (stdlib unittest)
+        run: python -m unittest discover -s tests -t . -v
+      - name: Scenarios S01-S10 (one line each)
+        run: python scenarios/run_all.py
+      - name: Evaluation (development + holdout suites)
+        run: |
+          python eval/score.py --suite dev --out build/eval/ci-dev.json
+          python eval/score.py --suite holdout --out build/eval/ci-holdout.json

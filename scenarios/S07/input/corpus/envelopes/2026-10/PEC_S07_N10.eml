@@ -1,0 +1,147 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Wed, 14 Oct 2026 09:00:00 +0200
+From: "Per conto di: crediti@pec.officinelagorai.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: crediti@pec.officinelagorai.example
+To: amministrazione@pec.tessituremonteverde.example
+Subject: POSTA CERTIFICATA: Diffida e messa in mora
+Message-ID: <opec-syn.20261014070000.90710@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0710.20261014070000@pec.officinelagorai.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_ad7a9efe8231505171f22d87"
+
+This is an S/MIME signed message
+
+------=_SIG_ad7a9efe8231505171f22d87
+Content-Type: multipart/mixed; boundary="----=_MIX_ad7a9efe8231505171f22d87"
+
+------=_MIX_ad7a9efe8231505171f22d87
+Content-Type: multipart/alternative; boundary="----=_ALT_ad7a9efe8231505171f22d87"
+
+------=_ALT_ad7a9efe8231505171f22d87
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 14/10/2026 alle ore 09:00:00 (+0200) il messaggio
+"Diffida e messa in mora" =C3=A8 stato inviato da "crediti@pec.officinelago=
+rai.example"
+indirizzato a:
+amministrazione@pec.tessituremonteverde.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261014070000.90710@pec.gestore-uno.exa=
+mple
+
+------=_ALT_ad7a9efe8231505171f22d87
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 14/10/2026=
+ alle ore 09:00:00 (+0200) il messaggio<br/>"Diffida e messa in mora" =C3=
+=A8 stato inviato da "crediti@pec.officinelagorai.example"<br/>indirizzato =
+a:<br/>amministrazione@pec.tessituremonteverde.example<br/>Il messaggio ori=
+ginale =C3=A8 incluso in allegato.<br/>Identificativo messaggio: opec-syn.2=
+0261014070000.90710@pec.gestore-uno.example<br/></p></body></html>
+
+------=_ALT_ad7a9efe8231505171f22d87--
+
+------=_MIX_ad7a9efe8231505171f22d87
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmNyZWRpdGlAcGVjLm9mZmljaW5lbGFnb3JhaS5leGFtcGxlPC9taXR0ZW50
+ZT4NCiAgICA8ZGVzdGluYXRhcmkgdGlwbz0iY2VydGlmaWNhdG8iPmFtbWluaXN0cmF6aW9uZUBw
+ZWMudGVzc2l0dXJlbW9udGV2ZXJkZS5leGFtcGxlPC9kZXN0aW5hdGFyaT4NCiAgICA8cmlzcG9z
+dGU+Y3JlZGl0aUBwZWMub2ZmaWNpbmVsYWdvcmFpLmV4YW1wbGU8L3Jpc3Bvc3RlPg0KICAgIDxv
+Z2dldHRvPkRpZmZpZGEgZSBtZXNzYSBpbiBtb3JhPC9vZ2dldHRvPg0KICA8L2ludGVzdGF6aW9u
+ZT4NCiAgPGRhdGk+DQogICAgPGdlc3RvcmUtZW1pdHRlbnRlPkdFU1RPUkUgUEVDIEVTRU1QSU8g
+Uy5QLkEuPC9nZXN0b3JlLWVtaXR0ZW50ZT4NCiAgICA8ZGF0YSB6b25hPSIrMDIwMCI+DQogICAg
+ICA8Z2lvcm5vPjE0LzEwLzIwMjY8L2dpb3Jubz4NCiAgICAgIDxvcmE+MDk6MDA6MDA8L29yYT4N
+CiAgICA8L2RhdGE+DQogICAgPGlkZW50aWZpY2F0aXZvPm9wZWMtc3luLjIwMjYxMDE0MDcwMDAw
+LjkwNzEwQHBlYy5nZXN0b3JlLXVuby5leGFtcGxlPC9pZGVudGlmaWNhdGl2bz4NCiAgICA8bXNn
+aWQ+Jmx0O1NDTi0wNzEwLjIwMjYxMDE0MDcwMDAwQHBlYy5vZmZpY2luZWxhZ29yYWkuZXhhbXBs
+ZSZndDs8L21zZ2lkPg0KICA8L2RhdGk+DQo8L3Bvc3RhY2VydD4NCg==
+
+------=_MIX_ad7a9efe8231505171f22d87
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Wed, 14 Oct 2026 09:00:00 +0200
+From: "Officine Lagorai S.r.l." <crediti@pec.officinelagorai.example>
+To: amministrazione@pec.tessituremonteverde.example
+Subject: Diffida e messa in mora
+Message-ID: <SCN-0710.20261014070000@pec.officinelagorai.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_01cc5f1d353fe77e5ede02ec"
+
+------=_INNER_01cc5f1d353fe77e5ede02ec
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+In allegato la comunicazione in oggetto.
+------=_INNER_01cc5f1d353fe77e5ede02ec
+Content-Type: application/pdf; name="diffida.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="diffida.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggMjIyIC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42nWPwU7DMBBE7/6K
+ORZEjAMqRdwCTZCltEGJxYnLKnarRU4cnNDvx0KoHBC3Ge3MW82jEddVjlzBHER+C1OLtcK9St6K
+VVNV+knvS9TFc9MWGp1sZS0vYN6FuRSrs9jqlNwWKLEru66A3mOXCud7yweJKdLCPT3gpc2aOtuo
+XP0lvTJ4PPHCNAQQ+hAjz1MYrYsOblxiwMcnj5Z7xpFDHBmWPCL37sRDCgRY5z2lb25O1iHpOQwD
+wTLebtKytbxT6kqp3x3/7EQG7eHdkbxDpOkHSYn6XS3NFw5VWsUKZW5kc3RyZWFtCmVuZG9iago1
+IDAgb2JqCjw8IC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94IFswIDAgNTk1IDg0
+Ml0gL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgMyAwIFIgPj4gPj4gL0NvbnRlbnRzIDQgMCBS
+ID4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMTUgMDAwMDAg
+biAKMDAwMDAwMDA2NCAwMDAwMCBuIAowMDAwMDAwMTIxIDAwMDAwIG4gCjAwMDAwMDAyMTggMDAw
+MDAgbiAKMDAwMDAwMDUxMiAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDYgL1Jvb3QgMSAwIFIg
+Pj4Kc3RhcnR4cmVmCjYzOAolJUVPRgo=
+
+------=_INNER_01cc5f1d353fe77e5ede02ec--
+
+------=_MIX_ad7a9efe8231505171f22d87--
+
+------=_SIG_ad7a9efe8231505171f22d87
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MTQwNzAwMDBaMC8GCSqGSIb3DQEJBDEiBCAjvJg0IXUq0p8zHqKBt2k5uU5RzqA5LNzvJWvAQdpa
+3DA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQAYf3rhGSNTfDootwht8ddJNCtSmqNpYA1kZbRXB5J5lxw/JKYv
+K7oZArvb3dEj4gqh5cGnuD1pw1KrjO16CRrmx6f8zeJsLGQkZontTahs3dhTAcofhGBFKUAcFtyt
+8wz9uUYetC1fWMPt85+YLEy+AgFhqMyP4D+Bd6qLa1VLrvJdy1vPIfzj9noHjK9EsLWHgTfjRjot
+6/8CNcfGXxElzPI2s59OaJvBsxtT2p7TJKYf8RGqOBMwNHLvZy/X7aI8RkYG+l/h6P/9Uu0QQDRH
+a4TAs0LdaaKGDPh27zc0vD4jBU5luZSBcWm3PLupLrSuqtq8AS03NUo6opF5z7En
+
+------=_SIG_ad7a9efe8231505171f22d87--

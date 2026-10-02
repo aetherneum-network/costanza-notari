@@ -1,0 +1,23 @@
+{
+  "stale_files": [
+    "direzione/memo_cda.docx",
+    "email/riepilogo_2026-10-21.eml",
+    "lettere/lettera_accompagnamento_2026-10-21.docx",
+    "note/appunti_tesoreria.md",
+    "tesoreria/previsione_cassa_Q4.xlsx"
+  ],
+  "closed_by_owner": ["lettere/bozza_sollecito.md"],
+  "decoys": {
+    "lettere/lettera_accompagnamento_2026-10-15.docx": "G2 untouched since the change",
+    "tesoreria/snapshot_riepilogo_2026-10-10.xlsx": "G1 snapshot by name",
+    "archivio/lettera_2026-10-03.md": "G1 archive by name",
+    "email/risposta_con_citazione.eml": "G4 quoted reply",
+    "note/confronto.md": "G3 old and new side by side",
+    "note/riepilogo_versamenti.md": "G4 historical total",
+    "note/altro_fornitore.md": "G5 other counterparty",
+    "tesoreria/scadenziario_fornitori.xlsx": "G5 other dossier",
+    "tesoreria/importi_vicini.xlsx": "near numbers (3415.25, 13.415,20, 34152): no match at all",
+    "note/preventivo_bottiglie.md": "G5 same number, no link to the dossier"
+  },
+  "owners": ["amministrazione", "direzione", "tesoreria", "tesoreria@cantinebelvedere.example"]
+}

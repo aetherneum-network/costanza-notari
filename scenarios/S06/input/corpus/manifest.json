@@ -1,0 +1,21 @@
+{
+  "expected_envelopes": 4,
+  "files": [
+    {
+      "path": "envelopes/2026-10/PEC_S06_N1.eml",
+      "sha256": "ff2cb171716836fabf2339882399605f983b9ef6a19514ba1816ba43df02eb4c"
+    },
+    {
+      "path": "envelopes/2026-10/PEC_S06_N2.eml",
+      "sha256": "42246d85d8957791b70ac36888c2c42cd113efedcc2ab50a0a3d98f0db891244"
+    },
+    {
+      "path": "envelopes/2026-10/PEC_S06_N3.eml",
+      "sha256": "49b3b3abb1628c6f35a07e2f4060ba76f79d9e5911b91a0ff076946c8dbd8223"
+    },
+    {
+      "path": "envelopes/2026-10/PEC_S06_N4.eml",
+      "sha256": "938868f8d9ea75399f363b28191b6f56003542d245b00dcb034e75d1b2b5c6d3"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": "2026.09.30-1",
+  "kind": "sender_class",
+  "note": "Class of the TRANSMITTING address. Short-circuits first (ordered), then a weighted multi-class score. Accept only if best >= accept AND best - second >= margin; otherwise RECUPERARE. Seven classes: TARGET, COURT, TRANSMIT, LAWYER, BANK_THIRD_PARTY, BANK_CORPORATE, CORPORATE_PEC.",
+  "short_circuits": [
+    {"id": "SC-001", "when": {"debtor_address": true}, "then": {"class": "TARGET"},
+     "rationale": "the debtor's own PEC (internal forwards): structurally TARGET, never a counterparty",
+     "tests": [{"id": "SC-001-a", "input": {"addr": "protocollo@pec.fornaceaurelia.example", "display": "Fornace Aurelia S.r.l.", "content": ""}, "expect": {"class": "TARGET"}}]},
+    {"id": "SC-002", "when": {"domain_suffix": ["tribunale.example"]}, "then": {"class": "COURT"},
+     "rationale": "court registry domains are authoritative",
+     "tests": [{"id": "SC-002-a", "input": {"addr": "esecuzioni.civili@civile.tribunale.example", "display": "Tribunale di Esempio - Cancelleria", "content": ""}, "expect": {"class": "COURT"}}]}
+  ],
+  "classes": {
+    "COURT": {"domain_keywords": ["tribunale", "giustizia", "corteappello"], "localpart_keywords": ["cancelleria"], "display_keywords": ["tribunale", "cancelleria"]},
+    "LAWYER": {"domain_keywords": ["ordineavvocati", "avvocati", "studiolegale"], "localpart_keywords": ["avv.", "avvocat", "studiolegale"], "display_keywords": ["avv.", "avvocato", "studio legale"], "content_cues": ["\\bAvv\\.\\s+[A-Z]"]},
+    "TRANSMIT": {"domain_keywords": ["notifiche", "gateway", "recapito"], "localpart_keywords": ["notifiche", "noreply", "no-reply", "invii"], "display_keywords": ["notifiche", "gateway", "servizio di recapito"], "content_cues": ["trasmess[oa] (tramite|per il tramite)", "servizio (di )?notific"]},
+    "BANK_THIRD_PARTY": {"domain_keywords": ["banca", "credito", "bank"], "content_cues": ["terzo pignorato", "dichiarazione del terzo", "art\\.\\s*547"]},
+    "BANK_CORPORATE": {"domain_keywords": ["banca", "credito", "bank"], "content_cues": ["revoca degli affidamenti", "saldo debitore", "rientro dell['’]esposizione"]}
+  },
+  "corporate": {
+    "pec_domain_regex": "(^|\\.)pec\\.|legalmail|(^|\\.)pec$",
+    "corporate_localparts": ["amministrazione", "info", "ufficio", "contabilita", "crediti", "segreteria", "protocollo", "direzione", "notifica", "tributi", "legale"]
+  },
+  "weights": {"domain_keyword": 60, "localpart_keyword": 30, "display_keyword": 30, "content_cue": 40,
+              "corporate_pec_domain": 30, "corporate_localpart": 15, "legal_class_penalty": -50},
+  "thresholds": {"accept": 30, "margin": 15},
+  "thresholds_rationale": "accept 30: a certified (pec.) domain with no competing cue is, by elimination, the sender's corporate PEC. Changed from 40 to 30 after the first run on the development corpus (seed 20260930) - see CHANGELOG; the held-out corpus (seed 20261001) was never used for tuning.",
+  "tests": [
+    {"id": "SCS-001", "input": {"addr": "ilaria.moscardini@pec.ordineavvocati-esempio.example", "display": "Avv. Ilaria Moscardini", "content": "Avv. Ilaria Moscardini"}, "expect": {"class": "LAWYER"}},
+    {"id": "SCS-002", "input": {"addr": "notifiche@pec.notifichedigitali.example", "display": "Servizi Notifiche Digitali Esempio S.p.A.", "content": "Messaggio trasmesso tramite il servizio di notifica per conto dell'Avv. Ilaria Moscardini"}, "expect": {"class": "TRANSMIT"}},
+    {"id": "SCS-003", "input": {"addr": "legale@pec.bancaaurora.example", "display": "Banca Aurora Esempio S.p.A.", "content": "in qualità di terzo pignorato"}, "expect": {"class": "BANK_THIRD_PARTY"}},
+    {"id": "SCS-004", "input": {"addr": "legale@pec.bancaaurora.example", "display": "Banca Aurora Esempio S.p.A.", "content": "revoca degli affidamenti e saldo debitore"}, "expect": {"class": "BANK_CORPORATE"}},
+    {"id": "SCS-005", "input": {"addr": "legale@pec.bancaaurora.example", "display": "Banca Aurora Esempio S.p.A.", "content": "comunicazione generica"}, "expect": {"class": "RECUPERARE"}},
+    {"id": "SCS-006", "input": {"addr": "amministrazione@pec.tessituremonteverde.example", "display": "Tessiture Monteverde S.r.l.", "content": "DIFFIDA"}, "expect": {"class": "CORPORATE_PEC"}},
+    {"id": "SCS-007", "input": {"addr": "studio.olivieri@pec.professionisti.example", "display": "Studio Olivieri", "content": "Avv. Tancredi Olivieri"}, "expect": {"class": "RECUPERARE"}}
+  ]
+}

@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.eml binary
+*.p7m binary
+*.p7s binary
+*.pdf binary
+*.xlsx binary
+*.docx binary
+*.der binary

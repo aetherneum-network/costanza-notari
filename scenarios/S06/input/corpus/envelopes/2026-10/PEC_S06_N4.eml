@@ -1,0 +1,152 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Thu, 01 Oct 2026 11:00:00 +0200
+From: "Per conto di: direzione.esempio@pec.previdenza-esempio.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: direzione.esempio@pec.previdenza-esempio.example
+To: contabilita@pec.cantinebelvedere.example
+Subject: POSTA CERTIFICATA: Notifica avviso di addebito
+Message-ID: <opec-syn.20261001090000.90604@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0604.20261001090000@pec.previdenza-esempio.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_7357be00c6d56db8cc298e7c"
+
+This is an S/MIME signed message
+
+------=_SIG_7357be00c6d56db8cc298e7c
+Content-Type: multipart/mixed; boundary="----=_MIX_7357be00c6d56db8cc298e7c"
+
+------=_MIX_7357be00c6d56db8cc298e7c
+Content-Type: multipart/alternative; boundary="----=_ALT_7357be00c6d56db8cc298e7c"
+
+------=_ALT_7357be00c6d56db8cc298e7c
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 01/10/2026 alle ore 11:00:00 (+0200) il messaggio
+"Notifica avviso di addebito" =C3=A8 stato inviato da "direzione.esempio@pe=
+c.previdenza-esempio.example"
+indirizzato a:
+contabilita@pec.cantinebelvedere.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261001090000.90604@pec.gestore-uno.exa=
+mple
+
+------=_ALT_7357be00c6d56db8cc298e7c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 01/10/2026=
+ alle ore 11:00:00 (+0200) il messaggio<br/>"Notifica avviso di addebito" =
+=C3=A8 stato inviato da "direzione.esempio@pec.previdenza-esempio.example"<=
+br/>indirizzato a:<br/>contabilita@pec.cantinebelvedere.example<br/>Il mess=
+aggio originale =C3=A8 incluso in allegato.<br/>Identificativo messaggio: o=
+pec-syn.20261001090000.90604@pec.gestore-uno.example<br/></p></body></html>
+
+------=_ALT_7357be00c6d56db8cc298e7c--
+
+------=_MIX_7357be00c6d56db8cc298e7c
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmRpcmV6aW9uZS5lc2VtcGlvQHBlYy5wcmV2aWRlbnphLWVzZW1waW8uZXhh
+bXBsZTwvbWl0dGVudGU+DQogICAgPGRlc3RpbmF0YXJpIHRpcG89ImNlcnRpZmljYXRvIj5jb250
+YWJpbGl0YUBwZWMuY2FudGluZWJlbHZlZGVyZS5leGFtcGxlPC9kZXN0aW5hdGFyaT4NCiAgICA8
+cmlzcG9zdGU+ZGlyZXppb25lLmVzZW1waW9AcGVjLnByZXZpZGVuemEtZXNlbXBpby5leGFtcGxl
+PC9yaXNwb3N0ZT4NCiAgICA8b2dnZXR0bz5Ob3RpZmljYSBhdnZpc28gZGkgYWRkZWJpdG88L29n
+Z2V0dG8+DQogIDwvaW50ZXN0YXppb25lPg0KICA8ZGF0aT4NCiAgICA8Z2VzdG9yZS1lbWl0dGVu
+dGU+R0VTVE9SRSBQRUMgRVNFTVBJTyBTLlAuQS48L2dlc3RvcmUtZW1pdHRlbnRlPg0KICAgIDxk
+YXRhIHpvbmE9IiswMjAwIj4NCiAgICAgIDxnaW9ybm8+MDEvMTAvMjAyNjwvZ2lvcm5vPg0KICAg
+ICAgPG9yYT4xMTowMDowMDwvb3JhPg0KICAgIDwvZGF0YT4NCiAgICA8aWRlbnRpZmljYXRpdm8+
+b3BlYy1zeW4uMjAyNjEwMDEwOTAwMDAuOTA2MDRAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGU8L2lk
+ZW50aWZpY2F0aXZvPg0KICAgIDxtc2dpZD4mbHQ7U0NOLTA2MDQuMjAyNjEwMDEwOTAwMDBAcGVj
+LnByZXZpZGVuemEtZXNlbXBpby5leGFtcGxlJmd0OzwvbXNnaWQ+DQogIDwvZGF0aT4NCjwvcG9z
+dGFjZXJ0Pg0K
+
+------=_MIX_7357be00c6d56db8cc298e7c
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Thu, 01 Oct 2026 11:00:00 +0200
+From: "Istituto Esempio Previdenza" <direzione.esempio@pec.previdenza-esempio.example>
+To: contabilita@pec.cantinebelvedere.example
+Subject: Notifica avviso di addebito
+Message-ID: <SCN-0604.20261001090000@pec.previdenza-esempio.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_61125464a3748a8ac3da5b6d"
+
+------=_INNER_61125464a3748a8ac3da5b6d
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Si notifica il documento allegato.
+------=_INNER_61125464a3748a8ac3da5b6d
+Content-Type: application/pdf; name="avviso_addebito.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="avviso_addebito.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggNDM2IC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42n1STY/TQAy951f4
+uKBtO0lpWfaWpQFFgrZqsxWgvbiJW4yScZhMcuivx02gXWmB00zsN34fzkMWTD6EEBrIDkE4hexT
+MDNwZ/S7CG7SbZZmj9kKkm3yeZ2uYL1JdukiWX6LX0H2I8heBzcLdnRisQRrJx3bnLEkKBiShqqa
+5QK8XOLdLt2uYJFCvFgkD6nOX45h+3U5infxaG7Mmwt0w4cx1A4953iv7CN98RcEei/3kHzpW1BQ
+CVMzMe8mkYnmL/nfi/WO961nHU0dF2RPKpqhkK4vkgMuzwdLIWDC85wZjCCM+tst5FKpRYSO3P63
+W8xzch4rsv5q+axEH5lZr2R8qadVLc7LQKjKnyIN/O34LjK3xjyDqQg8DjPVVUdATUNOj8OBvG9R
+y9pzAo020HqEI4uz6gTLEsGK54Mmd52Y9OifLbp/o6Fun6bz6A9X7aSWRsFS68nDqtla1NAAS/jI
+bcE59amX2ImTK11GrmKFt6XnSnpIZCZhH+i8z1l5Heffmc4MGqOumvh0woEGj9RJif6Zg//8kroh
+TWxDTS22wT2Xgyg1kFPB180k2S8LweeKCmVuZHN0cmVhbQplbmRvYmoKNSAwIG9iago8PCAvVHlw
+ZSAvUGFnZSAvUGFyZW50IDIgMCBSIC9NZWRpYUJveCBbMCAwIDU5NSA4NDJdIC9SZXNvdXJjZXMg
+PDwgL0ZvbnQgPDwgL0YxIDMgMCBSID4+ID4+IC9Db250ZW50cyA0IDAgUiA+PgplbmRvYmoKeHJl
+ZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1IDAwMDAwIG4gCjAwMDAwMDAwNjQg
+MDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAowMDAwMDAwMjE4IDAwMDAwIG4gCjAwMDAwMDA3
+MjYgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA2IC9Sb290IDEgMCBSID4+CnN0YXJ0eHJlZgo4
+NTIKJSVFT0YK
+
+------=_INNER_61125464a3748a8ac3da5b6d--
+
+------=_MIX_7357be00c6d56db8cc298e7c--
+
+------=_SIG_7357be00c6d56db8cc298e7c
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MDEwOTAwMDBaMC8GCSqGSIb3DQEJBDEiBCAmrMslRshTDLQK4OrJFX/VmvBLQDlPcGqtmUPVobkx
+5DA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQC1VMRKZaSd8CH20TJ4HGu5OV3oXZSkktsqHu6wZfDwHIJdyZ/G
+yML+Xp8RHakiTVH9ysfYCgglnRLowYEVLru5Zt9/NJ1aLtGUDfwGRnfIk8dBHD8jYVhHKAyPvURb
+dLgtiBjZiy12h0ve/BrbZaBL8FCJfeAm68r5Rsyz/rSYTNZbpVfkVzLDtFxopf0X7ukIUuxJsPqD
+zz2oA9gqs5kXM3GSQOgyshfz5arcRb6lMkSZ9Xv0EpV2XcnGzq1+RXAF/WxfyrOQAAhnrde02K/J
+/UPmSGamoj4N2cMhidrpCeqbYay4rIaZylv+DH8dYXvZawg+JFwU9PW3o+Cn26W2
+
+------=_SIG_7357be00c6d56db8cc298e7c--

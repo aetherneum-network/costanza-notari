@@ -1,0 +1,21 @@
+{
+  "synthetic": "Scenario S05 - all entities fictitious",
+  "seed": 20260930,
+  "as_of": "2026-10-21T09:40:00+02:00",
+  "debtor": {
+    "canonical": "OFFICINE LAGORAI S.R.L.",
+    "aliases": [
+      "Officine Lagorai S.r.l.",
+      "Officine Lagorai srl"
+    ],
+    "pec": [
+      "officinelagorai@pec.officinelagorai.example",
+      "crediti@pec.officinelagorai.example"
+    ],
+    "domains": [
+      "officinelagorai.example"
+    ]
+  },
+  "trust_anchors": "corpus/out/testca/trust",
+  "chunk_size": 40
+}

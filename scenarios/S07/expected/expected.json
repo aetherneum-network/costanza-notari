@@ -1,0 +1,9 @@
+{
+  "rule": "R-014 (area.json): cartella_pagamento -> area collection  ==>  area tax",
+  "diff": [
+    ["N01", "area", "collection", "tax", "R-014", "R-014"],
+    ["N02", "area", "collection", "tax", "R-014", "R-014"],
+    ["N03", "area", "collection", "tax", "R-014", "R-014"],
+    ["N04", "area", "collection", "tax", "R-014", "R-014"]
+  ]
+}

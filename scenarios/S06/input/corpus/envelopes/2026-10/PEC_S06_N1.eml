@@ -1,0 +1,150 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Fri, 16 Oct 2026 10:00:00 +0200
+From: "Per conto di: amministrazione@pec.carpenterierovere.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: amministrazione@pec.carpenterierovere.example
+To: contabilita@pec.cantinebelvedere.example
+Subject: POSTA CERTIFICATA: Diffida e messa in mora
+Message-ID: <opec-syn.20261016080000.90601@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0601.20261016080000@pec.carpenterierovere.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_db0f6f5047d1dc45e440bd34"
+
+This is an S/MIME signed message
+
+------=_SIG_db0f6f5047d1dc45e440bd34
+Content-Type: multipart/mixed; boundary="----=_MIX_db0f6f5047d1dc45e440bd34"
+
+------=_MIX_db0f6f5047d1dc45e440bd34
+Content-Type: multipart/alternative; boundary="----=_ALT_db0f6f5047d1dc45e440bd34"
+
+------=_ALT_db0f6f5047d1dc45e440bd34
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 16/10/2026 alle ore 10:00:00 (+0200) il messaggio
+"Diffida e messa in mora" =C3=A8 stato inviato da "amministrazione@pec.carp=
+enterierovere.example"
+indirizzato a:
+contabilita@pec.cantinebelvedere.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261016080000.90601@pec.gestore-uno.exa=
+mple
+
+------=_ALT_db0f6f5047d1dc45e440bd34
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 16/10/2026=
+ alle ore 10:00:00 (+0200) il messaggio<br/>"Diffida e messa in mora" =C3=
+=A8 stato inviato da "amministrazione@pec.carpenterierovere.example"<br/>in=
+dirizzato a:<br/>contabilita@pec.cantinebelvedere.example<br/>Il messaggio =
+originale =C3=A8 incluso in allegato.<br/>Identificativo messaggio: opec-sy=
+n.20261016080000.90601@pec.gestore-uno.example<br/></p></body></html>
+
+------=_ALT_db0f6f5047d1dc45e440bd34--
+
+------=_MIX_db0f6f5047d1dc45e440bd34
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmFtbWluaXN0cmF6aW9uZUBwZWMuY2FycGVudGVyaWVyb3ZlcmUuZXhhbXBs
+ZTwvbWl0dGVudGU+DQogICAgPGRlc3RpbmF0YXJpIHRpcG89ImNlcnRpZmljYXRvIj5jb250YWJp
+bGl0YUBwZWMuY2FudGluZWJlbHZlZGVyZS5leGFtcGxlPC9kZXN0aW5hdGFyaT4NCiAgICA8cmlz
+cG9zdGU+YW1taW5pc3RyYXppb25lQHBlYy5jYXJwZW50ZXJpZXJvdmVyZS5leGFtcGxlPC9yaXNw
+b3N0ZT4NCiAgICA8b2dnZXR0bz5EaWZmaWRhIGUgbWVzc2EgaW4gbW9yYTwvb2dnZXR0bz4NCiAg
+PC9pbnRlc3RhemlvbmU+DQogIDxkYXRpPg0KICAgIDxnZXN0b3JlLWVtaXR0ZW50ZT5HRVNUT1JF
+IFBFQyBFU0VNUElPIFMuUC5BLjwvZ2VzdG9yZS1lbWl0dGVudGU+DQogICAgPGRhdGEgem9uYT0i
+KzAyMDAiPg0KICAgICAgPGdpb3Jubz4xNi8xMC8yMDI2PC9naW9ybm8+DQogICAgICA8b3JhPjEw
+OjAwOjAwPC9vcmE+DQogICAgPC9kYXRhPg0KICAgIDxpZGVudGlmaWNhdGl2bz5vcGVjLXN5bi4y
+MDI2MTAxNjA4MDAwMC45MDYwMUBwZWMuZ2VzdG9yZS11bm8uZXhhbXBsZTwvaWRlbnRpZmljYXRp
+dm8+DQogICAgPG1zZ2lkPiZsdDtTQ04tMDYwMS4yMDI2MTAxNjA4MDAwMEBwZWMuY2FycGVudGVy
+aWVyb3ZlcmUuZXhhbXBsZSZndDs8L21zZ2lkPg0KICA8L2RhdGk+DQo8L3Bvc3RhY2VydD4NCg==
+
+------=_MIX_db0f6f5047d1dc45e440bd34
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Fri, 16 Oct 2026 10:00:00 +0200
+From: "Carpenterie Rovere S.r.l." <amministrazione@pec.carpenterierovere.example>
+To: contabilita@pec.cantinebelvedere.example
+Subject: Diffida e messa in mora
+Message-ID: <SCN-0601.20261016080000@pec.carpenterierovere.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_0e42471a8a315a3781780228"
+
+------=_INNER_0e42471a8a315a3781780228
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+In allegato la comunicazione in oggetto.
+------=_INNER_0e42471a8a315a3781780228
+Content-Type: application/pdf; name="diffida.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="diffida.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggNDA1IC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42nVSTY/aMBS851fM
+cVtBcCiltLcsGCkSy6IQcerFShz6KsdObYff3xfYhZWq3t7XvJk39nOVzLYZMoGqTbIvqHbJV4GV
+4LxJntZ5eZD7SpaFRPl6kqXEMS3TXfoJ1e+k+pw83YNNsd0WmxwSL/J4zFHs8fJa5vd+SW2K3qtI
+tfqBQzldl9OlENm/m469jjE1Gut8XxV7iWe5O8nNjfyQ5unkPurJ6AupzqH+pWEUWhXj4BVsirlY
+odEG2WImFrO5mC8nCLVqhqhAt/LyrewpDIbLytaOwWSDMzz2uLIwiNp3ZDWcpzNZ5ZlV26jRUggq
+OiiD+WKWietKJr5o3hO1bbQPhDD02o9jjTIss/c6jOgHw9pZfGjgRGiobam5XqdRuxApDtesdb5T
+5kZPFh1rnnBwoahs4xipeNzzUb0b6fWdhBHe4c9AtqGacCbnLY2S2IGajRxXutG0j0o4Dq7rFOvB
+zzl/jO/p6puYCPEQL4PuenITZMt3Bx6H/e8LYQq21eiz4qf2qn8jVMx5BcvqL3NYyMUKZW5kc3Ry
+ZWFtCmVuZG9iago1IDAgb2JqCjw8IC9UeXBlIC9QYWdlIC9QYXJlbnQgMiAwIFIgL01lZGlhQm94
+IFswIDAgNTk1IDg0Ml0gL1Jlc291cmNlcyA8PCAvRm9udCA8PCAvRjEgMyAwIFIgPj4gPj4gL0Nv
+bnRlbnRzIDQgMCBSID4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAw
+MDAwMTUgMDAwMDAgbiAKMDAwMDAwMDA2NCAwMDAwMCBuIAowMDAwMDAwMTIxIDAwMDAwIG4gCjAw
+MDAwMDAyMTggMDAwMDAgbiAKMDAwMDAwMDY5NSAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDYg
+L1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjgyMQolJUVPRgo=
+
+------=_INNER_0e42471a8a315a3781780228--
+
+------=_MIX_db0f6f5047d1dc45e440bd34--
+
+------=_SIG_db0f6f5047d1dc45e440bd34
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MTYwODAwMDBaMC8GCSqGSIb3DQEJBDEiBCBmdJdnMnOrxULLvATqqFMkTMz7y/4vgQ8xBIQIzlbh
+oDA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQBt0b73PvHALqZGyJJpZEKT2+sg4NToB8xjnYnvlFFd/b7Fx+f7
+V7w/BZdvAS0R/NlBIJ644TeVaFaasgvnvscW1no0smg+jXm5f/c/6wHS7zDJLKZGc8Odn4WzFogR
+x0ogzE9nBc2l/jQGM+KEvUip24DL2iW9xG9bJG2z2V/zOsQpyzlGzXPIcNWe5TIyotNGD0w5YK5s
+h7Uzb4pWeUHpzGgJ7WkqP59G1m+CQdu7KOV3cI7/NeMMAYUqBeZZF/LW0+oH2Fbm/qD6ZN0Z4Ivp
+EnRKRYozMzi33uRvzCeEGyKrOmNEW/5WzFpuNN5Xsh9dUod6kIvx+ChZI1mY8nP1
+
+------=_SIG_db0f6f5047d1dc45e440bd34--

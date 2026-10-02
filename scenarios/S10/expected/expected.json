@@ -1,0 +1,10 @@
+{
+  "first_run": {
+    "message": "CATCH-UP: host was off; recovered 1 missed window(s): 2026-10-20",
+    "windows": [{"window": "2026-10-20", "catch_up": true}]
+  },
+  "judgement_2026_10_20": ["window 2026-10-20 (UTC): 2 PEC deliveries classified and indexed"],
+  "later_same_day": {"windows": [], "catch_up": false},
+  "next_night": {"windows": ["2026-10-21"], "catch_up": false},
+  "last_full_window_after": "2026-10-21"
+}

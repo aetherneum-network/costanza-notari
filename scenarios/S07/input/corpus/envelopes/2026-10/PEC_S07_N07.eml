@@ -1,0 +1,150 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Fri, 09 Oct 2026 10:00:00 +0200
+From: "Per conto di: notifica.cartelle@pec.agenzia-riscossione.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: notifica.cartelle@pec.agenzia-riscossione.example
+To: amministrazione@pec.tessituremonteverde.example
+Subject: POSTA CERTIFICATA: Esito istanza di rateizzazione
+Message-ID: <opec-syn.20261009080000.90707@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0707.20261009080000@pec.agenzia-riscossione.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_da769190676728d0c108a241"
+
+This is an S/MIME signed message
+
+------=_SIG_da769190676728d0c108a241
+Content-Type: multipart/mixed; boundary="----=_MIX_da769190676728d0c108a241"
+
+------=_MIX_da769190676728d0c108a241
+Content-Type: multipart/alternative; boundary="----=_ALT_da769190676728d0c108a241"
+
+------=_ALT_da769190676728d0c108a241
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 09/10/2026 alle ore 10:00:00 (+0200) il messaggio
+"Esito istanza di rateizzazione" =C3=A8 stato inviato da "notifica.cartelle=
+@pec.agenzia-riscossione.example"
+indirizzato a:
+amministrazione@pec.tessituremonteverde.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261009080000.90707@pec.gestore-uno.exa=
+mple
+
+------=_ALT_da769190676728d0c108a241
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 09/10/2026=
+ alle ore 10:00:00 (+0200) il messaggio<br/>"Esito istanza di rateizzazione=
+" =C3=A8 stato inviato da "notifica.cartelle@pec.agenzia-riscossione.exampl=
+e"<br/>indirizzato a:<br/>amministrazione@pec.tessituremonteverde.example<b=
+r/>Il messaggio originale =C3=A8 incluso in allegato.<br/>Identificativo me=
+ssaggio: opec-syn.20261009080000.90707@pec.gestore-uno.example<br/></p></bo=
+dy></html>
+
+------=_ALT_da769190676728d0c108a241--
+
+------=_MIX_da769190676728d0c108a241
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPm5vdGlmaWNhLmNhcnRlbGxlQHBlYy5hZ2VuemlhLXJpc2Nvc3Npb25lLmV4
+YW1wbGU8L21pdHRlbnRlPg0KICAgIDxkZXN0aW5hdGFyaSB0aXBvPSJjZXJ0aWZpY2F0byI+YW1t
+aW5pc3RyYXppb25lQHBlYy50ZXNzaXR1cmVtb250ZXZlcmRlLmV4YW1wbGU8L2Rlc3RpbmF0YXJp
+Pg0KICAgIDxyaXNwb3N0ZT5ub3RpZmljYS5jYXJ0ZWxsZUBwZWMuYWdlbnppYS1yaXNjb3NzaW9u
+ZS5leGFtcGxlPC9yaXNwb3N0ZT4NCiAgICA8b2dnZXR0bz5Fc2l0byBpc3RhbnphIGRpIHJhdGVp
+enphemlvbmU8L29nZ2V0dG8+DQogIDwvaW50ZXN0YXppb25lPg0KICA8ZGF0aT4NCiAgICA8Z2Vz
+dG9yZS1lbWl0dGVudGU+R0VTVE9SRSBQRUMgRVNFTVBJTyBTLlAuQS48L2dlc3RvcmUtZW1pdHRl
+bnRlPg0KICAgIDxkYXRhIHpvbmE9IiswMjAwIj4NCiAgICAgIDxnaW9ybm8+MDkvMTAvMjAyNjwv
+Z2lvcm5vPg0KICAgICAgPG9yYT4xMDowMDowMDwvb3JhPg0KICAgIDwvZGF0YT4NCiAgICA8aWRl
+bnRpZmljYXRpdm8+b3BlYy1zeW4uMjAyNjEwMDkwODAwMDAuOTA3MDdAcGVjLmdlc3RvcmUtdW5v
+LmV4YW1wbGU8L2lkZW50aWZpY2F0aXZvPg0KICAgIDxtc2dpZD4mbHQ7U0NOLTA3MDcuMjAyNjEw
+MDkwODAwMDBAcGVjLmFnZW56aWEtcmlzY29zc2lvbmUuZXhhbXBsZSZndDs8L21zZ2lkPg0KICA8
+L2RhdGk+DQo8L3Bvc3RhY2VydD4NCg==
+
+------=_MIX_da769190676728d0c108a241
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Fri, 09 Oct 2026 10:00:00 +0200
+From: "Agenzia Esempio Riscossione" <notifica.cartelle@pec.agenzia-riscossione.example>
+To: amministrazione@pec.tessituremonteverde.example
+Subject: Esito istanza di rateizzazione
+Message-ID: <SCN-0707.20261009080000@pec.agenzia-riscossione.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_cea84ac960a49eebe81fa2ce"
+
+------=_INNER_cea84ac960a49eebe81fa2ce
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Si notifica il documento allegato.
+------=_INNER_cea84ac960a49eebe81fa2ce
+Content-Type: application/pdf; name="atto_7.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="atto_7.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggMjYzIC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42n2QQU+EMBCF7/yK
+Oa5GYMpGV/dW3WqasEBKNYZ4qdBNagolUP39Im7cEI23mcz3Zt6bWxnE9wQIgjwEZA0yDS4RrnHq
+m2BFH1hWcQqsZPuC5yB4eZeXJc8zdgbyLZDnweqnKDjNcthxEFQyXlW0WnDCHCLoB+VNrbZQiJCK
+cIO4WQLKe7cF9jyPoNEW8CYmGCeYXP0+yTuvR6+8GsykkmyyJh8Fg32eSfbExI5BGYkojU6KtneD
+d9C4j/evSy/JFBUvEP9AtLUKJsPqiJEIkyWaqimRab8pGGvVaDAW1hgTMls+of+8EkLgFoQee9eN
+6tVYPQfvB1frxrS6825ew+QnwaJzjAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUg
+L1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUgODQyXSAvUmVzb3VyY2VzIDw8
+IC9Gb250IDw8IC9GMSAzIDAgUiA+PiA+PiAvQ29udGVudHMgNCAwIFIgPj4KZW5kb2JqCnhyZWYK
+MCA2CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAwMDY0IDAw
+MDAwIG4gCjAwMDAwMDAxMjEgMDAwMDAgbiAKMDAwMDAwMDIxOCAwMDAwMCBuIAowMDAwMDAwNTUz
+IDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNiAvUm9vdCAxIDAgUiA+PgpzdGFydHhyZWYKNjc5
+CiUlRU9GCg==
+
+------=_INNER_cea84ac960a49eebe81fa2ce--
+
+------=_MIX_da769190676728d0c108a241--
+
+------=_SIG_da769190676728d0c108a241
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MDkwODAwMDBaMC8GCSqGSIb3DQEJBDEiBCCeLdJx7KyWA96gIk8jbCExDwfPKXlxKbR1Bufx/+gL
+GjA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQDMPHz/Mxrvn7Wm+f0DTdy06GXty8b+n8Qa8+gqYDX3C7L5nvzX
+jY7/LxB98QQYpjy4UkV8nGK/IJs3+SaxqnjSza3yR1otNEYC8YiwYK3KnwSKlHP9n6hP0DmWOQYh
+g2LqTOM4kcA2fn+ICtm61WaA5VJX5ate0PDS0UoR9+8Ux9Q91GXSgab6pyvn+ayubbr0nF/mivcA
+8hXyLjinQr+Y6Zex6JmzOPkqNcUEp2LrA2/K1HJfrOlL7wpO0ev/Q3cmG33ks2AU3OFs+vfYUsL8
+2ZUM8HA7xkNc+EuuwoukZ31U1es6qBWnEgRxi8kjTQUEQpWkMiBdyOJVFfr7jF/O
+
+------=_SIG_da769190676728d0c108a241--

@@ -1,0 +1,19 @@
+{
+  "version": "2026.09.30-1",
+  "kind": "holidays",
+  "note": "Italian national public holidays (L. 260/1949 and later amendments). Sundays are always non-working. Local patron-saint days of the court's seat are NOT modelled [TO CONFIRM with counsel].",
+  "easter_monday": true,
+  "fixed": [
+    {"mm_dd": "01-01", "name": "Capodanno"},
+    {"mm_dd": "01-06", "name": "Epifania"},
+    {"mm_dd": "04-25", "name": "Festa della Liberazione"},
+    {"mm_dd": "05-01", "name": "Festa del Lavoro"},
+    {"mm_dd": "06-02", "name": "Festa della Repubblica"},
+    {"mm_dd": "08-15", "name": "Assunzione"},
+    {"mm_dd": "10-04", "name": "San Francesco d'Assisi", "since_year": 2026, "to_confirm": "[TO CONFIRM with counsel] 4 October treated as a national holiday from 2026 (2025 reinstatement law) - statute reference and effective year to verify"},
+    {"mm_dd": "11-01", "name": "Ognissanti"},
+    {"mm_dd": "12-08", "name": "Immacolata Concezione"},
+    {"mm_dd": "12-25", "name": "Natale"},
+    {"mm_dd": "12-26", "name": "Santo Stefano"}
+  ]
+}

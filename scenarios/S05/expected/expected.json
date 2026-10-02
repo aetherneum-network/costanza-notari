@@ -1,0 +1,26 @@
+{
+  "envelopes": {
+    "envelopes/2026-10/PEC_S05_E1.eml": {
+      "sender_class": "TRANSMIT",
+      "transmitter_entity": "SERVIZI NOTIFICHE DIGITALI ESEMPIO S.P.A.",
+      "author_entity": "ILARIA MOSCARDINI (AVV.)",
+      "party_entity": "CARPENTERIE ROVERE S.R.L.",
+      "counterparty_channel": "amministrazione@pec.carpenterierovere.example"
+    },
+    "envelopes/2026-10/PEC_S05_E2.eml": {
+      "sender_class": "LAWYER",
+      "transmitter_entity": "ILARIA MOSCARDINI (AVV.)",
+      "author_entity": "ILARIA MOSCARDINI (AVV.)",
+      "party_entity": "AUTOTRASPORTI GHIAIOLA S.R.L.",
+      "counterparty_channel": "RECUPERARE"
+    }
+  },
+  "authorship": {
+    "RCPT_chunk-07_ARC-0231.json": "consolidator",
+    "handoff_consolidator_ARC-0232.json": "chunk-02",
+    "consolidator_ARC-0233.json": "chunk-03",
+    "chunk-04_receipt_ARC-0234.json": "consolidator",
+    "ARC-0235_by_chunk-05.json": "consolidator",
+    "reply_from_consolidator_ARC-0236.json": "chunk-06"
+  }
+}

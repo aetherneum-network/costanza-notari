@@ -1,0 +1,147 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Fri, 16 Oct 2026 12:00:00 +0200
+From: "Per conto di: contabilita@pec.cantinebelvedere.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: contabilita@pec.cantinebelvedere.example
+To: amministrazione@pec.tessituremonteverde.example
+Subject: POSTA CERTIFICATA: Sollecito di pagamento
+Message-ID: <opec-syn.20261016100000.90712@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0712.20261016100000@pec.cantinebelvedere.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_a2f2e9d4de2fb3ea1a4243d8"
+
+This is an S/MIME signed message
+
+------=_SIG_a2f2e9d4de2fb3ea1a4243d8
+Content-Type: multipart/mixed; boundary="----=_MIX_a2f2e9d4de2fb3ea1a4243d8"
+
+------=_MIX_a2f2e9d4de2fb3ea1a4243d8
+Content-Type: multipart/alternative; boundary="----=_ALT_a2f2e9d4de2fb3ea1a4243d8"
+
+------=_ALT_a2f2e9d4de2fb3ea1a4243d8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 16/10/2026 alle ore 12:00:00 (+0200) il messaggio
+"Sollecito di pagamento" =C3=A8 stato inviato da "contabilita@pec.cantinebe=
+lvedere.example"
+indirizzato a:
+amministrazione@pec.tessituremonteverde.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261016100000.90712@pec.gestore-uno.exa=
+mple
+
+------=_ALT_a2f2e9d4de2fb3ea1a4243d8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 16/10/2026=
+ alle ore 12:00:00 (+0200) il messaggio<br/>"Sollecito di pagamento" =C3=A8=
+ stato inviato da "contabilita@pec.cantinebelvedere.example"<br/>indirizzat=
+o a:<br/>amministrazione@pec.tessituremonteverde.example<br/>Il messaggio o=
+riginale =C3=A8 incluso in allegato.<br/>Identificativo messaggio: opec-syn=
+.20261016100000.90712@pec.gestore-uno.example<br/></p></body></html>
+
+------=_ALT_a2f2e9d4de2fb3ea1a4243d8--
+
+------=_MIX_a2f2e9d4de2fb3ea1a4243d8
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmNvbnRhYmlsaXRhQHBlYy5jYW50aW5lYmVsdmVkZXJlLmV4YW1wbGU8L21p
+dHRlbnRlPg0KICAgIDxkZXN0aW5hdGFyaSB0aXBvPSJjZXJ0aWZpY2F0byI+YW1taW5pc3RyYXpp
+b25lQHBlYy50ZXNzaXR1cmVtb250ZXZlcmRlLmV4YW1wbGU8L2Rlc3RpbmF0YXJpPg0KICAgIDxy
+aXNwb3N0ZT5jb250YWJpbGl0YUBwZWMuY2FudGluZWJlbHZlZGVyZS5leGFtcGxlPC9yaXNwb3N0
+ZT4NCiAgICA8b2dnZXR0bz5Tb2xsZWNpdG8gZGkgcGFnYW1lbnRvPC9vZ2dldHRvPg0KICA8L2lu
+dGVzdGF6aW9uZT4NCiAgPGRhdGk+DQogICAgPGdlc3RvcmUtZW1pdHRlbnRlPkdFU1RPUkUgUEVD
+IEVTRU1QSU8gUy5QLkEuPC9nZXN0b3JlLWVtaXR0ZW50ZT4NCiAgICA8ZGF0YSB6b25hPSIrMDIw
+MCI+DQogICAgICA8Z2lvcm5vPjE2LzEwLzIwMjY8L2dpb3Jubz4NCiAgICAgIDxvcmE+MTI6MDA6
+MDA8L29yYT4NCiAgICA8L2RhdGE+DQogICAgPGlkZW50aWZpY2F0aXZvPm9wZWMtc3luLjIwMjYx
+MDE2MTAwMDAwLjkwNzEyQHBlYy5nZXN0b3JlLXVuby5leGFtcGxlPC9pZGVudGlmaWNhdGl2bz4N
+CiAgICA8bXNnaWQ+Jmx0O1NDTi0wNzEyLjIwMjYxMDE2MTAwMDAwQHBlYy5jYW50aW5lYmVsdmVk
+ZXJlLmV4YW1wbGUmZ3Q7PC9tc2dpZD4NCiAgPC9kYXRpPg0KPC9wb3N0YWNlcnQ+DQo=
+
+------=_MIX_a2f2e9d4de2fb3ea1a4243d8
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Fri, 16 Oct 2026 12:00:00 +0200
+From: "Cantine Belvedere S.p.A." <contabilita@pec.cantinebelvedere.example>
+To: amministrazione@pec.tessituremonteverde.example
+Subject: Sollecito di pagamento
+Message-ID: <SCN-0712.20261016100000@pec.cantinebelvedere.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_6dfdd9b4bf8478d93d83cc71"
+
+------=_INNER_6dfdd9b4bf8478d93d83cc71
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+In allegato la comunicazione in oggetto.
+------=_INNER_6dfdd9b4bf8478d93d83cc71
+Content-Type: application/pdf; name="sollecito.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="sollecito.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggMjE4IC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42nWPPU+EQBiE+/0V
+U55GVkAvqB1wqyFBjnDrVTZv+IivgV2yLI2/XmJxFsZuJpNnMpNpcfscIQqhBxHdQZdiH+Ih3Hwn
+dnla6aJSyFR5VgfVKJxkLVN5Bf0p9LXYXcTpWJYqL/QRhwJ1+pK+qkofL3HDg8TsyHNLT6ibIM+C
+JIziv0VnhuPWuo5psmg/eoyEgbxfHcFIJAnm3mE14Gm2zlt0jPd4GxzL6H5/8xhu/LKOnkBm6yGw
+Wey4evpd/d8tBHgbBm7ZIp0mNrx4R19sTf+DKv0NDcVToQplbmRzdHJlYW0KZW5kb2JqCjUgMCBv
+YmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUgODQyXSAv
+UmVzb3VyY2VzIDw8IC9Gb250IDw8IC9GMSAzIDAgUiA+PiA+PiAvQ29udGVudHMgNCAwIFIgPj4K
+ZW5kb2JqCnhyZWYKMCA2CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAxNSAwMDAwMCBuIAow
+MDAwMDAwMDY0IDAwMDAwIG4gCjAwMDAwMDAxMjEgMDAwMDAgbiAKMDAwMDAwMDIxOCAwMDAwMCBu
+IAowMDAwMDAwNTA4IDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNiAvUm9vdCAxIDAgUiA+Pgpz
+dGFydHhyZWYKNjM0CiUlRU9GCg==
+
+------=_INNER_6dfdd9b4bf8478d93d83cc71--
+
+------=_MIX_a2f2e9d4de2fb3ea1a4243d8--
+
+------=_SIG_a2f2e9d4de2fb3ea1a4243d8
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MTYxMDAwMDBaMC8GCSqGSIb3DQEJBDEiBCCRrwI0tszNFb9d+HXmMo5vZs5lTLtpKFxDIpYQIy6H
++TA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQCPsZYY+/zwE6E/eIEfIPOmL5wSCUmqCfftmTO+wt4FH/Elrs+b
+4o4FIrijINOMbwLsEs2Quz5URnua3ex1yhsSdNWz2Y6JJXbyYASW6CLJ0F2c7Be8FVbUIgVksZax
+fp4JWOJMCFC1g8pgz6RWwiZGBwGmBsDjD0RF7dTOzt8yW+kKaJu4BJ2nsKSUgdgMufauSjJ3UPWv
+KpBvabqoHB3MzdKUi6F/6B196zetxZWbiJuemI7GXRh1G4nrt4jf1/maw5jrRqDvn+xN/l54snjp
+6YcA6LT2NZs621I9gBKLCKhgPNk0/OjUXojy3FuxjGp2ZTo8UmThGi3idHFmTsSQ
+
+------=_SIG_a2f2e9d4de2fb3ea1a4243d8--

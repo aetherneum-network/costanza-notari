@@ -1,0 +1,13 @@
+{
+  "expected_envelopes": 2,
+  "files": [
+    {
+      "path": "envelopes/2026-10/PEC_S05_E1.eml",
+      "sha256": "6c319715af60a07ee3ff73197bb7988ea1c0c0e60d087840a2e02a983ebddf88"
+    },
+    {
+      "path": "envelopes/2026-10/PEC_S05_E2.eml",
+      "sha256": "8c7680184ef48268be3cf47feec4d56c91a5e01b5c2caffd8dbc39f03fa8669a"
+    }
+  ]
+}

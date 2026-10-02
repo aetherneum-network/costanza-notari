@@ -1,0 +1,153 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Fri, 02 Oct 2026 10:00:00 +0200
+From: "Per conto di: notifica.cartelle@pec.agenzia-riscossione.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: notifica.cartelle@pec.agenzia-riscossione.example
+To: contabilita@pec.cantinebelvedere.example
+Subject: POSTA CERTIFICATA: Esito istanza di rateizzazione
+Message-ID: <opec-syn.20261002080000.90602@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0602.20261002080000@pec.agenzia-riscossione.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_26600ed13e416915f8280910"
+
+This is an S/MIME signed message
+
+------=_SIG_26600ed13e416915f8280910
+Content-Type: multipart/mixed; boundary="----=_MIX_26600ed13e416915f8280910"
+
+------=_MIX_26600ed13e416915f8280910
+Content-Type: multipart/alternative; boundary="----=_ALT_26600ed13e416915f8280910"
+
+------=_ALT_26600ed13e416915f8280910
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 02/10/2026 alle ore 10:00:00 (+0200) il messaggio
+"Esito istanza di rateizzazione" =C3=A8 stato inviato da "notifica.cartelle=
+@pec.agenzia-riscossione.example"
+indirizzato a:
+contabilita@pec.cantinebelvedere.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261002080000.90602@pec.gestore-uno.exa=
+mple
+
+------=_ALT_26600ed13e416915f8280910
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 02/10/2026=
+ alle ore 10:00:00 (+0200) il messaggio<br/>"Esito istanza di rateizzazione=
+" =C3=A8 stato inviato da "notifica.cartelle@pec.agenzia-riscossione.exampl=
+e"<br/>indirizzato a:<br/>contabilita@pec.cantinebelvedere.example<br/>Il m=
+essaggio originale =C3=A8 incluso in allegato.<br/>Identificativo messaggio=
+: opec-syn.20261002080000.90602@pec.gestore-uno.example<br/></p></body></ht=
+ml>
+
+------=_ALT_26600ed13e416915f8280910--
+
+------=_MIX_26600ed13e416915f8280910
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPm5vdGlmaWNhLmNhcnRlbGxlQHBlYy5hZ2VuemlhLXJpc2Nvc3Npb25lLmV4
+YW1wbGU8L21pdHRlbnRlPg0KICAgIDxkZXN0aW5hdGFyaSB0aXBvPSJjZXJ0aWZpY2F0byI+Y29u
+dGFiaWxpdGFAcGVjLmNhbnRpbmViZWx2ZWRlcmUuZXhhbXBsZTwvZGVzdGluYXRhcmk+DQogICAg
+PHJpc3Bvc3RlPm5vdGlmaWNhLmNhcnRlbGxlQHBlYy5hZ2VuemlhLXJpc2Nvc3Npb25lLmV4YW1w
+bGU8L3Jpc3Bvc3RlPg0KICAgIDxvZ2dldHRvPkVzaXRvIGlzdGFuemEgZGkgcmF0ZWl6emF6aW9u
+ZTwvb2dnZXR0bz4NCiAgPC9pbnRlc3RhemlvbmU+DQogIDxkYXRpPg0KICAgIDxnZXN0b3JlLWVt
+aXR0ZW50ZT5HRVNUT1JFIFBFQyBFU0VNUElPIFMuUC5BLjwvZ2VzdG9yZS1lbWl0dGVudGU+DQog
+ICAgPGRhdGEgem9uYT0iKzAyMDAiPg0KICAgICAgPGdpb3Jubz4wMi8xMC8yMDI2PC9naW9ybm8+
+DQogICAgICA8b3JhPjEwOjAwOjAwPC9vcmE+DQogICAgPC9kYXRhPg0KICAgIDxpZGVudGlmaWNh
+dGl2bz5vcGVjLXN5bi4yMDI2MTAwMjA4MDAwMC45MDYwMkBwZWMuZ2VzdG9yZS11bm8uZXhhbXBs
+ZTwvaWRlbnRpZmljYXRpdm8+DQogICAgPG1zZ2lkPiZsdDtTQ04tMDYwMi4yMDI2MTAwMjA4MDAw
+MEBwZWMuYWdlbnppYS1yaXNjb3NzaW9uZS5leGFtcGxlJmd0OzwvbXNnaWQ+DQogIDwvZGF0aT4N
+CjwvcG9zdGFjZXJ0Pg0K
+
+------=_MIX_26600ed13e416915f8280910
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Fri, 02 Oct 2026 10:00:00 +0200
+From: "Agenzia Esempio Riscossione" <notifica.cartelle@pec.agenzia-riscossione.example>
+To: contabilita@pec.cantinebelvedere.example
+Subject: Esito istanza di rateizzazione
+Message-ID: <SCN-0602.20261002080000@pec.agenzia-riscossione.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_21f04171642b4622a9be6951"
+
+------=_INNER_21f04171642b4622a9be6951
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Si notifica il documento allegato.
+------=_INNER_21f04171642b4622a9be6951
+Content-Type: application/pdf; name="piano_rateizzazione.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="piano_rateizzazione.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4K
+ZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFs1IDAgUl0gL0NvdW50IDEgPj4K
+ZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAv
+SGVsdmV0aWNhIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nID4+CmVuZG9iago0IDAgb2JqCjw8
+IC9MZW5ndGggNDU0IC9GaWx0ZXIgL0ZsYXRlRGVjb2RlID4+CnN0cmVhbQp42n1Sy26jMBTd8xV3
+N51RAjYkVZodbT0jpAxJAVVVlM2tcSqPACNMssjXzzU0j2qk2QA259zzsB8LL/jJgTMo9h6PoFh5
+cwYLRuvSu4t/iXSbxCBy8XuTrCFL8qd1nifrVHyH4o9X/PDuLh+bJE7X8JxAFhci2W7j7Rdcpvc+
+tB32WuISNtmUYNN7xsKvCOx7swTxNvyCUlXAwoCzIGTh/b+aSQMopfmodK2a3jh89U3bHpsTkpiy
+tIs9gq4oYsAehjFQIjzFaZGkAh7F6lU8i0xA7m/82J/ALqICpGmkshahwosWWVf6dMKTNo0anJXq
+XffGv7qpW9ORC2nqtiK6Pho4s1yqXUi9zpj/sAgn9IIz3rlGh8RPTOTP+HwSEiQ91KobpyyBh1et
+lcun65EGVmKpXMqIBZwPKf3bkiRaktFQYyPJCrT4gWNj9KD5xAwX55pv/ABVqMsDDnFbjY1xrUpV
+Ek1NHO2zZHVRG1GNoZM5drtoxkDt96q/7enlgJXpXLm3GRzFaoSj6qxbX5zxecDDwdmoOAhYDZpk
+m1KNIp06GhftqvKfywtTSCrIlG1NY/FdV+N5tp2haONVGsaI4i/8qe1UCmVuZHN0cmVhbQplbmRv
+YmoKNSAwIG9iago8PCAvVHlwZSAvUGFnZSAvUGFyZW50IDIgMCBSIC9NZWRpYUJveCBbMCAwIDU5
+NSA4NDJdIC9SZXNvdXJjZXMgPDwgL0ZvbnQgPDwgL0YxIDMgMCBSID4+ID4+IC9Db250ZW50cyA0
+IDAgUiA+PgplbmRvYmoKeHJlZgowIDYKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE1IDAw
+MDAwIG4gCjAwMDAwMDAwNjQgMDAwMDAgbiAKMDAwMDAwMDEyMSAwMDAwMCBuIAowMDAwMDAwMjE4
+IDAwMDAwIG4gCjAwMDAwMDA3NDQgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSA2IC9Sb290IDEg
+MCBSID4+CnN0YXJ0eHJlZgo4NzAKJSVFT0YK
+
+------=_INNER_21f04171642b4622a9be6951--
+
+------=_MIX_26600ed13e416915f8280910--
+
+------=_SIG_26600ed13e416915f8280910
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MDIwODAwMDBaMC8GCSqGSIb3DQEJBDEiBCA4XlZ8aifBw8BwNUqaANcyHmN9SOHob1NwQ4yj4ywP
+TjA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQC+WHwpDzPQ7eW1qM36wnUIL8GlTQFxwTUmHfu+IaqA8jCg42Zp
+NixCBcGTjYS33DkQNVZEQa01I7pkSqKmgi8CZnkpIdEU7njBGgjwd6OeD4WTo+LGz1R5b7e/Cg0i
+0E4NDdJF0+uZWU+hUWSMtQQ4tOjoCTFgeVfM2VzJ8NDg9UQnwOXWLzG2KonkF1Aul3vk3+vsrXQ0
+HLdtjxAuzBxhydy7KT8b2/dQIspjI7aVjrmWUHhWUNLGCrEA5PmWo2E5gBYI0QI9ObS+JOEnFqVu
+zDBNnH6rm3VWys1Na9XB47DXUIS+xVRhoopks5Tu2hcZR3JH/LJICLqMyLf0nI3m
+
+------=_SIG_26600ed13e416915f8280910--

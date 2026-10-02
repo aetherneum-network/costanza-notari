@@ -1,0 +1,15 @@
+{
+  "company": "Tessiture Monteverde S.r.l. (synthetic debtor)",
+  "at_0830": [
+    {"op": "task_open", "task_id": "REPLY-ARC-0101", "what": "reply", "ref": "ARC-0101 diffida CARPENTERIE ROVERE S.R.L.", "at": "2026-10-21T08:30:00+02:00", "by": "intake"},
+    {"op": "task_open", "task_id": "REPLY-ARC-0102", "what": "reply", "ref": "ARC-0102 sollecito CANTINE BELVEDERE S.P.A.", "at": "2026-10-21T08:30:00+02:00", "by": "intake"},
+    {"op": "task_open", "task_id": "REPLY-ARC-0103", "what": "reply", "ref": "ARC-0103 diffida BANCA AURORA ESEMPIO S.P.A.", "at": "2026-10-21T08:30:00+02:00", "by": "intake"}
+  ],
+  "query_1": "2026-10-21T09:02:00+02:00",
+  "at_0915": [
+    {"op": "task_close", "task_id": "REPLY-ARC-0101", "at": "2026-10-21T09:15:00+02:00", "by": "ufficio-legale", "note": "PEC reply sent"},
+    {"op": "task_close", "task_id": "REPLY-ARC-0102", "at": "2026-10-21T09:15:00+02:00", "by": "amministrazione", "note": "PEC reply sent"},
+    {"op": "task_close", "task_id": "REPLY-ARC-0103", "at": "2026-10-21T09:15:00+02:00", "by": "tesoreria", "note": "PEC reply sent"}
+  ],
+  "query_2": "2026-10-21T09:40:00+02:00"
+}

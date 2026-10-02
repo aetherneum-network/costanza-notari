@@ -1,0 +1,180 @@
+Return-Path: <posta-certificata@pec.gestore-uno.example>
+Date: Mon, 19 Oct 2026 11:30:00 +0200
+From: "Per conto di: avv.serenalupatelli@pec.legalmail-esempio.example" <posta-certificata@pec.gestore-uno.example>
+Reply-To: avv.serenalupatelli@pec.legalmail-esempio.example
+To: officinelagorai@pec.officinelagorai.example
+Subject: POSTA CERTIFICATA: Notifica atto di precetto
+Message-ID: <opec-syn.20261019093000.90901@pec.gestore-uno.example>
+X-Riferimento-Message-ID: <SCN-0901.20261019093000@pec.legalmail-esempio.example>
+X-Trasporto: posta-certificata
+MIME-Version: 1.0
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg="sha-256"; boundary="----=_SIG_6f2d076e8fce13e06c4c6b67"
+
+This is an S/MIME signed message
+
+------=_SIG_6f2d076e8fce13e06c4c6b67
+Content-Type: multipart/mixed; boundary="----=_MIX_6f2d076e8fce13e06c4c6b67"
+
+------=_MIX_6f2d076e8fce13e06c4c6b67
+Content-Type: multipart/alternative; boundary="----=_ALT_6f2d076e8fce13e06c4c6b67"
+
+------=_ALT_6f2d076e8fce13e06c4c6b67
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Messaggio di posta certificata
+
+Il giorno 19/10/2026 alle ore 11:30:00 (+0200) il messaggio
+"Notifica atto di precetto" =C3=A8 stato inviato da "avv.serenalupatelli@pe=
+c.legalmail-esempio.example"
+indirizzato a:
+officinelagorai@pec.officinelagorai.example
+Il messaggio originale =C3=A8 incluso in allegato.
+Identificativo messaggio: opec-syn.20261019093000.90901@pec.gestore-uno.exa=
+mple
+
+------=_ALT_6f2d076e8fce13e06c4c6b67
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>Messaggio di posta certificata<br/><br/>Il giorno 19/10/2026=
+ alle ore 11:30:00 (+0200) il messaggio<br/>"Notifica atto di precetto" =C3=
+=A8 stato inviato da "avv.serenalupatelli@pec.legalmail-esempio.example"<br=
+/>indirizzato a:<br/>officinelagorai@pec.officinelagorai.example<br/>Il mes=
+saggio originale =C3=A8 incluso in allegato.<br/>Identificativo messaggio: =
+opec-syn.20261019093000.90901@pec.gestore-uno.example<br/></p></body></html>
+
+------=_ALT_6f2d076e8fce13e06c4c6b67--
+
+------=_MIX_6f2d076e8fce13e06c4c6b67
+Content-Type: application/xml; name="daticert.xml"
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="daticert.xml"
+
+PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxwb3N0YWNlcnQgdGlwbz0i
+cG9zdGEtY2VydGlmaWNhdGEiIGVycm9yZT0ibmVzc3VubyI+DQogIDxpbnRlc3RhemlvbmU+DQog
+ICAgPG1pdHRlbnRlPmF2di5zZXJlbmFsdXBhdGVsbGlAcGVjLmxlZ2FsbWFpbC1lc2VtcGlvLmV4
+YW1wbGU8L21pdHRlbnRlPg0KICAgIDxkZXN0aW5hdGFyaSB0aXBvPSJjZXJ0aWZpY2F0byI+b2Zm
+aWNpbmVsYWdvcmFpQHBlYy5vZmZpY2luZWxhZ29yYWkuZXhhbXBsZTwvZGVzdGluYXRhcmk+DQog
+ICAgPHJpc3Bvc3RlPmF2di5zZXJlbmFsdXBhdGVsbGlAcGVjLmxlZ2FsbWFpbC1lc2VtcGlvLmV4
+YW1wbGU8L3Jpc3Bvc3RlPg0KICAgIDxvZ2dldHRvPk5vdGlmaWNhIGF0dG8gZGkgcHJlY2V0dG88
+L29nZ2V0dG8+DQogIDwvaW50ZXN0YXppb25lPg0KICA8ZGF0aT4NCiAgICA8Z2VzdG9yZS1lbWl0
+dGVudGU+R0VTVE9SRSBQRUMgRVNFTVBJTyBTLlAuQS48L2dlc3RvcmUtZW1pdHRlbnRlPg0KICAg
+IDxkYXRhIHpvbmE9IiswMjAwIj4NCiAgICAgIDxnaW9ybm8+MTkvMTAvMjAyNjwvZ2lvcm5vPg0K
+ICAgICAgPG9yYT4xMTozMDowMDwvb3JhPg0KICAgIDwvZGF0YT4NCiAgICA8aWRlbnRpZmljYXRp
+dm8+b3BlYy1zeW4uMjAyNjEwMTkwOTMwMDAuOTA5MDFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGU8
+L2lkZW50aWZpY2F0aXZvPg0KICAgIDxtc2dpZD4mbHQ7U0NOLTA5MDEuMjAyNjEwMTkwOTMwMDBA
+cGVjLmxlZ2FsbWFpbC1lc2VtcGlvLmV4YW1wbGUmZ3Q7PC9tc2dpZD4NCiAgPC9kYXRpPg0KPC9w
+b3N0YWNlcnQ+DQo=
+
+------=_MIX_6f2d076e8fce13e06c4c6b67
+Content-Type: message/rfc822; name="postacert.eml"
+Content-Disposition: inline; filename="postacert.eml"
+
+Date: Mon, 19 Oct 2026 11:30:00 +0200
+From: "Avv. Serena Lupatelli" <avv.serenalupatelli@pec.legalmail-esempio.example>
+To: officinelagorai@pec.officinelagorai.example
+Subject: Notifica atto di precetto
+Message-ID: <SCN-0901.20261019093000@pec.legalmail-esempio.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="----=_INNER_2cd13fd6872354102b36fdae"
+
+------=_INNER_2cd13fd6872354102b36fdae
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Si notifica, ai sensi della L. 53/1994, l'atto allegato.
+Avv. Serena Lupatelli
+------=_INNER_2cd13fd6872354102b36fdae
+Content-Type: application/pkcs7-mime; name="atto_precetto.pdf.p7m"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="atto_precetto.pdf.p7m"
+
+MIIKMwYJKoZIhvcNAQcCoIIKJDCCCiACAQExDTALBglghkgBZQMEAgEwggPcBgkqhkiG9w0BBwGg
+ggPNBIIDySVQREYtMS40CiXi48/TCjEgMCBvYmoKPDwgL1R5cGUgL0NhdGFsb2cgL1BhZ2VzIDIg
+MCBSID4+CmVuZG9iagoyIDAgb2JqCjw8IC9UeXBlIC9QYWdlcyAvS2lkcyBbNSAwIFJdIC9Db3Vu
+dCAxID4+CmVuZG9iagozIDAgb2JqCjw8IC9UeXBlIC9Gb250IC9TdWJ0eXBlIC9UeXBlMSAvQmFz
+ZUZvbnQgL0hlbHZldGljYSAvRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZyA+PgplbmRvYmoKNCAw
+IG9iago8PCAvTGVuZ3RoIDM3MCAvRmlsdGVyIC9GbGF0ZURlY29kZSA+PgpzdHJlYW0KeNptkUFv
+nDAQhe/8irk1rYjXEDVKeirZhcgShRXrveViwRBNBLZlvFF/fodtRA7tzfbY733v+UknuyqDTIIe
+k+wOdJ18l/AgeT8kNyd9PqgW6vK5qEuoz8dCl3WtvoJ+S/S35GZbFFq3cFBw7Mp9yett0NEowAcT
+qTc/eHxbtbePUmb/ShwxQO9sdIBgcZq+kI0YcFkQBoKq7Rqlz10JByZ4yfO8bXTRtHASnahFuj6F
+BQcEslAuOHtyKRzL/aZ/GUfqyYk+4ECRfnrsxeiCpXgJyL7GOoG/zewnTCEY79kb+TgaWAlGXAwM
+hrmK93cBJ0azBuqLN5FhKd18VKPVr2LbGmirSu1Vw/0Vz21XqA/kNZU3ryYgsE1wQBNw4JnsNfBA
+2BO80kp49TVgXSTOwBg4wQcefhpFro5vLW6ezarwkvMv3ovHO5lKmYKbYljb+VsqcajFs4TYBLbW
+soddJne5zO8///d/ma/TUv8BlQasvAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUg
+L1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCA1OTUgODQyXSAvUmVzb3VyY2VzIDw8
+IC9Gb250IDw8IC9GMSAzIDAgUiA+PiA+PiAvQ29udGVudHMgNCAwIFIgPj4KZW5kb2JqCnhyZWYK
+MCA2CjAwMDAwMDAwMDAgNjU1MzUgZiAKMDAwMDAwMDAxNSAwMDAwMCBuIAowMDAwMDAwMDY0IDAw
+MDAwIG4gCjAwMDAwMDAxMjEgMDAwMDAgbiAKMDAwMDAwMDIxOCAwMDAwMCBuIAowMDAwMDAwNjYw
+IDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNiAvUm9vdCAxIDAgUiA+PgpzdGFydHhyZWYKNzg2
+CiUlRU9GCqCCA+owggPmMIICzqADAgECAgFNMA0GCSqGSIb3DQEBCwUAMGkxCzAJBgNVBAYTAklU
+MTYwNAYDVQQKDC1Fc2VtcGlvIENlcnRpZmljYXppb25pIChzeW50aGV0aWMsIFRFU1QgT05MWSkx
+IjAgBgNVBAMMGUVzZW1waW8gVU5UUlVTVEVEIFRlc3QgQ0EwHhcNMjUwMzAxMDAwMDAwWhcNMjgw
+MzAxMDAwMDAwWjBiMQswCQYDVQQGEwJJVDEsMCoGA1UECgwjU3R1ZGlvIExlZ2FsZSBMdXBhdGVs
+bGkgKHN5bnRoZXRpYykxJTAjBgNVBAMMHEF2di4gU2VyZW5hIEx1cGF0ZWxsaSAoVEVTVCkwggEi
+MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDT8PCBHomsOOVzOgW/vw1WReCxKzP9OX3yYRw+
+ca+4a2giT+j+NhZkm0WOxfR5OK56PNiXcTbHn7HD7H4VWlvwEFb8faOXn+rBLOXtPzyPVJIF8KyO
+ORQC2EOKCjJo+DL4uhx236I0uqDI1cdmPPd1aXP5oiSNg+dJFe0iRklOYbnyx8r6ArJ92MCd7GSC
+I7h2sqzzHWgfM+Z3lM+iL+1I6e51pBaiaNMifFlDAa+6FuyMqBcKZTF3nUgcu2qKtFAcqKHk87to
+YRz9MfpjLJrXaVvi7Yb6uLhffubNBCOfXcR9S+2lz0P7OdEP2hfjw4bZp044bEPgnyA84glwblh7
+AgMBAAGjgZ8wgZwwDAYDVR0TAQH/BAIwADAOBgNVHQ8BAf8EBAMCBsAwHQYDVR0OBBYEFEoNcMyY
+58y8rL3NesayeGlKDtfaMB8GA1UdIwQYMBaAFDQriH4JmtDKLZzNaWCnMPRIbXkoMDwGA1UdEQQ1
+MDOBMWF2di5zZXJlbmFsdXBhdGVsbGlAcGVjLmxlZ2FsbWFpbC1lc2VtcGlvLmV4YW1wbGUwDQYJ
+KoZIhvcNAQELBQADggEBADbcyHmPCul4qqcL6iZ3vwfxup0EamDdLgIkUWbGhJga4ZTAAGAGNvtq
+qWAFIL7jvpYTnhvAzgC1kxpmurWw+H/DZ4xRlWPNP7IefM3k1Lzj8Rbx5f+eb+ueYOKYpLziw4pq
+ozQ2juU+Cm6+VFzBHsyotYQSUL9+dRWK3fb5jxn8G1MTKl27ep26UWwNXBYIz6cQSZPHdscR0Di1
+O3hNdlHPrvHPLFwtNbbW9PE1Xth89rHm8N7RiVpPC4xvw/mRBRCICD0T/5qz3fSv5A8deeTQcB8+
+mKY1sI19pdstNUOsaTOnqbtz4AK9fR4lrQFKQvMmKLRr68wvaQ+Frc/kYHsxggI8MIICOAIBATBu
+MGkxCzAJBgNVBAYTAklUMTYwNAYDVQQKDC1Fc2VtcGlvIENlcnRpZmljYXppb25pIChzeW50aGV0
+aWMsIFRFU1QgT05MWSkxIjAgBgNVBAMMGUVzZW1waW8gVU5UUlVTVEVEIFRlc3QgQ0ECAU0wCwYJ
+YIZIAWUDBAIBoIGiMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI2
+MTAxOTA3MzAwMFowLwYJKoZIhvcNAQkEMSIEIBQvXtS7vm3nuoduokdhvH2d/qk5rGZJ42oqaatS
+rro1MDcGCyqGSIb3DQEJEAIvMSgwJjAkMCIEIPsMxXXqs8uiInwcwkhaDjKrm2NqRiitwDkPPK+Q
+xyTSMA0GCSqGSIb3DQEBAQUABIIBAD4OhsD7gjDH7ot7ukJxlhVou78xWO11xDnINqaxX+A8gTvf
+H5Kh+bJiwjzn6+rJ04Cf4kxxiY/+np1iKFUvW6FiwP8Nbd0Lhy2ICawTn8TmATEQ1nwIJxqv1flY
+Do70OGG4JCWW2ufNrfQ+6pq0AB9tRLSBxJ5ERv2/soLP79grWI8+PFrWBNpGhSAzqlziU8SGyZQW
+H4XAU2l8ANQ+SJAY0FZVtndXx6VxbFt9D1POy38KN6yYdUOxNjqSwTDguiSgXdAA09H6DFeHCBiG
+wZkR78Uo9pOvjLPMdJt11+VrsRs00tDHptfkya2bKiwWYIJYwvIXMu8MC/7LLIxEEVQ=
+
+------=_INNER_2cd13fd6872354102b36fdae--
+
+------=_MIX_6f2d076e8fce13e06c4c6b67--
+
+------=_SIG_6f2d076e8fce13e06c4c6b67
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+
+MIIGoQYJKoZIhvcNAQcCoIIGkjCCBo4CAQExDTALBglghkgBZQMEAgEwCwYJKoZIhvcNAQcBoIIE
+GDCCBBQwggL8oAMCAQICAWUwDQYJKoZIhvcNAQELBQAwezELMAkGA1UEBhMCSVQxNTAzBgNVBAoM
+LEFldGhlcm5ldW0gVW5pdmVyc2l0eSAoc3ludGhldGljLCBURVNUIE9OTFkpMTUwMwYDVQQDDCxB
+ZXRoZXJuZXVtIFRFU1QgUm9vdCBDQSAtIE5PVCBGT1IgUFJPRFVDVElPTjAeFw0yNTAxMDEwMDAw
+MDBaFw0yOTAxMDEwMDAwMDBaMIGFMQswCQYDVQQGEwJJVDE1MDMGA1UECgwsQWV0aGVybmV1bSBV
+bml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxPzA9BgNVBAMMNkdFU1RPUkUgUEVDIEVT
+RU1QSU8gUy5QLkEuIC0gZmlybWEgZGkgdHJhc3BvcnRvIChURVNUKTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBAOC/wN/GxoIq4WYovkLQlfzStrbuoHtPOypKEfqn/tDil4jOXnL+XZQe
+Pj68bwjzlHjvEGw09yOGQ7RtpfG9+53ahLxbl/EtxhxRddNNW7y/p06q1wxoqVI6p8SYWhFXcYvf
+ENy3a6nTOJXqgrDpKiX0RbrJSobUUGXiTs9GW9fiZNDl+B8Fses7e+eG1iToORnqEp798MSla7lX
+sFJ8p+BtMvHXQngOIonuwRP0+8uu+FCoW1JPDYEJxIqEY5LfUEMWX19QftWMCLnXrDXeP5ZjhLSj
+EiUWb6MvvpLXCRySLXd94MaAMNF28a0ErQ5FuOlc4UtsjZ+ArPVwmVPpfbUCAwEAAaOBlzCBlDAM
+BgNVHRMBAf8EAjAAMA4GA1UdDwEB/wQEAwIGwDAdBgNVHQ4EFgQUgKXUdWLZlbop1fkX7FvN5PB/
+mZQwHwYDVR0jBBgwFoAUOFyURGzke3uHkKzg7gfQUGoOlj0wNAYDVR0RBC0wK4EpcG9zdGEtY2Vy
+dGlmaWNhdGFAcGVjLmdlc3RvcmUtdW5vLmV4YW1wbGUwDQYJKoZIhvcNAQELBQADggEBAAenIX1M
+1t0G0h51wrpzLo+yrmpypSjuIAXojlGRDNKV0xVdWh45rkHa0hWCMVi6nUYHHu242mnq+o0Xirkt
+cdyvYflp0L9rpz8PyPzilq7UlxnMLuME040zvhCGVc8Cuzj3doYh0c8DtjbrD5LkGlzUwuT6BLfJ
+PYJ01fqtgpOFYReaqIJRNNwuwoHqBJz0pEluukD/jvgTJkFl5ZcyNc3DIr6nH+lTI5sP+8s83wYv
+bu7/PP6CcBk9OiHboHl31KUBj7BbWyT7R+MZwjNx8NZIwurJCWvN1as5lDrmRtUdjGWp9uUongSj
+JzxFBTN2DITBcZxWfXMWHi4aIzqGNOIxggJPMIICSwIBATCBgDB7MQswCQYDVQQGEwJJVDE1MDMG
+A1UECgwsQWV0aGVybmV1bSBVbml2ZXJzaXR5IChzeW50aGV0aWMsIFRFU1QgT05MWSkxNTAzBgNV
+BAMMLEFldGhlcm5ldW0gVEVTVCBSb290IENBIC0gTk9UIEZPUiBQUk9EVUNUSU9OAgFlMAsGCWCG
+SAFlAwQCAaCBojAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yNjEw
+MTkwOTMwMDBaMC8GCSqGSIb3DQEJBDEiBCDnVoE3xy8ACB5tIkflsx7oYwoTH7jsuj/mIIiFKN3T
+FjA3BgsqhkiG9w0BCRACLzEoMCYwJDAiBCDRnxHRf0xFe0skgBwz20K6zyLPJ1WhpGWAshHCcEZj
+5DANBgkqhkiG9w0BAQEFAASCAQCPjW8yyngm345RaA4dMle/qFV9SrW6cHqMwewvuBRXSIJ468Yi
+2aMxF3ELifXTKQB66QAd74GLFuvGwj9nYS6Zyje/A0QLVM44u/Pfzm4CQLal6y8AB5LATCiDN9Aq
+Ks+1QhqXkkkBXr4p71RIEVVohGtK+8gkPo3GGq8Ket7sY4zErMON4bvqPd8ERPLSFsmAUU5DYq4A
+NtLp5A1qKxCl6eG4mah9MR/zfnKEf5x4Sz4skpipUip+8XeQc7C4mmzVN4EfLtN8beLgNp4FFRPb
+eCMd293M68d1Vy0qcDyTi/HkjFqpHTpkbA5xPUCxEjKobP5R0s7eOwZNV+bf/KaT
+
+------=_SIG_6f2d076e8fce13e06c4c6b67--

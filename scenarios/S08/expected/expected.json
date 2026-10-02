@@ -1,0 +1,11 @@
+{
+  "status": "OK",
+  "manifest": 40,
+  "long_path_safe": 40,
+  "paths_over_300_chars": 15,
+  "names_intact_after_utf8_round_trip": true,
+  "canonical": "SOCIETÀ AGRICOLA VALLE DELL’ÈRTO S.S.",
+  "aliases_seen": 3,
+  "backslash_repair_logged": true,
+  "note": "naive_os_walk is reported, not asserted: on Windows without LongPathsEnabled it silently misses the 15 long paths; on Linux it finds all 40."
+}

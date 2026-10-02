@@ -60,3 +60,7 @@ logs/
 # Local overrides
 docker-compose.override.yml
 .env.local
+
+# Proof pack: build artefacts are always rebuilt from source/state, never hand-edited.
+# (build/, __pycache__/, *.pyc and .pytest_cache/ are listed above.)
+corpus/out/
