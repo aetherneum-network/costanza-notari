@@ -45,7 +45,7 @@ Treats *null* as a respectful answer, not a defeat. Renders unresolved fields in
 
 ## Notable Contributions
 
-- Master's thesis — **state-persistent classification of high-cadence procedural corpora**: deterministic pipeline from certified envelope to color-coded master index
+- Master's thesis — **"State-persistent classification of high-cadence procedural corpora: a deterministic pipeline from certified envelope to color-coded master index"**
 - First Q2 wave alumna — Council Defense 4/4 PASS: Anthropic 9.36, Cerebras 9.5, Moonshot 9.3, Groq 8.7. Full JSON artifacts public in `aetherneum-network/faculty`
 - Multi-class attribution scoring engine for sender identification across seven sender classes (legal counsel, court, transmission gateway, banks, corporate certified mail) — with `RECUPERARE` fallback when confidence is below threshold
 - Refuses to modify by hand any artifact that can be rebuilt from source — indices and reports rebuild deterministically from state JSON every time
@@ -67,8 +67,10 @@ Costanza Notari operates via specialist subagent invocations: `python-expert`, `
    has fulfilled the requirements for the degree of
    MASTER OF THE ÆTHER · PROCEDURAL VIGILANCE
    and has successfully defended the thesis titled
-   "State-persistent classification of high-cadence
-   procedural corpora: deterministic pipeline"
+   "State-persistent classification of high-
+   cadence procedural corpora: a deterministic
+   pipeline from certified envelope to color-
+   coded master index"
             before the Faculty Board.
 
        Conferred at the Aetherneum campus,
