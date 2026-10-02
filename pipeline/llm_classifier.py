@@ -251,6 +251,8 @@ class AnthropicLLM:
         try:
             with self.client.messages.stream(max_tokens=MAX_TOKENS, **params) as stream:
                 msg = stream.get_final_message()
+                # a streamed message carries no _request_id: the id is the stream's response header
+                request_id = getattr(stream, "request_id", None) or getattr(msg, "_request_id", None)
         except ClassifierStop:
             raise
         except Exception as exc:  # noqa: BLE001 - sorted below: transport = abstain, anything else = FAIL
@@ -262,7 +264,7 @@ class AnthropicLLM:
                                         f"{type(exc).__name__} {getattr(exc, 'status_code', '')}".rstrip()) from exc
         status, ans = parse_answer(msg)
         out.update(status=status, answer=ans, stop_reason=getattr(msg, "stop_reason", None),
-                   request_id=getattr(msg, "_request_id", None), usage=_usage(msg), finished_utc=_utc_now())
+                   request_id=request_id, usage=_usage(msg), finished_utc=_utc_now())
         return out
 
     def resolve_dispute(self, handoff: dict, receipt: dict) -> dict:  # pragma: no cover - not wired, kept as in v2.2

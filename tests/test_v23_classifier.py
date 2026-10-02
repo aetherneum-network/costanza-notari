@@ -54,11 +54,12 @@ class _Msg:
         self.stop_reason = stop_reason
         body = text if text is not None else (json.dumps(answer) if answer is not None else None)
         self.content = [] if body is None else [_Block(body)]
-        self.usage = _Usage(USAGE)
-        self._request_id = "req_fake"
+        self.usage = _Usage(USAGE)        # like the SDK: a streamed message has no _request_id
 
 
 class _Stream:
+    request_id = "req_fake"                # like the SDK: the id is a header of the stream's response
+
     def __init__(self, result):
         self.result = result
 
@@ -240,6 +241,9 @@ class PromptContent(unittest.TestCase):
         for k in ("temperature", "top_p", "top_k", "thinking", "tool_choice", "tools", "fallbacks", "betas"):
             self.assertNotIn(k, self.params, k)
         self.assertNotIn("budget_tokens", dumped)
+
+    def test_request_id_comes_from_the_stream(self):
+        self.assertEqual(self.out["request_id"], "req_fake")
 
     def test_strict_json_schema(self):
         fmt = self.params["output_config"]["format"]
